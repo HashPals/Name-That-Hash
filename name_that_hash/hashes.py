@@ -2,7 +2,9 @@ from collections import namedtuple
 import re
 
 Prototype = namedtuple("Prototype", ["regex", "modes"])
-HashInfo = namedtuple("HashInfo", ["name", "hashcat", "john", "extended"])
+HashInfo = namedtuple(
+    "HashInfo", ["name", "hashcat", "john", "extended", "description"]
+)
 
 prototypes = [
     Prototype(
@@ -96,7 +98,7 @@ prototypes = [
         regex=re.compile(r"^[a-z0-9\/.]{24}$", re.IGNORECASE),
         modes=[HashInfo(name="Crypt16", hashcat=None, john=None, extended=False)],
     ),
-Prototype(
+    Prototype(
         regex=re.compile(r"^[a-f0-9]{32}(:.+)?$", re.IGNORECASE),
         modes=[
             HashInfo(name="MD5", hashcat=0, john="raw-md5", extended=False),
@@ -183,12 +185,11 @@ Prototype(
             ),
         ],
     ),
-
     Prototype(
         regex=re.compile(r"^(\$md2\$)?[a-f0-9]{32}$", re.IGNORECASE),
         modes=[HashInfo(name="MD2", hashcat=None, john="md2", extended=False)],
     ),
-        Prototype(
+    Prototype(
         regex=re.compile(r"^(\$snefru\$)?[a-f0-9]{32}$", re.IGNORECASE),
         modes=[
             HashInfo(name="Snefru-128", hashcat=None, john="snefru-128", extended=False)
@@ -196,7 +197,15 @@ Prototype(
     ),
     Prototype(
         regex=re.compile(r"^(\$NT\$)?[a-f0-9]{32}$", re.IGNORECASE),
-        modes=[HashInfo(name="NTLM", hashcat=1000, john="nt", extended=False)],
+        modes=[
+            HashInfo(
+                name="NTLM",
+                hashcat=1000,
+                john="nt",
+                extended=False,
+                description="Often used in Windows Active Directory.",
+            )
+        ],
     ),
     Prototype(
         regex=re.compile(
