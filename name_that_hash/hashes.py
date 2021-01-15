@@ -1,10 +1,21 @@
 from collections import namedtuple
 import re
+from dataclasses import dataclass
 
 Prototype = namedtuple("Prototype", ["regex", "modes"])
-HashInfo = namedtuple(
+"""HashInfo = namedtuple(
     "HashInfo", ["name", "hashcat", "john", "extended", "description"]
-)
+)"""
+
+
+@dataclass
+class HashInfo:
+    name: str
+    hashcat: int
+    john: str
+    extended: bool
+    description: str = None
+
 
 prototypes = [
     Prototype(
