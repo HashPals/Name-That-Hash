@@ -5,49 +5,24 @@ import name_that_hash
 import hashes
 
 
-class prettifier:
-    def __init__(self, prototypes):
+class HashObj:
+    """
+    Every hash given to our program will be assiocated with one object
+    This object contains the possible type of hash
+    and provides ways to print that hash
+
+    """
+
+    def __init__(self, chash, nth):
         self.popular = set(["MD5", "NTLM", "SHA256", "SHA515"])
+        self.hash = chash
+        self.nth = nth
+
         # prorotypes is given as a generator
-        self.prototypes = list(prototypes)
+        self.prototypes = list(nth.identify(chash))
         self.prototypes = self.sort_by_popular()
 
-    def greppable_output(self):
-        """
-        takes the prototypes and turns it into json
-        returns the json
-        """
-        json_obj = json.dumps(self.prototypes, indent=4)
-        print(json_obj)
-
-    def pretty_print(self):
-        """
-        prints it prettily in the format:
-        most popular hashes
-        1.
-        2.
-        3.
-        4.
-
-        And then everything else on one line.
-        """
-        out = "Most Likely \n"
-        start = self.prototypes[0:4]
-        rest = self.prototypes[4:]
-
-        for i in start:
-            out += self.turn_named_tuple_pretty_print(i) + "\n"
-
-        out += "\nLeast Likely\n"
-
-        for i in rest:
-            out += self.turn_named_tuple_pretty_print(i)
-
-        print(out)
-        return out
-
-    def turn_named_tuple_pretty_print(self, nt):
-        return f"- {nt.name}, Hashcat mode {nt.hashcat}, John Name {nt.john}"
+        self.hash_obj = {self.hash: self.prototypes}
 
     def get_prototypes(self):
         return self.prototypes
@@ -68,8 +43,47 @@ class prettifier:
         return populars + self.prototypes
 
 
+class Prettifier:
+    def greppable_output(self, objs):
+        """
+        takes the prototypes and turns it into json
+        returns the json
+        """
+        json_obj = json.dumps(objs, indent=4)
+        print(json_obj)
+
+    def pretty_print(self):
+        """
+        prints it prettily in the format:
+        most popular hashes
+        1.
+        2.
+        3.
+        4.
+
+        And then everything else on one line.
+        """
+        out = "Most Likely \n"
+        start = prototypes[0:4]
+        rest = prototypes[4:]
+
+        for i in start:
+            out += self.turn_named_tuple_pretty_print(i) + "\n"
+
+        out += "\nLeast Likely\n"
+
+        for i in rest:
+            out += self.turn_named_tuple_pretty_print(i)
+
+        print(out)
+        return out
+
+    def turn_named_tuple_pretty_print(self, nt):
+        return f"- {nt.name}, Hashcat mode {nt.hashcat}, John Name {nt.john}"
+
+
 @click.command()
-@click.option("-g", "--greppable", help="Are you going to grep this output?")
+@click.option("-g", "--greppable", type=bool, help="Are you going to grep this output?")
 @click.option("-t", "--text", help="Check one hash")
 @click.argument("file", type=click.File("rb"), required=False)
 def main(**kwargs):
@@ -79,16 +93,15 @@ def main(**kwargs):
     https://github.com/hashpals/name-that-hash
 
     """
-    print(kwargs)
 
     nth = name_that_hash.Name_That_Hash(hashes.prototypes)
 
-    output = nth.identify(kwargs["text"])
-    import pprint
+    output_obj = HashObj(kwargs["text"], nth)
 
-    ptfy = prettifier(output)
-
-    pprint.pprint(ptfy.sort_by_popular())
+    if kwargs["greppable"]:
+        output_obj.greppable_output()
+    else:
+        output_obj.pretty_print()
 
 
 main()
