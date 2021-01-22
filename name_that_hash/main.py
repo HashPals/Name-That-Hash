@@ -15,14 +15,14 @@ class HashObj:
 
     def __init__(self, chash, nth):
         self.popular = set(["MD5", "NTLM", "SHA256", "SHA515"])
-        self.hash = chash
+        self.chash = chash
         self.nth = nth
 
         # prorotypes is given as a generator
         self.prototypes = list(nth.identify(chash))
         self.prototypes = self.sort_by_popular()
 
-        self.hash_obj = {self.hash: self.prototypes}
+        self.hash_obj = {self.chash: self.prototypes}
 
     def get_prototypes(self):
         return self.prototypes
@@ -31,7 +31,7 @@ class HashObj:
         """Sorts the list by popular + everything else
 
         we do this using the self.popular set. Sets have O(1) lookup, so it's cheap.
-        If one named_tuple is in the popular set, we add it to the populars list and remove it from prototypes.
+        If on named_tuple is in the popular set, we add it to the populars list and remove it from prototypes.
 
         we then return populars list + prototypes.
         """
@@ -49,19 +49,23 @@ class Prettifier:
         takes the prototypes and turns it into json
         returns the json
         """
-        json_obj = json.dumps(objs, indent=4)
+        import pprint
+
+        pprint.pprint(objs.hash_obj)
+        json_obj = json.dumps(objs.hash_obj, indent=4)
         print(json_obj)
 
     def pretty_print(self):
         """
         prints it prettily in the format:
-        most popular hashes
+        most popular hashe
         1.
         2.
         3.
         4.
 
-        And then everything else on one line.
+
+        then everything else on one line.
         """
         out = "Most Likely \n"
         start = prototypes[0:4]
@@ -93,15 +97,17 @@ def main(**kwargs):
     https://github.com/hashpals/name-that-hash
 
     """
-
     nth = name_that_hash.Name_That_Hash(hashes.prototypes)
+    prettifier = Prettifier()
 
-    output_obj = HashObj(kwargs["text"], nth)
+    if kwargs["text"]:
+        output_obj = HashObj(kwargs["text"], nth)
 
     if kwargs["greppable"]:
-        output_obj.greppable_output()
+        prettifier.greppable_output(output_obj)
     else:
         output_obj.pretty_print()
 
 
-main()
+if __name__ == "__main__":
+    main()

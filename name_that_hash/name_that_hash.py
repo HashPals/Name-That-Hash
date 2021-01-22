@@ -1,5 +1,6 @@
 import re
 
+
 class Name_That_Hash:
     """
     The main class which deals with hash identification
