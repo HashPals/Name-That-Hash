@@ -16,7 +16,6 @@ class HashInfo:
     extended: bool
     description: str = None
 
-
 prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{4}$", re.IGNORECASE),

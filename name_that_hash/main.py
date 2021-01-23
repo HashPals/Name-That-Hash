@@ -35,12 +35,15 @@ class HashObj:
 
         we then return populars list + prototypes.
         """
+        to_ret = []
         populars = []
         for i in self.prototypes:
             if i.name in self.popular:
-                populars.append(i)
+                populars.append(i.__dict__)
                 self.prototypes.remove(i)
-        return populars + self.prototypes
+            else:
+                to_ret.append(i.__dict__)
+        return populars + to_ret
 
 
 class Prettifier:
@@ -49,13 +52,10 @@ class Prettifier:
         takes the prototypes and turns it into json
         returns the json
         """
-        import pprint
-
-        pprint.pprint(objs.hash_obj)
         json_obj = json.dumps(objs.hash_obj, indent=4)
-        print(json_obj)
+        return json_obj
 
-    def pretty_print(self):
+    def pretty_print(self, objs):
         """
         prints it prettily in the format:
         most popular hashe
@@ -68,8 +68,8 @@ class Prettifier:
         then everything else on one line.
         """
         out = "Most Likely \n"
-        start = prototypes[0:4]
-        rest = prototypes[4:]
+        start = objs.prototypes[0:4]
+        rest = objs.prototypes[4:]
 
         for i in start:
             out += self.turn_named_tuple_pretty_print(i) + "\n"
@@ -83,11 +83,34 @@ class Prettifier:
         return out
 
     def turn_named_tuple_pretty_print(self, nt):
-        return f"- {nt.name}, Hashcat mode {nt.hashcat}, John Name {nt.john}"
+        out = f"{nt['name']}, "
+
+        hc = nt["hashcat"]
+        john = nt["john"]
+        des = nt["description"]
+
+        if hc and john:
+            out += f"Hashcat Mode: {hc}, "
+        elif hc:
+            out += f"Hashcat Mode: {hc}."
+        if john and des:
+            out += f"John Name: {john}, "
+        elif john:
+            out += f"John Name: {john}."
+        if des:
+            out += f"Summary: {des}"
+
+        return out
 
 
 @click.command()
-@click.option("-g", "--greppable", type=bool, help="Are you going to grep this output?")
+@click.option(
+    "-g",
+    "--greppable",
+    is_flag=True,
+    type=bool,
+    help="Are you going to grep this output?",
+)
 @click.option("-t", "--text", help="Check one hash")
 @click.argument("file", type=click.File("rb"), required=False)
 def main(**kwargs):
@@ -106,7 +129,7 @@ def main(**kwargs):
     if kwargs["greppable"]:
         prettifier.greppable_output(output_obj)
     else:
-        output_obj.pretty_print()
+        prettifier.pretty_print(output_obj)
 
 
 if __name__ == "__main__":
