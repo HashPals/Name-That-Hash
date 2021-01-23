@@ -1,9 +1,10 @@
 import click
 import json
-from rich import print
-from pprint import pprint
-
+import sys
 from typing import NamedTuple, List
+
+
+from rich import print
 
 import name_that_hash
 import hashes
@@ -51,6 +52,12 @@ class HashObj:
 
 
 class Prettifier:
+    def __init__(self, kwargs):
+        """
+        Takes arguments as list so we can do A11Y stuff etc
+        """
+        self.a11y = kwargs["accessible"]
+
     def greppable_output(self, objs: List):
         """
         takes the prototypes and turns it into json
@@ -86,10 +93,12 @@ class Prettifier:
         for i in start:
             out += self.turn_named_tuple_pretty_print(i) + "\n"
 
-        out += "\n[bold underline]Least Likely[/bold underline]\n"
+        # return if accessible is on
+        if not self.a11y:
+            out += "\n[bold underline]Least Likely[/bold underline]\n"
 
-        for i in rest:
-            out += self.turn_named_tuple_pretty_print(i) + " "
+            for i in rest:
+                out += self.turn_named_tuple_pretty_print(i) + " "
 
         print(out)
         return out
@@ -113,6 +122,13 @@ class Prettifier:
             out += f"[magenta]Summary: {des}[/magenta]"
 
         return out
+
+
+def print_help(ctx):
+    if value is False:
+        return
+    click.echo(ctx.get_help())
+    ctx.exit()
 
 
 def banner():
@@ -145,10 +161,8 @@ https://github.com/HashPals/Name-That-Hash
     help="Turn on accessible mode, does not print ASCII art. Also dooes not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely but no banner, use --no-banner. ",
 )
 @click.option("--no-banner", is_flag=True, help="Removes banner from startup.")
-@click.argument(
-    "file",
-    type=click.File("rb"),
-    required=False,
+@click.option(
+    "-f", "--file", type=click.File("rb"), help="Newline separated hash file input"
 )
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
@@ -157,6 +171,15 @@ def main(**kwargs):
     https://github.com/hashpals/name-that-hash
 
     """
+    no_args = True
+    for i in kwargs.values():
+        if i:
+            no_args = False
+            break
+    if no_args:
+        with click.Context(main) as ctx:
+            click.echo(main.get_help(ctx))
+            exit(0)
 
     # Banner handling
     if not kwargs["accessible"] and not kwargs["no_banner"] and not kwargs["greppable"]:
@@ -165,7 +188,7 @@ def main(**kwargs):
     # nth = the object which names the hash types
     nth = name_that_hash.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
-    prettifier = Prettifier()
+    prettifier = Prettifier(kwargs)
 
     output = []
 
@@ -173,8 +196,10 @@ def main(**kwargs):
         output.append(HashObj(kwargs["text"], nth))
     elif kwargs["file"]:
         # else it must be a file
-        for i in kwargs["file"].split("\n"):
-            output.append(prettifier.greppable_output(HashObj(i, nth)))
+        for i in kwargs["file"].read().splitlines():
+            # for every hash in the file, put it into the output list
+            # we have to decode it as its bytes str
+            output.append(HashObj(i.decode("utf-8"), nth))
 
     if kwargs["greppable"]:
         print(prettifier.greppable_output(output))
@@ -192,7 +217,10 @@ def api_return_hashes_as_json(hashes: [str]):
     # nth = the object which names the hash types
     nth = name_that_hash.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
-    prettifier = Prettifier()
+
+    kwargs = {}
+
+    prettifier = Prettifier(kwargs)
 
     output = []
     for i in hashes:
