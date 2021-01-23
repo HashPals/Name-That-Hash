@@ -1,5 +1,6 @@
 import click
 import json
+from rich import print
 
 import name_that_hash
 import hashes
@@ -67,23 +68,23 @@ class Prettifier:
 
         then everything else on one line.
         """
-        out = "Most Likely \n"
+        out = "[bold underline]Most Likely[/bold underline] \n"
         start = objs.prototypes[0:4]
         rest = objs.prototypes[4:]
 
         for i in start:
             out += self.turn_named_tuple_pretty_print(i) + "\n"
 
-        out += "\nLeast Likely\n"
+        out += "\n[bold underline]Least Likely[/bold underline]\n"
 
         for i in rest:
-            out += self.turn_named_tuple_pretty_print(i)
+            out += self.turn_named_tuple_pretty_print(i) + " "
 
         print(out)
         return out
 
     def turn_named_tuple_pretty_print(self, nt):
-        out = f"{nt['name']}, "
+        out = f"[bold red]{nt['name']}[/bold red], "
 
         hc = nt["hashcat"]
         john = nt["john"]
@@ -98,9 +99,23 @@ class Prettifier:
         elif john:
             out += f"John Name: {john}."
         if des:
-            out += f"Summary: {des}"
+            out += f"[magenta]Summary: {des}[/magenta]"
 
         return out
+
+
+def banner():
+    text = """
+  _   _                           _____ _           _          _   _           _     
+ | \ | |                         |_   _| |         | |        | | | |         | |    
+ |  \| | __ _ _ __ ___   ___ ______| | | |__   __ _| |_ ______| |_| | __ _ ___| |__  
+ | . ` |/ _` | '_ ` _ \ / _ \______| | | '_ \ / _` | __|______|  _  |/ _` / __| '_ \ 
+ | |\  | (_| | | | | | |  __/      | | | | | | (_| | |_       | | | | (_| \__ \ | | |
+  \_| \_/\__,_|_| |_| |_|\___| |_| \_/ |_| |_|\__,_|\__|      \_| |_/\__,_|___/_| |_|
+https://twitter.com/bee_sec_san
+https://github.com/HashPals/Name-That-Hash
+    """
+    print(text)
 
 
 @click.command()
@@ -112,6 +127,12 @@ class Prettifier:
     help="Are you going to grep this output?",
 )
 @click.option("-t", "--text", help="Check one hash")
+@click.option(
+    "-a",
+    "--accessible",
+    is_flag=True,
+    help="Turn on accessible mode, does not print ASCII art.",
+)
 @click.argument("file", type=click.File("rb"), required=False)
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
@@ -120,11 +141,17 @@ def main(**kwargs):
     https://github.com/hashpals/name-that-hash
 
     """
+
+    if not kwargs["accessible"]:
+        banner()
+
     nth = name_that_hash.Name_That_Hash(hashes.prototypes)
     prettifier = Prettifier()
 
     if kwargs["text"]:
         output_obj = HashObj(kwargs["text"], nth)
+    else:
+        pass
 
     if kwargs["greppable"]:
         prettifier.greppable_output(output_obj)
