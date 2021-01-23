@@ -1,6 +1,9 @@
 import click
 import json
 from rich import print
+from pprint import pprint
+
+from typing import NamedTuple, List
 
 import name_that_hash
 import hashes
@@ -14,7 +17,7 @@ class HashObj:
 
     """
 
-    def __init__(self, chash, nth):
+    def __init__(self, chash: str, nth):
         self.popular = set(["MD5", "NTLM", "SHA256", "SHA515"])
         self.chash = chash
         self.nth = nth
@@ -48,13 +51,17 @@ class HashObj:
 
 
 class Prettifier:
-    def greppable_output(self, objs):
+    def greppable_output(self, objs: List):
         """
         takes the prototypes and turns it into json
         returns the json
+
+        Doesn't print it, it prints in main
         """
-        json_obj = json.dumps(objs.hash_obj, indent=4)
-        return json_obj
+        outputs_as_dict = {}
+        for i in objs:
+            outputs_as_dict.update(i.hash_obj)
+        return json.dumps(outputs_as_dict, indent=2)
 
     def pretty_print(self, objs):
         """
@@ -68,7 +75,11 @@ class Prettifier:
 
         then everything else on one line.
         """
-        out = "[bold underline]Most Likely[/bold underline] \n"
+        for i in objs:
+            self.pretty_print_one(i)
+
+    def pretty_print_one(self, objs: List):
+        out = "\n[bold underline]Most Likely[/bold underline] \n"
         start = objs.prototypes[0:4]
         rest = objs.prototypes[4:]
 
@@ -83,7 +94,7 @@ class Prettifier:
         print(out)
         return out
 
-    def turn_named_tuple_pretty_print(self, nt):
+    def turn_named_tuple_pretty_print(self, nt: NamedTuple):
         out = f"[bold red]{nt['name']}[/bold red], "
 
         hc = nt["hashcat"]
@@ -124,16 +135,21 @@ https://github.com/HashPals/Name-That-Hash
     "--greppable",
     is_flag=True,
     type=bool,
-    help="Are you going to grep this output?",
+    help="Are you going to grep this output? Prints in JSON format.",
 )
 @click.option("-t", "--text", help="Check one hash")
 @click.option(
     "-a",
     "--accessible",
     is_flag=True,
-    help="Turn on accessible mode, does not print ASCII art.",
+    help="Turn on accessible mode, does not print ASCII art. Also dooes not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely but no banner, use --no-banner. ",
 )
-@click.argument("file", type=click.File("rb"), required=False)
+@click.option("--no-banner", is_flag=True, help="Removes banner from startup.")
+@click.argument(
+    "file",
+    type=click.File("rb"),
+    required=False,
+)
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
 
@@ -142,21 +158,46 @@ def main(**kwargs):
 
     """
 
-    if not kwargs["accessible"]:
+    # Banner handling
+    if not kwargs["accessible"] and not kwargs["no_banner"] and not kwargs["greppable"]:
         banner()
 
+    # nth = the object which names the hash types
     nth = name_that_hash.Name_That_Hash(hashes.prototypes)
+    # prettifier print things :)
     prettifier = Prettifier()
 
+    output = []
+
     if kwargs["text"]:
-        output_obj = HashObj(kwargs["text"], nth)
-    else:
-        pass
+        output.append(HashObj(kwargs["text"], nth))
+    elif kwargs["file"]:
+        # else it must be a file
+        for i in kwargs["file"].split("\n"):
+            output.append(prettifier.greppable_output(HashObj(i, nth)))
 
     if kwargs["greppable"]:
-        prettifier.greppable_output(output_obj)
+        print(prettifier.greppable_output(output))
     else:
-        prettifier.pretty_print(output_obj)
+        prettifier.pretty_print(output)
+
+
+def api_return_hashes_as_json(hashes: [str]):
+    """
+    Using name-that-hash as an API? Call this function!
+
+    Given a list of hashes of strings
+    return a list of json of all hashes in the same order as the input
+    """
+    # nth = the object which names the hash types
+    nth = name_that_hash.Name_That_Hash(hashes.prototypes)
+    # prettifier print things :)
+    prettifier = Prettifier()
+
+    output = []
+    for i in hashes:
+        output.append(prettifier.greppable_output(HashObj(i, nth)))
+    return output
 
 
 if __name__ == "__main__":
