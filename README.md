@@ -1,6 +1,6 @@
 <p align="center">
 
-<img src="https://github.com/HashPals/Name-That-Hash/raw/master/images/logo.gif">
+<img src="logo.gif">
 </p>
 
 
