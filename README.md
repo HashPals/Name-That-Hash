@@ -14,7 +14,7 @@
 
 # 🤔 What is this?
 
-![](images/demo_small.gif)
+![](images/demo_smaller.gif)
 
 Have you ever come across a hash such as `5f4dcc3b5aa765d61d8327deb882cf99` and wondered what type of hash that is? 🤔
 
