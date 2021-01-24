@@ -138,8 +138,6 @@ class Prettifier:
 
 
 def print_help(ctx):
-    if value is False:
-        return
     click.echo(ctx.get_help())
     ctx.exit()
 
@@ -180,16 +178,16 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
 
-    Github:
+    Github:\n
     https://github.com/hashpals/name-that-hash
 
-    From the creator of RustScan and Ciphey. Follow me on Twitter!
+    From the creator of RustScan and Ciphey. Follow me on Twitter!\n
     https://twitter.com/bee_sec_san
 
-    Example usage:
-        nth --text 5f4dcc3b5aa765d61d8327deb882cf99
-        nth --file hash
-        nth --text 5f4dcc3b5aa765d61d8327deb882cf99 --greppable
+    Example usage:\n
+        nth --text 5f4dcc3b5aa765d61d8327deb882cf99\n
+        nth --file hash\n
+        nth --text 5f4dcc3b5aa765d61d8327deb882cf99 --greppable\n
     """
     no_args = True
     for i in kwargs.values():
