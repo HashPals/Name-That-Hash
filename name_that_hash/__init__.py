@@ -5,4 +5,5 @@ try:
 except ModuleNotFoundError:
     from name_that_hash import runner
 
-runner.main()
+if __name__ == "__main__":
+    runner.main()
