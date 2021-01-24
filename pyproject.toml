@@ -2,10 +2,10 @@
 name = "name-that-hash"
 version = "0.1.0"
 description = ""
-authors = ["brandon <brandonskerritt51@gmail.com>"]
+authors = ["brandon <brandon@skerritt.blog>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 click = "^7.1.2"
 rich = "^9.9.0"
 
@@ -17,4 +17,5 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-run = "name_that_hash:main"
+nth = "name_that_hash.runner.main"
+namethathash = "name_that_hash.runner.main"
