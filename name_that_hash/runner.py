@@ -5,9 +5,17 @@ from typing import NamedTuple, List
 
 
 from rich import print, text
+from rich.console import Console
 
-import hash_namer
-import hashes
+# we need a global console to control highlighting / printing
+console = Console(highlighter=False)
+
+# Lets you import as an API
+# or run as a package
+try:
+    import hashes, hash_namer
+except ModuleNotFoundError:
+    from name_that_hash import hash_namer, hashes
 
 
 class HashObj:
@@ -52,11 +60,12 @@ class HashObj:
 
 
 class Prettifier:
-    def __init__(self, kwargs):
+    def __init__(self, kwargs, api=False):
         """
         Takes arguments as list so we can do A11Y stuff etc
         """
-        self.a11y = kwargs["accessible"]
+        if api is not True:
+            self.a11y = kwargs["accessible"]
 
     def greppable_output(self, objs: List):
         """
@@ -102,7 +111,7 @@ class Prettifier:
             for i in rest:
                 out += self.turn_named_tuple_pretty_print(i) + " "
 
-        print(out)
+        console.print(out)
         return out
 
     def turn_named_tuple_pretty_print(self, nt: NamedTuple):
@@ -211,7 +220,7 @@ def main(**kwargs):
         prettifier.pretty_print(output)
 
 
-def api_return_hashes_as_json(hashes: [str]):
+def api_return_hashes_as_json(chash: [str], args: dict = {}):
     """
     Using name-that-hash as an API? Call this function!
 
@@ -219,17 +228,30 @@ def api_return_hashes_as_json(hashes: [str]):
     return a list of json of all hashes in the same order as the input
     """
     # nth = the object which names the hash types
-    nth = name_that_hash.Name_That_Hash(hashes.prototypes)
+    nth = hash_namer.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
-
-    kwargs = {}
-
-    prettifier = Prettifier(kwargs)
-
+    prettifier = Prettifier(args, api=True)
+    # prettifier print things :)
+    
     output = []
-    for i in hashes:
-        output.append(prettifier.greppable_output(HashObj(i, nth)))
-    return output
+    for i in chash:
+        output.append(HashObj(i, nth))
+
+    
+    return prettifier.greppable_output(output)
+
+
+#     if kwargs["text"]:
+#         output.append(HashObj(kwargs["text"], nth))
+#     elif kwargs["file"]:
+#         # else it must be a file
+#         for i in kwargs["file"].read().splitlines():
+#             # for every hash in the file, put it into the output list
+#             # we have to decode it as its bytes str
+#             output.append(HashObj(i.decode("utf-8"), nth))
+
+#     if kwargs["greppable"]:
+#         print(prettifier.greppable_output(output))
 
 
 if __name__ == "__main__":
