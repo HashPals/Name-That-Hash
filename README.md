@@ -24,3 +24,7 @@ Don't know what type of hash it is? Name That Hash will name that hash type!
 - [ ] Implement most popular first, so MD5 appears before Watt pad
 - [ ] Remove logic of hashing from one big file, break it down into modules
 - [ ] Use click + API keys
+
+Accessible to screen-readers, colour blind, no large texts, and more.
+
+Colours specifically hand-crafted to be perfect against a darkened terminal session, contrasting eachother & maintaining accessibility for all forms of colour-blindness and perfectly engaging enough to draw your attention to the most important parts.
