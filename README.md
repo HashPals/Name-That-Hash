@@ -2,25 +2,15 @@
 
 <img src="logo.gif">
 
-<p align="center">The Modern Hash Identification System</p>
+<p align="center">The Modern Hash Identification System<br>
+<code>pip3 install name-that-hash && nth</code>
+</p>
 
-<p align="center"><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/name-that-hash"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/name-that-hash"><img alt="PyPI" src="https://img.shields.io/pypi/v/name-that-hash"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/bee_sec_san?style=social">
+<p align="center"><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/name-that-hash"> <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/name-that-hash"> <img alt="PyPI" src="https://img.shields.io/pypi/v/name-that-hash"> <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/bee_sec_san?style=social">
 </p>
 
 <hr>
 
-Install with:
-
-```python
-# or pip3 if using Python2 & Python3
-pip install name_that_hash
-```
-
-Run with:
-
-```shell
-nth
-```
 
 # 🤔 What is this?
 
@@ -46,6 +36,34 @@ Name-that-hash will name that hash type!
 | **Last updated** | 2021, check commits. | 17/03/2015 | 30/09/2011 |
 
 Honestly, do you need any more convincing? 😂
+
+But, let's look at the features more in-depth.
+
+## 📈 Feature Comparison
+
+| Name-That-Hash | HashID |
+| ----------- | ---------- |
+| ![Name-that-hash proudly displays the most likely hash types](images/example1.png) | ![HashID displays Skype before NTLM](images/hashid.png) |
+
+Here HashID displays Skype before NTLM, whereas Name-That-Hash understands popularity of hashes so places NTLM before Skype.
+
+📕 You can also see Name-That-Hash displaying a summary, whereas HashID doesn't. In the default view it also displays John + HashCat information. Because let's face it, the only reason you're using this tool is to figure out what to put into HashCat! 🐱‍🚀
+
+Name-That-Hash is radically different from HashID, I'm not going to list all the differences -- you can physically see them yourselves 😎
+
+## 💌 Accessibility
+
+Name-That-Hash is an [accessible hacking tool](https://skerritt.blog/a11y/). That means we spent time designing things, such as....
+
+![No long text or ascii art here](images/accessible.png)
+
+Removing the ASCII Art of very long "least likely" text blocks using `-accessible`.
+
+Doing this means you don't get access to least likely, and if the hash is in that pile it'd suck. So we also have `--no-banner`.
+
+![](images/no-banner.png)
+
+Which removes the ASCII art banner.
 
 # 💡 Documentation
 Want to learn how popularity works?
