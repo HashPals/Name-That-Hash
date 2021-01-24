@@ -1,5 +1,5 @@
 from name_that_hash import runner
-
+import click.testing
 
 def test_it_works():
 
@@ -14,3 +14,9 @@ def test_it_identifieis_correctly():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "NTLM" in x
+
+def test_main_succeeds():
+    runn = click.testing.CliRunner()
+    result = runn.invoke(runner.main)
+    assert result.exit_code == 0
+

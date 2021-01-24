@@ -1,26 +1,19 @@
-name: Python package
-
-on: [push]
-
+# .github/workflows/tests.yml
+name: Tests
+on: push
 jobs:
-  build:
-
+  tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9]
-
+        python-version: ['3.7', '3.8', '3.9']
+    name: Python ${{ matrix.python-version }}
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+    - uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Test with pytest
-      run: |
-        pytest
+        architecture: x64
+    - run: pip install nox==2019.11.9
+    - run: pip install poetry==1.0.5
+    - run: nox
