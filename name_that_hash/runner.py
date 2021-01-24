@@ -159,6 +159,10 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 
 
 @click.command()
+@click.option("-t", "--text", help="Check one hash")
+@click.option(
+    "-f", "--file", type=click.File("rb"), help="Newline separated hash file input"
+)
 @click.option(
     "-g",
     "--greppable",
@@ -166,23 +170,26 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     type=bool,
     help="Are you going to grep this output? Prints in JSON format.",
 )
-@click.option("-t", "--text", help="Check one hash")
 @click.option(
     "-a",
     "--accessible",
     is_flag=True,
-    help="Turn on accessible mode, does not print ASCII art. Also dooes not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely but no banner, use --no-banner. ",
+    help="Turn on accessible mode, does not print ASCII art. Also dooes not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely feature but no banner, use --no-banner. ",
 )
 @click.option("--no-banner", is_flag=True, help="Removes banner from startup.")
-@click.option(
-    "-f", "--file", type=click.File("rb"), help="Newline separated hash file input"
-)
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
 
     Github:
     https://github.com/hashpals/name-that-hash
 
+    From the creator of RustScan and Ciphey. Follow me on Twitter!
+    https://twitter.com/bee_sec_san
+
+    Example usage:
+        nth --text 5f4dcc3b5aa765d61d8327deb882cf99
+        nth --file hash
+        nth --text 5f4dcc3b5aa765d61d8327deb882cf99 --greppable
     """
     no_args = True
     for i in kwargs.values():
@@ -232,12 +239,11 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     # prettifier print things :)
     prettifier = Prettifier(args, api=True)
     # prettifier print things :)
-    
+
     output = []
     for i in chash:
         output.append(HashObj(i, nth))
 
-    
     return prettifier.greppable_output(output)
 
 
