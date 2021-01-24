@@ -14,7 +14,7 @@
 
 # 🤔 What is this?
 
-GIF
+![](images/demo.gif)
 
 Have you ever come across a hash such as `5f4dcc3b5aa765d61d8327deb882cf99` and wondered what type of hash that is? 🤔
 
@@ -41,9 +41,7 @@ But, let's look at the features more in-depth.
 
 ## 📈 Feature Comparison
 
-| Name-That-Hash | HashID |
-| ----------- | ---------- |
-| ![Name-that-hash proudly displays the most likely hash types](images/example1.png) | ![HashID displays Skype before NTLM](images/hashid.png) |
+![Name-that-hash proudly displays the most likely hash types](images/example1.png)
 
 Here HashID displays Skype before NTLM, whereas Name-That-Hash understands popularity of hashes so places NTLM before Skype.
 
