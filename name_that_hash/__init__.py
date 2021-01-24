@@ -1,4 +1,8 @@
 __version__ = '0.1.0'
 
-def main():
-    print("hello!")
+try:
+    import runner
+except ModuleNotFoundError:
+    from name_that_hash import runner
+
+runner.main()

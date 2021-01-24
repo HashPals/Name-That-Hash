@@ -2,10 +2,25 @@
 
 <img src="logo.gif">
 
-<p align="center">A fast, accessible, intuitive hash type identification system.</p>
+<p align="center">The Modern Hash Identification System</p>
+
+<p align="center"><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/name-that-hash"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/name-that-hash"><img alt="PyPI" src="https://img.shields.io/pypi/v/name-that-hash"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/bee_sec_san?style=social">
 </p>
 
 <hr>
+
+Install with:
+
+```python
+# or pip3 if using Python2 & Python3
+pip install name_that_hash
+```
+
+Run with:
+
+```shell
+nth
+```
 
 # 🤔 What is this?
 
@@ -43,14 +58,20 @@ Our documentation is for you!
 
 | 📚 **Documentation** | 🐦 **My Twitter (@ me for questions)** |
 | --------------- | ----------------------------------- |
-| [https://github.com/HashPals/Name-That-Hash/wiki](https://github.com/HashPals/Name-That-Hash/wiki) | [https://twitter.com/bee_sec_san](https://twitter.com/bee_sec_san) |
+| [Wiki](https://github.com/HashPals/Name-That-Hash/wiki) | [https://twitter.com/bee_sec_san](https://twitter.com/bee_sec_san) |
 
 # Contributing
 
 The easiest way to contribute is by adding more hashes, writing descriptions, or changing their REGEX> All you have to do is go to [this file](https://github.com/HashPals/Name-That-Hash/blob/main/name_that_hash/hashes.py) and edit it.
+
+You can read more about [contributing here](https://github.com/HashPals/Name-That-Hash/wiki/Contributing).
 
 # Thanks
 
 Many thanks to Jabba & Jayyy for their help :)
 
 Thanks to HashID and Hash-Identifier for their work in this field, which heavily inspired this. 💝
+
+Thanks to the TryHackMe Community too, and especially [Oriel](https://twitter.com/OrielOrielOriel). 
+
+And special thanks to Varg on his masterful understanding of colour theory 🌈
