@@ -65,6 +65,28 @@ Doing this means you don't get access to least likely, and if the hash is in tha
 
 Which removes the ASCII art banner.
 
+# 🔨 Installation
+
+You can install using Python's Pip.
+
+```
+pip3 install name-that-hash
+```
+
+or:
+
+```
+pip install name-that-hash
+```
+
+And then run:
+
+```
+nth
+```
+
+To use.
+
 # 💡 Documentation
 Want to learn how popularity works?
 

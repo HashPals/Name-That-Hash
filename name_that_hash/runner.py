@@ -122,13 +122,13 @@ class Prettifier:
         john = nt["john"]
         des = nt["description"]
 
-        if hc and john:
+        if hc is not None and john:
             out += f"Hashcat Mode: {hc}, "
-        elif hc:
+        elif hc is not None:
             out += f"Hashcat Mode: {hc}."
-        if john and des:
+        if john is not None and des:
             out += f"John Name: {john}, "
-        elif john:
+        elif john is not None:
             out += f"John Name: {john}."
         if des:
             # Orange
