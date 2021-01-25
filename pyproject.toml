@@ -8,6 +8,7 @@ authors = ["brandon <brandon@skerritt.blog>"]
 python = "^3.7"
 click = "^7.1.2"
 rich = "^9.9.0"
+loguru = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

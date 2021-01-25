@@ -1,5 +1,5 @@
 import re
-
+from loguru import logger
 
 class Name_That_Hash:
     """
@@ -10,6 +10,7 @@ class Name_That_Hash:
         self.prototypes = list(prototypes)
 
     def identify(self, chash: str):
+        logger.trace(chash)
         chash = chash.strip()
         output = []
         for prototype in self.prototypes:

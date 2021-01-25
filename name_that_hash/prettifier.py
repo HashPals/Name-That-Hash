@@ -1,7 +1,7 @@
 import json
 from typing import NamedTuple, List
 from rich.console import Console
-
+from loguru import logger
 # we need a global console to control highlighting / printing
 console = Console(highlighter=False)
 
@@ -18,6 +18,8 @@ class Prettifier:
             self.a11y = kwargs["accessible"]
 
     def greppable_output(self, objs: List):
+        logger.trace("Greppable output")
+        logoger.trace(objs)
         """
         takes the prototypes and turns it into json
         returns the json
@@ -26,10 +28,13 @@ class Prettifier:
         """
         outputs_as_dict = {}
         for i in objs:
+            logger.trace(i)
             outputs_as_dict.update(i.hash_obj)
+        logger.info("Returning from greppable output.")
         return json.dumps(outputs_as_dict, indent=2)
 
     def pretty_print(self, objs):
+        logger.trace("In pretty printing")
         """
         prints it prettily in the format:
         most popular hashe
@@ -43,6 +48,7 @@ class Prettifier:
         """
         multi_print = True if len(objs) > 1 else False
         for i in objs:
+            logger.trace(i)
             self.pretty_print_one(i, multi_print)
 
     def pretty_print_one(self, objs: List, multi_print: bool):
