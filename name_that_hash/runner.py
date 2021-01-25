@@ -57,7 +57,7 @@ class HashObj:
 
 class hash_information:
     def __init__(self):
-        self.popular = set(["MD5", "NTLM", "SHA-256", "SHA-515", "Keccak-256", "Keccak-512", "Blake2"])
+        self.popular = set(["MD5", "NTLM", "SHA-256", "SHA-515", "Keccak-256", "Keccak-512", "Blake2", "bcrypt"])
 
 def print_help(ctx):
     click.echo(ctx.get_help())
@@ -101,7 +101,6 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 @click.option("--no-banner", is_flag=True, help="Removes banner from startup.")
 @click.option("-v", "--verbose", count=True, type=int, help="Turn on debugging logs. -vvv for maximum logos.")
 def main(**kwargs):
-    print(kwargs)
     """Name That Hash - Instantly name the type of any hash!
 
     Github:\n
