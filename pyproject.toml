@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "name-that-hash"
-version = "0.0.33"
+version = "0.0.3"
 description = "The Modern Hash Identifcation System"
 authors = ["brandon <brandon@skerritt.blog>"]
 
@@ -18,5 +18,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 nth = "name_that_hash.runner:main"
-# nth = "name_that_hash.runner.main"
-# namethathash = "name_that_hash.runner.main"
+name-that-hash = "name_that_hash.runner:main"

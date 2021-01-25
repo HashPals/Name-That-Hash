@@ -1,21 +1,17 @@
 import click
-import json
 import sys
 from typing import NamedTuple, List
 
 
 from rich import print, text
-from rich.console import Console
 
-# we need a global console to control highlighting / printing
-console = Console(highlighter=False)
 
 # Lets you import as an API
 # or run as a package
 try:
-    import hashes, hash_namer
+    import hashes, hash_namer, prettifier
 except ModuleNotFoundError:
-    from name_that_hash import hash_namer, hashes
+    from name_that_hash import hash_namer, hashes, prettifier
 
 
 class HashObj:
@@ -23,16 +19,16 @@ class HashObj:
     Every hash given to our program will be assiocated with one object
     This object contains the possible type of hash
     and provides ways to print that hash
-
     """
 
-    def __init__(self, chash: str, nth):
-        self.popular = set(["MD5", "NTLM", "SHA256", "SHA515"])
+    def __init__(self, chash: str, nth, hash_info):
         self.chash = chash
         self.nth = nth
 
+        self.popular = hash_info.popular
+
         # prorotypes is given as a generator
-        self.prototypes = list(nth.identify(chash))
+        self.prototypes = nth.identify(chash)
         self.prototypes = self.sort_by_popular()
 
         self.hash_obj = {self.chash: self.prototypes}
@@ -58,84 +54,9 @@ class HashObj:
                 to_ret.append(i.__dict__)
         return populars + to_ret
 
-
-class Prettifier:
-    def __init__(self, kwargs, api=False):
-        """
-        Takes arguments as list so we can do A11Y stuff etc
-        """
-        if api is not True:
-            self.a11y = kwargs["accessible"]
-
-    def greppable_output(self, objs: List):
-        """
-        takes the prototypes and turns it into json
-        returns the json
-
-        Doesn't print it, it prints in main
-        """
-        outputs_as_dict = {}
-        for i in objs:
-            outputs_as_dict.update(i.hash_obj)
-        return json.dumps(outputs_as_dict, indent=2)
-
-    def pretty_print(self, objs):
-        """
-        prints it prettily in the format:
-        most popular hashe
-        1.
-        2.
-        3.
-        4.
-
-
-        then everything else on one line.
-        """
-        multi_print = True if len(objs) > 1 else False
-        for i in objs:
-            self.pretty_print_one(i, multi_print)
-
-    def pretty_print_one(self, objs: List, multi_print: bool):
-        out = f"\n[bold #011627 on #ff9f1c]{objs.chash}[/bold #011627 on #ff9f1c]\n"
-        out += "\n[bold underline #2ec4b6]Most Likely[/bold underline #2ec4b6] \n"
-        start = objs.prototypes[0:4]
-        rest = objs.prototypes[4:]
-
-        for i in start:
-            out += self.turn_named_tuple_pretty_print(i) + "\n"
-
-        # return if accessible is on
-        if not self.a11y:
-            out += "\n[bold underline #2ec4b6]Least Likely[/bold underline #2ec4b6]\n"
-
-            for i in rest:
-                out += self.turn_named_tuple_pretty_print(i) + " "
-
-        console.print(out)
-        return out
-
-    def turn_named_tuple_pretty_print(self, nt: NamedTuple):
-        # This colours red
-        out = f"[bold #e71d36]{nt['name']}[/bold #e71d36], "
-
-        hc = nt["hashcat"]
-        john = nt["john"]
-        des = nt["description"]
-
-        if hc is not None and john:
-            out += f"Hashcat Mode: {hc}, "
-        elif hc is not None:
-            out += f"Hashcat Mode: {hc}."
-        if john is not None and des:
-            out += f"John Name: {john}, "
-        elif john is not None:
-            out += f"John Name: {john}."
-        if des:
-            # Orange
-            out += f"[#ff9f1c]Summary: {des}[/#ff9f1c]"
-
-        return out
-
+class hash_information:
+    def __init__(self):
+        self.popular = set(["MD5", "NTLM", "SHA-256", "SHA-515", "Keccak-256", "Keccak-512", "Blake2"])
 
 def print_help(ctx):
     click.echo(ctx.get_help())
@@ -174,6 +95,8 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     is_flag=True,
     help="Turn on accessible mode, does not print ASCII art. Also dooes not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely feature but no banner, use --no-banner. ",
 )
+@click.option("--no-john", is_flag=True, help="Does not print John The Ripper Information.")
+@click.option("--no-hashcat", is_flag=True, help="Does not print Hashcat Information.")
 @click.option("--no-banner", is_flag=True, help="Removes banner from startup.")
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
@@ -203,26 +126,27 @@ def main(**kwargs):
     if not kwargs["accessible"] and not kwargs["no_banner"] and not kwargs["greppable"]:
         banner()
 
+    hash_info = hash_information()
     # nth = the object which names the hash types
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
-    prettifier = Prettifier(kwargs)
+    pretty_printer = prettifier.Prettifier(kwargs)
 
     output = []
 
     if kwargs["text"]:
-        output.append(HashObj(kwargs["text"], nth))
+        output.append(HashObj(kwargs["text"], nth, hash_info))
     elif kwargs["file"]:
         # else it must be a file
         for i in kwargs["file"].read().splitlines():
             # for every hash in the file, put it into the output list
             # we have to decode it as its bytes str
-            output.append(HashObj(i.decode("utf-8"), nth))
+            output.append(HashObj(i.decode("utf-8"), nth, hash_info))
 
     if kwargs["greppable"]:
-        print(prettifier.greppable_output(output))
+        print(pretty_printer.greppable_output(output))
     else:
-        prettifier.pretty_print(output)
+        pretty_printer.pretty_print(output)
 
 
 def api_return_hashes_as_json(chash: [str], args: dict = {}):
@@ -235,14 +159,15 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     # nth = the object which names the hash types
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
-    prettifier = Prettifier(args, api=True)
-    # prettifier print things :)
+    pretty_printer = prettifier.Prettifier(args, api=True)
+    # for most popular hashes etc
+    hash_info = hash_information()
 
     output = []
     for i in chash:
-        output.append(HashObj(i, nth))
+        output.append(HashObj(i, nth, hash_info))
 
-    return prettifier.greppable_output(output)
+    return pretty_printer.greppable_output(output)
 
 
 #     if kwargs["text"]:

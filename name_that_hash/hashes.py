@@ -545,7 +545,7 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{64}(:.+)?$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-256", hashcat=1400, john="raw-sha256", extended=False),
+            HashInfo(name="SHA-256", hashcat=1400, john="raw-sha256", extended=False, description="256-bit key and is a good partner-function for AES"),
             HashInfo(name="RIPEMD-256", hashcat=None, john=None, extended=False),
             HashInfo(
                 name="Haval-256", hashcat=None, john="haval-256-3", extended=False
@@ -690,11 +690,12 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{128}(:.+)?$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-512", hashcat=1700, john="raw-sha512", extended=False),
+            HashInfo(name="SHA-512", hashcat=1700, john="raw-sha512", extended=False, description="Used in Bitcoin Blockchain."),
+            HashInfo(name="Keccak-512", hashcat=1800, john=None, extended=False),
             HashInfo(name="Whirlpool", hashcat=6100, john="whirlpool", extended=False),
-            HashInfo(name="Salsa10", hashcat=None, john=None, extended=False),
-            HashInfo(name="Salsa20", hashcat=None, john=None, extended=False),
-            HashInfo(name="Blake2", hashcat=600, john="raw-blake2", extended=False),
+            HashInfo(name="Salsa10", hashcat=None, john=None, extended=False, description="[link = https://bugs.php.net/bug.php?id=60783]Not considered a hash function.[/link]"),
+            HashInfo(name="Salsa20", hashcat=None, john=None, extended=False, description="[link = https://bugs.php.net/bug.php?id=60783]Not considered a hash function.[/link]"),
+            HashInfo(name="Blake2", hashcat=600, john="raw-blake2", extended=False, description="[link = https://en.wikipedia.org/wiki/BLAKE_(hash_function)#Users_of_BLAKE2]Used in Wireguard, Zcash, IPFS and more.[/link]"),
             HashInfo(name="SHA3-512", hashcat=17600, john="raw-sha3", extended=False),
             HashInfo(name="Skein-512", hashcat=None, john="skein-512", extended=False),
             HashInfo(name="Skein-1024(512)", hashcat=None, john=None, extended=False),
@@ -722,7 +723,7 @@ prototypes = [
                 john="hmac-sha512",
                 extended=True,
             ),
-            HashInfo(name="Keccak-512", hashcat=1800, john=None, extended=False),
+            
             HashInfo(name="Keccak-384", hashcat=17900, john=None, extended=False),
             HashInfo(name="Keccak-256", hashcat=17800, john=None, extended=False),
             HashInfo(name="Keccak-224", hashcat=17700, john=None, extended=False),

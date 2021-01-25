@@ -20,3 +20,8 @@ def test_main_succeeds():
     result = runn.invoke(runner.main)
     assert result.exit_code == 0
 
+def test_if_no_hashes_found():
+    hashes = ["abc"]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert [] in x

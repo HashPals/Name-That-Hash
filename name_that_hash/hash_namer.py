@@ -11,7 +11,9 @@ class Name_That_Hash:
 
     def identify(self, chash: str):
         chash = chash.strip()
+        output = []
         for prototype in self.prototypes:
             if prototype.regex.match(chash):
                 for mode in prototype.modes:
-                    yield mode
+                    output.append(mode)
+        return output
