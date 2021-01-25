@@ -170,18 +170,5 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     return pretty_printer.greppable_output(output)
 
 
-#     if kwargs["text"]:
-#         output.append(HashObj(kwargs["text"], nth))
-#     elif kwargs["file"]:
-#         # else it must be a file
-#         for i in kwargs["file"].read().splitlines():
-#             # for every hash in the file, put it into the output list
-#             # we have to decode it as its bytes str
-#             output.append(HashObj(i.decode("utf-8"), nth))
-
-#     if kwargs["greppable"]:
-#         print(prettifier.greppable_output(output))
-
-
 if __name__ == "__main__":
     main()

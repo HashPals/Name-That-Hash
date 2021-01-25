@@ -24,4 +24,4 @@ def test_if_no_hashes_found():
     hashes = ["abc"]
 
     x = runner.api_return_hashes_as_json(hashes)
-    assert [] in x
+    assert "[]" in x
