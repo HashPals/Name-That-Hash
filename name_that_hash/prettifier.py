@@ -19,7 +19,7 @@ class Prettifier:
 
     def greppable_output(self, objs: List):
         logger.trace("Greppable output")
-        logoger.trace(objs)
+        logger.trace(objs)
         """
         takes the prototypes and turns it into json
         returns the json
