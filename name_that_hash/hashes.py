@@ -111,7 +111,7 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{32}(:.+)?$", re.IGNORECASE),
         modes=[
-            HashInfo(name="MD5", hashcat=0, john="raw-md5", extended=False),
+            HashInfo(name="MD5", hashcat=0, john="raw-md5", extended=False, description="Used for Linux Shadow files."),
             HashInfo(name="MD4", hashcat=900, john="raw-md4", extended=False),
             HashInfo(name="Double MD5", hashcat=2600, john=None, extended=False),
             HashInfo(name="LM", hashcat=3000, john="lm", extended=False),
@@ -347,7 +347,7 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{40}(:.+)?$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-1", hashcat=100, john="raw-sha1", extended=False),
+            HashInfo(name="SHA-1", hashcat=100, john="raw-sha1", extended=False, description="[link=https://en.wikipedia.org/wiki/SHA-1]Used for checksums.[/link]"),
             HashInfo(name="Double SHA-1", hashcat=4500, john=None, extended=False),
             HashInfo(
                 name="RIPEMD-160", hashcat=6000, john="ripemd-160", extended=False

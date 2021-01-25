@@ -26,8 +26,8 @@ class HashObj:
 
     """
 
-    def __init__(self, chash: str, nth):
-        self.popular = set(["MD5", "NTLM", "SHA256", "SHA515"])
+    def __init__(self, chash: str, nth, hash_info):
+        self.hash_info = hash_info
         self.chash = chash
         self.nth = nth
 
@@ -57,6 +57,19 @@ class HashObj:
             else:
                 to_ret.append(i.__dict__)
         return populars + to_ret
+
+class hash_information:
+    def __init__(self):
+        self.popular = set(["MD5", "NTLM", "SHA-256", "SHA-512", "SHA-1"])
+    def check_for_dollars(self, chash):
+        if "$1$" == chash[0:2]:
+            # MD5
+        elif "$2" in chash[0:3]:
+            # blowfish, 0:3 because its supposed to be regex $2*$
+        elif "$5$" == chash[0:2]:
+            # SHA256
+        elif "$6" == chash[0:2]:
+            # sha512
 
 
 class Prettifier:
@@ -149,7 +162,7 @@ def banner():
  |  \| | __ _ _ __ ___   ___ ______| | | |__   __ _| |_ ______| |_| | __ _ ___| |__  
  | . ` |/ _` | '_ ` _ \ / _ \______| | | '_ \ / _` | __|______|  _  |/ _` / __| '_ \ 
  | |\  | (_| | | | | | |  __/      | | | | | | (_| | |_       | | | | (_| \__ \ | | |
-  \_| \_/\__,_|_| |_| |_|\___|     \_/ |_| |_|\__,_|\__|      \_| |_/\__,_|___/_| |_|
+ \_| \_/\__,_|_| |_| |_|\___|      \_/ |_| |_|\__,_|\__|      \_| |_/\__,_|___/_| |_|
 https://twitter.com/bee_sec_san
 https://github.com/HashPals/Name-That-Hash [/bold blue]
     """
