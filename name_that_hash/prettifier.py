@@ -18,8 +18,8 @@ class Prettifier:
         """
         if api is not True:
             self.a11y = kwargs["accessible"]
-        self.john = kwargs["no_john"]
-        self.hashcat = kwargs["no_hashcat"]
+            self.john = kwargs["no_john"]
+            self.hashcat = kwargs["no_hashcat"]
 
     def greppable_output(self, objs: List):
         logger.trace("Greppable output")
