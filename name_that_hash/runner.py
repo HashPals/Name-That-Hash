@@ -115,17 +115,17 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     is_flag=True,
     help="Turn on accessible mode, does not print ASCII art. Also dooes not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely feature but no banner, use --no-banner. ",
 )
-@click.option(
-    "--no-john", is_flag=True, help="Does not print John The Ripper Information."
-)
-@click.option("--no-hashcat", is_flag=True, help="Does not print Hashcat Information.")
 @click.option("--no-banner", is_flag=True, help="Removes banner from startup.")
+@click.option(
+    "--no-john", is_flag=True, help="Don't print John The Ripper Information."
+)
+@click.option("--no-hashcat", is_flag=True, help="Don't print Hashcat Information.")
 @click.option(
     "-v",
     "--verbose",
     count=True,
     type=int,
-    help="Turn on debugging logs. -vvv for maximum logos.",
+    help="Turn on debugging logs. -vvv for maximum logs.",
 )
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
@@ -140,7 +140,7 @@ def main(**kwargs):
         nth --text '5f4dcc3b5aa765d61d8327deb882cf99'\n
         nth --file hash\n
         nth --text '5f4dcc3b5aa765d61d8327deb882cf99' --greppable\n
-        Note: Use single quotes ' as double quotes " break hashes.\n
+        Note: Use single quotes ' as double quotes " do not work well on Linux.\n
     """
     no_args = True
     for i in kwargs.values():
