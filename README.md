@@ -110,8 +110,10 @@ You can read more about [contributing here](https://github.com/HashPals/Name-Tha
 
 Many thanks to Jabba & Jayyy for their help :)
 
-Thanks to HashID and Hash-Identifier for their work in this field, which heavily inspired this. 💝
+Thanks to HashID and Hash-Identifier for their work in this field, which heavily inspired this. 💝 The database of hashes was originally taken from them, but we've significantly modified it. Thank you so much for creating that database of 3000+ hashes 😻
 
-Thanks to the TryHackMe Community too, and especially [Oriel](https://twitter.com/OrielOrielOriel). 
+Thanks to the TryHackMe Community too, and especially [Oriel](https://twitter.com/OrielOrielOriel) for her feedback on early versions.
 
 And special thanks to Varg on his masterful understanding of colour theory 🌈
+
+Finally, thanks too Blackout for helping write descriptions of hashes 🐱‍👤
