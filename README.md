@@ -108,7 +108,7 @@ You can read more about [contributing here](https://github.com/HashPals/Name-Tha
 
 # 💌 Thanks
 
-Many thanks to Jabba & Jayyy for their help :)
+Many thanks to [Jabba](https://github.com/JabbaTheBunny) & Jayyy for their help :)
 
 Thanks to HashID and Hash-Identifier for their work in this field, which heavily inspired this. 💝 The database of hashes was originally taken from them, but we've significantly modified it. Thank you so much for creating that database of 3000+ hashes 😻
 
