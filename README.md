@@ -45,6 +45,8 @@ But, let's look at the features more in-depth.
 
 Here HashID displays Skype before NTLM, whereas Name-That-Hash understands popularity of hashes so places NTLM before Skype.
 
+![](images/hashid.png)
+
 📕 You can also see Name-That-Hash displaying a summary, whereas HashID doesn't. In the default view it also displays John + HashCat information. Because let's face it, the only reason you're using this tool is to figure out what to put into HashCat! 🐱‍🚀
 
 Name-That-Hash is radically different from HashID, I'm not going to list all the differences -- you can physically see them yourselves 😎
