@@ -45,19 +45,19 @@ class HashObj:
 
         we then return populars list + prototypes.
         """
+
         to_ret = []
         populars = []
         for i in self.prototypes:
             if i.name in self.popular:
                 populars.append(i.__dict__)
-                self.prototypes.remove(i)
             else:
                 to_ret.append(i.__dict__)
         return populars + to_ret
 
 class hash_information:
     def __init__(self):
-        self.popular = set(["MD5", "NTLM", "SHA-256", "SHA-515", "Keccak-256", "Keccak-512", "Blake2", "bcrypt"])
+        self.popular = set(["MD5", "MD4", "NTLM", "SHA-256", "SHA-515", "Keccak-256", "Keccak-512", "Blake2", "bcrypt"])
 
 def print_help(ctx):
     click.echo(ctx.get_help())
