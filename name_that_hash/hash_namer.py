@@ -1,6 +1,7 @@
 import re
 from loguru import logger
 
+
 class Name_That_Hash:
     """
     The main class which deals with hash identification

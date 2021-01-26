@@ -2,6 +2,7 @@ import json
 from typing import NamedTuple, List
 from rich.console import Console
 from loguru import logger
+
 # we need a global console to control highlighting / printing
 console = Console(highlighter=False)
 
@@ -10,6 +11,7 @@ class Prettifier:
     """
     This classes entire existence is to output stuff.
     """
+
     def __init__(self, kwargs, api=False):
         """
         Takes arguments as list so we can do A11Y stuff etc
@@ -66,7 +68,7 @@ class Prettifier:
 
         for i in start:
             out += self.turn_named_tuple_pretty_print(i) + "\n"
-        
+
         # It has hashes, but not many so don't print least likely.
         if len(objs.prototypes) <= 5:
             console.print(out)

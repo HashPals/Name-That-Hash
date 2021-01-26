@@ -9,25 +9,25 @@ try:
 except ImportError:
     from distutils.core import setup
 
-readme = ''
+readme = ""
 
 setup(
     long_description=readme,
-    name='name-that-hash',
-    version='0.0.3',
-    description='The Modern Hash Identifcation System',
-    python_requires='==3.*,>=3.7.0',
-    author='brandon',
-    author_email='brandon@skerritt.blog',
+    name="name-that-hash",
+    version="0.0.3",
+    description="The Modern Hash Identifcation System",
+    python_requires="==3.*,>=3.7.0",
+    author="brandon",
+    author_email="brandon@skerritt.blog",
     entry_points={
         "console_scripts": [
             "nth = name_that_hash.runner:main",
-            "name-that-hash = name_that_hash.runner:main"
+            "name-that-hash = name_that_hash.runner:main",
         ]
     },
-    packages=['Name_That_Hash'],
+    packages=["Name_That_Hash"],
     package_dir={"": "."},
     package_data={},
-    install_requires=['click==7.*,>=7.1.2', 'rich==9.*,>=9.9.0'],
+    install_requires=["click==7.*,>=7.1.2", "rich==9.*,>=9.9.0"],
     extras_require={"dev": ["pytest==5.*,>=5.2.0"]},
 )

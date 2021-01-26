@@ -4,7 +4,10 @@ from typing import NamedTuple, List
 
 from rich import print, text
 from loguru import logger
-logger.add(sys.stderr, format="{time} {level} {message}", filter="my_module", level="INFO")
+
+logger.add(
+    sys.stderr, format="{time} {level} {message}", filter="my_module", level="INFO"
+)
 
 
 # Lets you import as an API
@@ -55,9 +58,25 @@ class HashObj:
                 to_ret.append(i.__dict__)
         return populars + to_ret
 
+
 class hash_information:
     def __init__(self):
-        self.popular = set(["MD5", "MD4", "NTLM", "SHA-256", "SHA-515", "Keccak-256", "Keccak-512", "Blake2", "bcrypt"])
+        self.popular = set(
+            [
+                "MD5",
+                "MD4",
+                "NTLM",
+                "SHA-256",
+                "SHA-515",
+                "Keccak-256",
+                "Keccak-512",
+                "Blake2",
+                "bcrypt",
+                "SHA-1",
+                "HMAC-SHA1 (key = $salt)",
+            ]
+        )
+
 
 def print_help(ctx):
     click.echo(ctx.get_help())
@@ -96,10 +115,18 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     is_flag=True,
     help="Turn on accessible mode, does not print ASCII art. Also dooes not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely feature but no banner, use --no-banner. ",
 )
-@click.option("--no-john", is_flag=True, help="Does not print John The Ripper Information.")
+@click.option(
+    "--no-john", is_flag=True, help="Does not print John The Ripper Information."
+)
 @click.option("--no-hashcat", is_flag=True, help="Does not print Hashcat Information.")
 @click.option("--no-banner", is_flag=True, help="Removes banner from startup.")
-@click.option("-v", "--verbose", count=True, type=int, help="Turn on debugging logs. -vvv for maximum logos.")
+@click.option(
+    "-v",
+    "--verbose",
+    count=True,
+    type=int,
+    help="Turn on debugging logs. -vvv for maximum logos.",
+)
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
 
@@ -124,7 +151,7 @@ def main(**kwargs):
         with click.Context(main) as ctx:
             click.echo(main.get_help(ctx))
             exit(0)
-    
+
     # Load the verbosity, so that we can start logging
     set_logger(kwargs)
     logger.debug(kwargs)
@@ -161,6 +188,7 @@ def main(**kwargs):
     else:
         pretty_printer.pretty_print(output)
 
+
 def set_logger(kwargs):
     # sets the logger value based on args
     verbosity = kwargs["verbose"]
@@ -173,13 +201,11 @@ def set_logger(kwargs):
         verbosity = "DEBUG"
     elif verbosity == 3:
         verbosity = "TRACE"
-    logger.add(
-        sink=sys.stderr, level=verbosity, colorize=sys.stderr.isatty()
-    )
+    logger.add(sink=sys.stderr, level=verbosity, colorize=sys.stderr.isatty())
     logger.opt(colors=True)
-    
+
     logger.debug(f"Verbosity set to level {verbosity} ({verbosity})")
-    
+
 
 def api_return_hashes_as_json(chash: [str], args: dict = {}):
     """

@@ -16,6 +16,7 @@ class HashInfo:
     extended: bool
     description: str = None
 
+
 prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{4}$", re.IGNORECASE),
@@ -111,7 +112,13 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{32}(:.+)?$", re.IGNORECASE),
         modes=[
-            HashInfo(name="MD5", hashcat=0, john="raw-md5", extended=False, description="Used for Linux Shadow files."),
+            HashInfo(
+                name="MD5",
+                hashcat=0,
+                john="raw-md5",
+                extended=False,
+                description="Used for Linux Shadow files.",
+            ),
             HashInfo(name="MD4", hashcat=900, john="raw-md4", extended=False),
             HashInfo(name="Double MD5", hashcat=2600, john=None, extended=False),
             HashInfo(name="LM", hashcat=3000, john="lm", extended=False),
@@ -347,7 +354,13 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{40}(:.+)?$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-1", hashcat=100, john="raw-sha1", extended=False, description="[link=https://en.wikipedia.org/wiki/SHA-1]Used for checksums.[/link]"),
+            HashInfo(
+                name="SHA-1",
+                hashcat=100,
+                john="raw-sha1",
+                extended=False,
+                description="[link=https://en.wikipedia.org/wiki/SHA-1]Used for checksums.[/link]",
+            ),
             HashInfo(name="Double SHA-1", hashcat=4500, john=None, extended=False),
             HashInfo(
                 name="RIPEMD-160", hashcat=6000, john="ripemd-160", extended=False
@@ -545,7 +558,13 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{64}(:.+)?$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-256", hashcat=1400, john="raw-sha256", extended=False, description="256-bit key and is a good partner-function for AES"),
+            HashInfo(
+                name="SHA-256",
+                hashcat=1400,
+                john="raw-sha256",
+                extended=False,
+                description="256-bit key and is a good partner-function for AES",
+            ),
             HashInfo(name="RIPEMD-256", hashcat=None, john=None, extended=False),
             HashInfo(
                 name="Haval-256", hashcat=None, john="haval-256-3", extended=False
@@ -690,12 +709,36 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{128}(:.+)?$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-512", hashcat=1700, john="raw-sha512", extended=False, description="Used in Bitcoin Blockchain."),
+            HashInfo(
+                name="SHA-512",
+                hashcat=1700,
+                john="raw-sha512",
+                extended=False,
+                description="Used in Bitcoin Blockchain.",
+            ),
             HashInfo(name="Keccak-512", hashcat=1800, john=None, extended=False),
             HashInfo(name="Whirlpool", hashcat=6100, john="whirlpool", extended=False),
-            HashInfo(name="Salsa10", hashcat=None, john=None, extended=False, description="[link = https://bugs.php.net/bug.php?id=60783]Not considered a hash function.[/link]"),
-            HashInfo(name="Salsa20", hashcat=None, john=None, extended=False, description="[link = https://bugs.php.net/bug.php?id=60783]Not considered a hash function.[/link]"),
-            HashInfo(name="Blake2", hashcat=600, john="raw-blake2", extended=False, description="[link = https://en.wikipedia.org/wiki/BLAKE_(hash_function)#Users_of_BLAKE2]Used in Wireguard, Zcash, IPFS and more.[/link]"),
+            HashInfo(
+                name="Salsa10",
+                hashcat=None,
+                john=None,
+                extended=False,
+                description="[link = https://bugs.php.net/bug.php?id=60783]Not considered a hash function.[/link]",
+            ),
+            HashInfo(
+                name="Salsa20",
+                hashcat=None,
+                john=None,
+                extended=False,
+                description="[link = https://bugs.php.net/bug.php?id=60783]Not considered a hash function.[/link]",
+            ),
+            HashInfo(
+                name="Blake2",
+                hashcat=600,
+                john="raw-blake2",
+                extended=False,
+                description="[link = https://en.wikipedia.org/wiki/BLAKE_(hash_function)#Users_of_BLAKE2]Used in Wireguard, Zcash, IPFS and more.[/link]",
+            ),
             HashInfo(name="SHA3-512", hashcat=17600, john="raw-sha3", extended=False),
             HashInfo(name="Skein-512", hashcat=None, john="skein-512", extended=False),
             HashInfo(name="Skein-1024(512)", hashcat=None, john=None, extended=False),
@@ -723,7 +766,6 @@ prototypes = [
                 john="hmac-sha512",
                 extended=True,
             ),
-            
             HashInfo(name="Keccak-384", hashcat=17900, john=None, extended=False),
             HashInfo(name="Keccak-256", hashcat=17800, john=None, extended=False),
             HashInfo(name="Keccak-224", hashcat=17700, john=None, extended=False),
