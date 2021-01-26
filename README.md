@@ -100,13 +100,13 @@ Our documentation is for you!
 | --------------- | ----------------------------------- |
 | [Wiki](https://github.com/HashPals/Name-That-Hash/wiki) | [https://twitter.com/bee_sec_san](https://twitter.com/bee_sec_san) |
 
-# Contributing
+# 🙏 Contributing
 
 The easiest way to contribute is by adding more hashes, writing descriptions, or changing their REGEX> All you have to do is go to [this file](https://github.com/HashPals/Name-That-Hash/blob/main/name_that_hash/hashes.py) and edit it.
 
 You can read more about [contributing here](https://github.com/HashPals/Name-That-Hash/wiki/Contributing).
 
-# Thanks
+# 💌 Thanks
 
 Many thanks to Jabba & Jayyy for their help :)
 
