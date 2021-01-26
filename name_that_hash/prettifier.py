@@ -18,6 +18,8 @@ class Prettifier:
         """
         if api is not True:
             self.a11y = kwargs["accessible"]
+        self.john = kwargs["no_john"]
+        self.hashcat = kwargs["no_hashcat"]
 
     def greppable_output(self, objs: List):
         logger.trace("Greppable output")
@@ -92,14 +94,17 @@ class Prettifier:
         john = nt["john"]
         des = nt["description"]
 
-        if hc is not None and john:
-            out += f"Hashcat Mode: {hc}, "
-        elif hc is not None:
-            out += f"Hashcat Mode: {hc}."
-        if john is not None and des:
-            out += f"John Name: {john}, "
-        elif john is not None:
-            out += f"John Name: {john}."
+        if not self.hashcat:
+            if hc is not None and john:
+                out += f"Hashcat Mode: {hc}, "
+            elif hc is not None:
+                out += f"Hashcat Mode: {hc}."
+        
+        if not self.john:
+            if john is not None and des:
+                out += f"John Name: {john}, "
+            elif john is not None:
+                out += f"John Name: {john}."
         if des:
             # Orange
             out += f"[#ff9f1c]Summary: {des}[/#ff9f1c]"
