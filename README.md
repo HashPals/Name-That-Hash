@@ -1,7 +1,7 @@
 <p align="center">
 
 <img src="logo.gif">
-
+<p align="center">➡️ <a href="https://discord.gg/zYTM3rZM4T">Discord</a> | <a href="https://nth.skerrittt.blog">Website</a> ⬅️</p>
 <p align="center">The Modern Hash Identification System<br>
 <code>pip3 install name-that-hash && nth</code>
 </p>
@@ -96,9 +96,9 @@ Or maybe even our commitment to accessibility?
 
 Our documentation is for you!
 
-| 📚 **Documentation** | 🐦 **My Twitter (@ me for questions)** |
-| --------------- | ----------------------------------- |
-| [Wiki](https://github.com/HashPals/Name-That-Hash/wiki) | [https://twitter.com/bee_sec_san](https://twitter.com/bee_sec_san) |
+| 📚 **Documentation** | 🐦 **My Twitter (@ me for questions)** | 🎳 **Discord** | 🧩 **Web App**
+| --------------- | ----------------------------------- | ---------------- | ---------------- | 
+| [Wiki](https://github.com/HashPals/Name-That-Hash/wiki) | [https://twitter.com/bee_sec_san](https://twitter.com/bee_sec_san) | [Discord](https://discord.gg/zYTM3rZM4T) | [Web App](https://nth.skerritt.blog) |
 
 # 🙏 Contributing
 
