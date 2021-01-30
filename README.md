@@ -4,6 +4,8 @@
 <p align="center">➡️ <a href="https://discord.gg/zYTM3rZM4T">Discord</a> | <a href="https://nth.skerrittt.blog">Website</a> ⬅️</p>
 <p align="center">The Modern Hash Identification System<br>
 <code>pip3 install name-that-hash && nth</code>
+  <br>
+  <a href="https://nth.skerritt.blog">Web App with no install needed</a>
 </p>
 
 <p align="center"><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/name-that-hash"> <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/name-that-hash"> <img alt="PyPI" src="https://img.shields.io/pypi/v/name-that-hash"> <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/bee_sec_san?style=social">
@@ -66,6 +68,8 @@ Doing this means you don't get access to least likely, and if the hash is in tha
 Which removes the ASCII art banner.
 
 # 🔨 Installation
+
+**Easy Mode** Use our web app at [https://nth.skerritt.blog](https://nth.skerritt.blog).
 
 You can install using Python's Pip.
 
