@@ -214,6 +214,7 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     Given a list of hashes of strings
     return a list of json of all hashes in the same order as the input
     """
+    logger.remove()
     # nth = the object which names the hash types
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
