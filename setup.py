@@ -14,7 +14,7 @@ readme = ''
 setup(
     long_description=readme,
     name='name-that-hash',
-    version='0.0.6',
+    version='0.6.0',
     description='The Modern Hash Identifcation System',
     python_requires='==3.*,>=3.7.0',
     author='brandon',
