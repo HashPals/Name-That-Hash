@@ -126,3 +126,5 @@ Finally, thanks too Blackout for helping write descriptions of hashes 🐱‍�
 <a href="https://www.youtube.com/watch?v=pems0PD7L2g"><img src="images/xss_rat.png"></img></a>
 
 ![FalconSpy loves it!](images/falconspy.png)
+
+[We're in REMnux!](https://twitter.com/REMnux/status/1355874578405466114)
