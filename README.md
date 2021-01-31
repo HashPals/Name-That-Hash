@@ -121,3 +121,8 @@ Thanks to the TryHackMe Community too, and especially [Oriel](https://twitter.co
 And special thanks to Varg on his masterful understanding of colour theory 🌈
 
 Finally, thanks too Blackout for helping write descriptions of hashes 🐱‍👤
+
+# 📺 What people are saying
+<a href="https://www.youtube.com/watch?v=pems0PD7L2g"><img src="images/xss_rat.png"></img></a>
+
+![FalconSpy loves it!](images/falconspy.png)
