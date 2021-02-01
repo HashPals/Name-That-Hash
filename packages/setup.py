@@ -19,6 +19,7 @@ setup(
     python_requires='==3.*,>=3.7.0',
     author='brandon',
     author_email='brandon@skerritt.blog',
+    license='GPL-3.0-or-later',
     entry_points={
         "console_scripts": [
             "nth = name_that_hash.runner:main",
