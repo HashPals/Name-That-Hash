@@ -3,6 +3,7 @@ name = "name-that-hash"
 version = "0.6.0"
 description = "The Modern Hash Identifcation System"
 authors = ["brandon <brandon@skerritt.blog>"]
+license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
 python = "^3.7"
