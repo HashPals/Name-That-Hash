@@ -56,15 +56,15 @@ class Prettifier:
             self.pretty_print_one(i, multi_print)
 
     def pretty_print_one(self, objs: List, multi_print: bool):
-        out = f"\n[bold #011627 on #ff9f1c]{objs.chash}[/bold #011627 on #ff9f1c]\n"
+        out = f"\n[bold magenta]{objs.chash}[/bold magenta]\n"
 
         # It didn't find any hahses.
         if len(objs.prototypes) == 0:
-            out += "[bold #2ec4b6]No hashes found.[/bold #2ec4b6]"
+            out += "[bold #FF0000]No hashes found.[/bold #FF0000]"
             console.print(out)
             return out
 
-        out += "\n[bold underline #2ec4b6]Most Likely[/bold underline #2ec4b6] \n"
+        out += "\n[bold underline #5f5fff]Most Likely[/bold underline #5f5fff] \n"
         start = objs.prototypes[0:4]
         rest = objs.prototypes[4:]
 
@@ -78,7 +78,7 @@ class Prettifier:
 
         # return if accessible is on
         if not self.a11y:
-            out += "\n[bold underline #2ec4b6]Least Likely[/bold underline #2ec4b6]\n"
+            out += "\n[bold underline #5f5fff]Least Likely[/bold underline #5f5fff]\n"
 
             for i in rest:
                 out += self.turn_named_tuple_pretty_print(i) + "\n"
@@ -88,7 +88,7 @@ class Prettifier:
 
     def turn_named_tuple_pretty_print(self, nt: NamedTuple):
         # This colours red
-        out = f"[bold #e71d36]{nt['name']}[/bold #e71d36] - "
+        out = f"[bold #ff5f00]{nt['name']}[/bold #ff5f00], "
 
         hc = nt["hashcat"]
         john = nt["john"]
@@ -107,6 +107,6 @@ class Prettifier:
                 out += f"JtR: {john}"
         if des:
             # Orange
-            out += f"[#ff9f1c]Summary: {des}[/#ff9f1c]"
+            out += f"[#8787D7]Summary: {des}[/#8787D7]"
 
         return out
