@@ -81,7 +81,7 @@ class Prettifier:
             out += "\n[bold underline #5f5fff]Least Likely[/bold underline #5f5fff]\n"
 
             for i in rest:
-                out += self.turn_named_tuple_pretty_print(i) + "\n"
+                out += self.turn_named_tuple_pretty_print(i) + " "
 
         console.print(out)
         return out
