@@ -59,7 +59,7 @@ Name-That-Hash is an [accessible hacking tool](https://skerritt.blog/a11y/). Tha
 
 ![No long text or ascii art here](images/accessible.png)
 
-Removing the ASCII Art of very long "least likely" text blocks using `-accessible`.
+Removing the ASCII Art of very long "least likely" text blocks using `--accessible`.
 
 Doing this means you don't get access to least likely, and if the hash is in that pile it'd suck. So we also have `--no-banner`.
 
