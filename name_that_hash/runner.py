@@ -1,6 +1,7 @@
 import click
 import sys
 from typing import NamedTuple, List
+import base64
 
 from rich import print, text
 from loguru import logger
@@ -128,6 +129,7 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     type=int,
     help="Turn on debugging logs. -vvv for maximum logs.",
 )
+@click.option("-b64", "--base64", is_flag=True, help="All hashes are in Base64 format.")
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
 
@@ -173,16 +175,24 @@ def main(**kwargs):
     output = []
 
     if kwargs["text"]:
+        if kwargs["base64"]:
+            kwargs["text"] = base64.b64decode(kwargs["text"]).decode("utf-8")
         output.append(HashObj(kwargs["text"], nth, hash_info))
     elif kwargs["file"]:
         logger.trace("performing file opening")
         # else it must be a file
         for i in kwargs["file"].read().splitlines():
             logger.trace(i)
-            # for every hash in the file, put it into the output list
-            # we have to decode it as its bytes str
-            output.append(HashObj(i.decode("utf-8"), nth, hash_info))
-            print("output is, ", output)
+            if kwargs["base64"]:
+                logger.trace("decoding as base64")
+                i = base64.b64decode(i).decode("utf-8")
+                logger.trace(f"hash is now {i}")
+                logger.trace(f"b64 decoded i is {i}")
+            try:
+                output.append(HashObj(i, nth, hash_info))
+            except TypeError:
+                print("TypeError. I think your hash input is base64, but you're not using the --base64 flag.")
+                exit(0)
             logger.trace(output)
 
     if kwargs["grepable"]:
@@ -192,21 +202,14 @@ def main(**kwargs):
 
 
 def set_logger(kwargs):
-    # sets the logger value based on args
-    verbosity = kwargs["verbose"]
-    if not verbosity:
+    try:
+        logger_dict = {1: "WARNING", 2: "DEBUG", 3: "TRACE"}
+        level = logger_dict[kwargs["verbose"]]
+        logger.add(sink=sys.stderr, level=level, colorize=sys.stderr.isatty())
+        logger.debug("TEST")
+        logger.opt(colors=True)
+    except Exception as e:
         logger.remove()
-        return
-    elif verbosity == 1:
-        verbosity = "WARNING"
-    elif verbosity == 2:
-        verbosity = "DEBUG"
-    elif verbosity == 3:
-        verbosity = "TRACE"
-    logger.add(sink=sys.stderr, level=verbosity, colorize=sys.stderr.isatty())
-    logger.opt(colors=True)
-
-    logger.debug(f"Verbosity set to level {verbosity} ({verbosity})")
 
 
 def api_return_hashes_as_json(chash: [str], args: dict = {}):
@@ -226,6 +229,8 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
 
     output = []
     for i in chash:
+        if "base64" in args:
+            i = base64.b64decode(i).decode("utf-8")
         output.append(HashObj(i, nth, hash_info))
 
     return pretty_printer.grepable_output(output)
