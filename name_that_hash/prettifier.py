@@ -99,7 +99,7 @@ class Prettifier:
                 out += f"Hashcat Mode: {hc}, "
             elif hc is not None:
                 out += f"Hashcat Mode: {hc}."
-        
+
         if not self.john:
             if john is not None and des:
                 out += f"John Name: {john}, "
