@@ -182,7 +182,8 @@ def main(**kwargs):
             # for every hash in the file, put it into the output list
             # we have to decode it as its bytes str
             output.append(HashObj(i.decode("utf-8"), nth, hash_info))
-            logger.trace(output + "\n")
+            print("output is, ", output)
+            logger.trace(output)
 
     if kwargs["grepable"]:
         print(pretty_printer.grepable_output(output))
