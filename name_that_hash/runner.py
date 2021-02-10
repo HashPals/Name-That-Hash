@@ -185,14 +185,12 @@ def main(**kwargs):
             logger.trace(i)
             if kwargs["base64"]:
                 logger.trace("decoding as base64")
-                i = base64.b64decode(i).decode("utf-8")
+                i = base64.b64decode(i)
                 logger.trace(f"hash is now {i}")
                 logger.trace(f"b64 decoded i is {i}")
-            try:
-                output.append(HashObj(i, nth, hash_info))
-            except TypeError:
-                print("TypeError. I think your hash input is base64, but you're not using the --base64 flag.")
-                exit(0)
+            
+            output.append(HashObj(i.decode("utf-8"), nth, hash_info))
+
             logger.trace(output)
 
     if kwargs["grepable"]:
