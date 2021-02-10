@@ -91,7 +91,8 @@ def banner():
  |  \| | __ _ _ __ ___   ___ ______| | | |__   __ _| |_ ______| |_| | __ _ ___| |__  
  | . ` |/ _` | '_ ` _ \ / _ \______| | | '_ \ / _` | __|______|  _  |/ _` / __| '_ \ 
  | |\  | (_| | | | | | |  __/      | | | | | | (_| | |_       | | | | (_| \__ \ | | |
- \_| \_/\__,_|_| |_| |_|\___|     \_/ |_| |_|\__,_|\__|      \_| |_/\__,_|___/_| |_|
+ \_| \_/\__,_|_| |_| |_|\___|      \_/ |_| |_|\__,_|\__|      \_| |_/\__,_|___/_| |_|
+
 https://twitter.com/bee_sec_san
 https://github.com/HashPals/Name-That-Hash [/bold blue]
     """
@@ -105,7 +106,7 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 )
 @click.option(
     "-g",
-    "--greppable",
+    "--grepable",
     is_flag=True,
     type=bool,
     help="Are you going to grep this output? Prints in JSON format.",
@@ -141,7 +142,7 @@ def main(**kwargs):
     Example usage:\n
         nth --text '5f4dcc3b5aa765d61d8327deb882cf99'\n
         nth --file hash\n
-        nth --text '5f4dcc3b5aa765d61d8327deb882cf99' --greppable\n
+        nth --text '5f4dcc3b5aa765d61d8327deb882cf99' --grepable\n
         Note: Use single quotes ' as double quotes " do not work well on Linux.\n
     """
     no_args = True
@@ -159,7 +160,7 @@ def main(**kwargs):
     logger.debug(kwargs)
 
     # Banner handling
-    if not kwargs["accessible"] and not kwargs["no_banner"] and not kwargs["greppable"]:
+    if not kwargs["accessible"] and not kwargs["no_banner"] and not kwargs["grepable"]:
         logger.info("Running the banner.")
         banner()
 
@@ -181,15 +182,21 @@ def main(**kwargs):
         logger.trace("performing file opening")
         # else it must be a file
         for i in kwargs["file"].read().splitlines():
-            logger.trace(i.decode("utf-8"))
+            logger.trace(i)
             if kwargs["base64"]:
+                logger.trace("decoding as base64")
                 i = base64.b64decode(i).decode("utf-8")
+                logger.trace(f"hash is now {i}")
                 logger.trace(f"b64 decoded i is {i}")
-            output.append(HashObj(i, nth, hash_info))
-            logger.trace(output + "\n")
+            try:
+                output.append(HashObj(i, nth, hash_info))
+            except TypeError:
+                print("TypeError. I think your hash input is base64, but you're not using the --base64 flag.")
+                exit(0)
+            logger.trace(output)
 
-    if kwargs["greppable"]:
-        print(pretty_printer.greppable_output(output))
+    if kwargs["grepable"]:
+        print(pretty_printer.grepable_output(output))
     else:
         pretty_printer.pretty_print(output)
 
@@ -226,7 +233,7 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
             i = base64.b64decode(i).decode("utf-8")
         output.append(HashObj(i, nth, hash_info))
 
-    return pretty_printer.greppable_output(output)
+    return pretty_printer.grepable_output(output)
 
 
 if __name__ == "__main__":

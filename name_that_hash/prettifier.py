@@ -21,8 +21,8 @@ class Prettifier:
             self.john = kwargs["no_john"]
             self.hashcat = kwargs["no_hashcat"]
 
-    def greppable_output(self, objs: List):
-        logger.trace("Greppable output")
+    def grepable_output(self, objs: List):
+        logger.trace("Grepable output")
         logger.trace(objs)
         """
         takes the prototypes and turns it into json
@@ -34,14 +34,14 @@ class Prettifier:
         for i in objs:
             logger.trace(i)
             outputs_as_dict.update(i.hash_obj)
-        logger.info("Returning from greppable output.")
+        logger.info("Returning from grepable output.")
         return json.dumps(outputs_as_dict, indent=2)
 
     def pretty_print(self, objs):
         logger.trace("In pretty printing")
         """
         prints it prettily in the format:
-        most popular hashe
+        most popular hashes
         1.
         2.
         3.
@@ -96,15 +96,15 @@ class Prettifier:
 
         if not self.hashcat:
             if hc is not None and john:
-                out += f"Hashcat Mode: {hc}, "
+                out += f"HC: {hc} "
             elif hc is not None:
-                out += f"Hashcat Mode: {hc}."
-
+                out += f"HC: {hc}"
+        
         if not self.john:
             if john is not None and des:
-                out += f"John Name: {john}, "
+                out += f"JtR: {john} "
             elif john is not None:
-                out += f"John Name: {john}."
+                out += f"JtR: {john}"
         if des:
             # Orange
             out += f"[#8787D7]Summary: {des}[/#8787D7]"
