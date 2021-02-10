@@ -503,8 +503,8 @@ prototypes = [
         regex=re.compile(r"^(\$2[axy]|\$2)\$[0-9]{2}\$[a-z0-9\/.]{53}$", re.IGNORECASE),
         modes=[
             HashInfo(
-                name="Blowfish(OpenBSD)", hashcat=3200, john="bcrypt", extended=False
-            ),
+                name="Blowfish(OpenBSD)", hashcat=3200, john="bcrypt", extended=False,
+            description="Can be used in Linux Shadow Files."),
             HashInfo(
                 name="Woltlab Burning Board 4.x",
                 hashcat=None,
@@ -563,7 +563,7 @@ prototypes = [
                 hashcat=1400,
                 john="raw-sha256",
                 extended=False,
-                description="256-bit key and is a good partner-function for AES",
+                description="256-bit key and is a good partner-function for AES. Can be used in Shadow files.",
             ),
             HashInfo(name="RIPEMD-256", hashcat=None, john=None, extended=False),
             HashInfo(
@@ -714,7 +714,7 @@ prototypes = [
                 hashcat=1700,
                 john="raw-sha512",
                 extended=False,
-                description="Used in Bitcoin Blockchain.",
+                description="Used in Bitcoin Blockchain and Shadow Files.",
             ),
             HashInfo(name="Keccak-512", hashcat=1800, john=None, extended=False),
             HashInfo(name="Whirlpool", hashcat=6100, john="whirlpool", extended=False),
