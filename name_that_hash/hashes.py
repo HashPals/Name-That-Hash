@@ -141,7 +141,7 @@ prototypes = [
                 name="md5(md5(md5($pass)))", hashcat=3500, john=None, extended=True
             ),
             HashInfo(
-                name="md5(strtoupper(md5($pass)))",
+                name="md5(uppercase(md5($pass)))",
                 hashcat=4300,
                 john=None,
                 extended=True,
@@ -200,6 +200,28 @@ prototypes = [
             HashInfo(
                 name="md5($username.0.$pass)", hashcat=4210, john=None, extended=True
             ),
+            HashInfo(
+                name="md5(utf16($pass))", hashcat=None, john="dynamic_29", extended=True
+            ),
+            HashInfo(
+                name="md4($salt.$pass)", hashcat=None, john="dynamic_31", extended=True
+            ),
+            HashInfo(
+                name="md4($pass.$salt)", hashcat=None, john="dynamic_32", extended=True
+            ),
+            HashInfo(
+                name="md4(utf16($pass))", hashcat=None, john="dynamic_33", extended=True
+            ),
+            HashInfo(
+                name="md5(md4($pass))", hashcat=None, john="dynamic_34", extended=True
+            ),
+            HashInfo(
+                name="net-md5", hashcat=None, john="dynamic_39", extended=True
+            ),
+            HashInfo(
+                name="md5($salt.pad16($pass))", hashcat=None, john="dynamic_39", extended=True
+            )
+
         ],
     ),
     Prototype(

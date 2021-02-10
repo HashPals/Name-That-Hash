@@ -68,13 +68,15 @@ class hash_information:
                 "MD4",
                 "NTLM",
                 "SHA-256",
-                "SHA-515",
+                "SHA-512",
                 "Keccak-256",
                 "Keccak-512",
                 "Blake2",
                 "bcrypt",
                 "SHA-1",
                 "HMAC-SHA1 (key = $salt)",
+                "CryptoCurrency(PrivateKey)",
+                "SHA-338"
             ]
         )
 
