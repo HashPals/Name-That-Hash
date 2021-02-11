@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "name-that-hash"
-version = "1.0.1"
+version = "1.0.3"
 description = "The Modern Hash Identifcation System"
 authors = ["brandon <brandon@skerritt.blog>"]
 license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.6"
 click = "^7.1.2"
 rich = "^9.9.0"
 loguru = "^0.5.3"
