@@ -10,76 +10,12 @@ logger.add(
     sys.stderr, format="{time} {level} {message}", filter="my_module", level="INFO"
 )
 
+from name_that_hash import hash_namer, hashes, prettifier
+
+from name_that_hash import check_hashes
 
 # Lets you import as an API
 # or run as a package
-try:
-    import hashes, hash_namer, prettifier
-except ModuleNotFoundError:
-    from name_that_hash import hash_namer, hashes, prettifier
-
-
-class HashObj:
-    """
-    Every hash given to our program will be assiocated with one object
-    This object contains the possible type of hash
-    and provides ways to print that hash
-    """
-
-    def __init__(self, chash: str, nth, hash_info):
-        self.chash = chash
-        self.nth = nth
-
-        self.popular = hash_info.popular
-
-        # prorotypes is given as a generator
-        self.prototypes = nth.identify(chash)
-        self.prototypes = self.sort_by_popular()
-
-        self.hash_obj = {self.chash: self.prototypes}
-
-    def get_prototypes(self):
-        return self.prototypes
-
-    def sort_by_popular(self):
-        """Sorts the list by popular + everything else
-
-        we do this using the self.popular set. Sets have O(1) lookup, so it's cheap.
-        If on named_tuple is in the popular set, we add it to the populars list and remove it from prototypes.
-
-        we then return populars list + prototypes.
-        """
-
-        to_ret = []
-        populars = []
-        for i in self.prototypes:
-            if i.name in self.popular:
-                populars.append(i.__dict__)
-            else:
-                to_ret.append(i.__dict__)
-        return populars + to_ret
-
-
-class hash_information:
-    def __init__(self):
-        self.popular = set(
-            [
-                "MD5",
-                "MD4",
-                "NTLM",
-                "SHA-256",
-                "SHA-512",
-                "Keccak-256",
-                "Keccak-512",
-                "Blake2",
-                "bcrypt",
-                "SHA-1",
-                "HMAC-SHA1 (key = $salt)",
-                "CryptoCurrency(PrivateKey)",
-                "SHA-338"
-            ]
-        )
-
 
 def print_help(ctx):
     click.echo(ctx.get_help())
@@ -104,11 +40,11 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 @click.command()
 @click.option("-t", "--text", help="Check one hash", type=str)
 @click.option(
-    "-f", "--file", type=click.File("rb"), help="Newline separated hash file input"
+    "-f", "--file", type=click.File("r", encoding='utf-8'), help="Newline separated hash file input"
 )
 @click.option(
     "-g",
-    "--grepable",
+    "--greppable",
     is_flag=True,
     type=bool,
     help="Are you going to grep this output? Prints in JSON format.",
@@ -144,7 +80,7 @@ def main(**kwargs):
     Example usage:\n
         nth --text '5f4dcc3b5aa765d61d8327deb882cf99'\n
         nth --file hash\n
-        nth --text '5f4dcc3b5aa765d61d8327deb882cf99' --grepable\n
+        nth --text '5f4dcc3b5aa765d61d8327deb882cf99' --greppable\n
         Note: Use single quotes ' as double quotes " do not work well on Linux.\n
     """
     no_args = True
@@ -162,41 +98,30 @@ def main(**kwargs):
     logger.debug(kwargs)
 
     # Banner handling
-    if not kwargs["accessible"] and not kwargs["no_banner"] and not kwargs["grepable"]:
+    if not kwargs["accessible"] and not kwargs["no_banner"] and not kwargs["greppable"]:
         logger.info("Running the banner.")
         banner()
 
-    hash_info = hash_information()
     # nth = the object which names the hash types
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
     pretty_printer = prettifier.Prettifier(kwargs)
+
+    hashChecker = check_hashes.HashChecker(kwargs, nth)
 
     logger.trace("Initialised the hash_info, nth, and pretty_printer objects.")
 
     output = []
 
     if kwargs["text"]:
-        if kwargs["base64"]:
-            kwargs["text"] = base64.b64decode(kwargs["text"]).decode("utf-8")
-        output.append(HashObj(kwargs["text"], nth, hash_info))
+        hashChecker.single_hash(kwargs["text"])
+        output = hashChecker.output
     elif kwargs["file"]:
-        logger.trace("performing file opening")
-        # else it must be a file
-        for i in kwargs["file"].read().splitlines():
-            logger.trace(i)
-            if kwargs["base64"]:
-                logger.trace("decoding as base64")
-                i = base64.b64decode(i)
-                logger.trace(f"hash is now {i}")
-                logger.trace(f"b64 decoded i is {i}")
-            
-            output.append(HashObj(i.decode("utf-8"), nth, hash_info))
+        hashChecker.file_input(kwargs["file"])
+        output = hashChecker.output
 
-            logger.trace(output)
-
-    if kwargs["grepable"]:
-        print(pretty_printer.grepable_output(output))
+    if kwargs["greppable"]:
+        print(pretty_printer.greppable_output(output))
     else:
         pretty_printer.pretty_print(output)
 
@@ -224,16 +149,13 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
     pretty_printer = prettifier.Prettifier(args, api=True)
-    # for most popular hashes etc
-    hash_info = hash_information()
+    hashChecker = check_hashes.HashChecker(args, nth)
 
     output = []
     for i in chash:
-        if "base64" in args:
-            i = base64.b64decode(i).decode("utf-8")
-        output.append(HashObj(i, nth, hash_info))
-
-    return pretty_printer.grepable_output(output)
+        hashChecker.single_hash(i)
+        output.append(hashChecker.output)
+    return pretty_printer.greppable_output(output)
 
 
 if __name__ == "__main__":
