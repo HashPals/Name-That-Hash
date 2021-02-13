@@ -149,15 +149,12 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
     pretty_printer = prettifier.Prettifier(args, api=True)
-    # for most popular hashes etc
-    hash_info_obj = hash_info.HashInformation()
+    hashChecker = check_hashes.HashChecker(args, nth)
 
     output = []
     for i in chash:
-        if "base64" in args:
-            i = base64.b64decode(i).decode("utf-8")
-        output.append(HashObj(i, nth, hash_info_obj))
-
+        hashChecker.single_hash(i)
+        output.append(hashChecker.output)
     return pretty_printer.greppable_output(output)
 
 

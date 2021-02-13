@@ -33,7 +33,7 @@ class Prettifier:
         outputs_as_dict = {}
         for i in objs:
             logger.trace(i)
-            outputs_as_dict.update(i.hash_obj)
+            outputs_as_dict.update(i[0].hash_obj)
         logger.info("Returning from grepable output.")
         return json.dumps(outputs_as_dict, indent=2)
 
