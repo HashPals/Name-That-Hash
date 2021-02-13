@@ -215,13 +215,13 @@ prototypes = [
             HashInfo(
                 name="md5(md4($pass))", hashcat=None, john="dynamic_34", extended=True
             ),
+            HashInfo(name="net-md5", hashcat=None, john="dynamic_39", extended=True),
             HashInfo(
-                name="net-md5", hashcat=None, john="dynamic_39", extended=True
+                name="md5($salt.pad16($pass))",
+                hashcat=None,
+                john="dynamic_39",
+                extended=True,
             ),
-            HashInfo(
-                name="md5($salt.pad16($pass))", hashcat=None, john="dynamic_39", extended=True
-            )
-
         ],
     ),
     Prototype(
@@ -525,8 +525,12 @@ prototypes = [
         regex=re.compile(r"^(\$2[axy]|\$2)\$[0-9]{2}\$[a-z0-9\/.]{53}$", re.IGNORECASE),
         modes=[
             HashInfo(
-                name="Blowfish(OpenBSD)", hashcat=3200, john="bcrypt", extended=False,
-            description="Can be used in Linux Shadow Files."),
+                name="Blowfish(OpenBSD)",
+                hashcat=3200,
+                john="bcrypt",
+                extended=False,
+                description="Can be used in Linux Shadow Files.",
+            ),
             HashInfo(
                 name="Woltlab Burning Board 4.x",
                 hashcat=None,

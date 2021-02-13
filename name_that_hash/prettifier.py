@@ -21,7 +21,7 @@ class Prettifier:
             self.john = kwargs["no_john"]
             self.hashcat = kwargs["no_hashcat"]
 
-    def grepable_output(self, objs: List):
+    def greppable_output(self, objs: List):
         logger.trace("Grepable output")
         logger.trace(objs)
         """
@@ -99,7 +99,7 @@ class Prettifier:
                 out += f"HC: {hc} "
             elif hc is not None:
                 out += f"HC: {hc}"
-        
+
         if not self.john:
             if john is not None and des:
                 out += f"JtR: {john} "
