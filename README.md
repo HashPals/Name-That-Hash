@@ -89,12 +89,12 @@ And then run:
 nth
 ```
 
+To use.
+
 [![Packaging status](https://repology.org/badge/vertical-allrepos/name-that-hash.svg)](https://repology.org/project/name-that-hash/versions)
 
 We're also in:
 * [REMnux](https://remnux.org/)
-
-To use.
 
 # 💡 Documentation
 Want to learn how popularity works?
