@@ -8,11 +8,10 @@
   <a href="https://nth.skerritt.blog">Web App with no install needed</a>
 </p>
 
-<p align="center"><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/name-that-hash"> <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/name-that-hash"> <img alt="PyPI" src="https://img.shields.io/pypi/v/name-that-hash"> <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/bee_sec_san?style=social">
+<p align="center">
+  <img alt="Discord" src="https://img.shields.io/discord/754001738184392704"> <img alt="PyPI - Downloads" src="https://pepy.tech/badge/name-that-hash/month">  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/bee_sec_san?style=social"> <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/name-that-hash"> <img alt="PyPI" src="https://img.shields.io/pypi/v/name-that-hash">
 </p>
-
 <hr>
-
 
 # 🤔 What is this?
 
@@ -90,6 +89,14 @@ nth
 ```
 
 To use.
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/name-that-hash.svg)](https://repology.org/project/name-that-hash/versions)
+
+We're also in:
+* [REMnux](https://remnux.org/)
+
+**Notes**:
+* Homebrew does not let you use the API, use MacPorts instead if you must use a Mac OS Package Manager.
 
 # 💡 Documentation
 Want to learn how popularity works?
