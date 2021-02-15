@@ -1,6 +1,6 @@
 <p align="center">
 
-<img src="logo.gif">
+<img src="images/logo.gif">
 <p align="center">➡️ <a href="https://discord.gg/zYTM3rZM4T">Discord</a> | <a href="https://nth.skerritt.blog">Website</a> ⬅️</p>
 <p align="center">The Modern Hash Identification System<br>
 <code>pip3 install name-that-hash && nth</code>

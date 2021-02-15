@@ -4,11 +4,9 @@ from typing import NamedTuple, List
 import base64
 
 from rich import print, text
-from loguru import logger
 
-logger.add(
-    sys.stderr, format="{time} {level} {message}", filter="my_module", level="INFO"
-)
+import logging
+logging.getLogger(__name__).addHandler(logging.NullHandler())
 
 from name_that_hash import hash_namer, hashes, prettifier
 
@@ -95,11 +93,11 @@ def main(**kwargs):
 
     # Load the verbosity, so that we can start logging
     set_logger(kwargs)
-    logger.debug(kwargs)
+    logging.debug(kwargs)
 
     # Banner handling
     if not kwargs["accessible"] and not kwargs["no_banner"] and not kwargs["greppable"]:
-        logger.info("Running the banner.")
+        logging.info("Running the banner.")
         banner()
 
     # nth = the object which names the hash types
@@ -109,7 +107,7 @@ def main(**kwargs):
 
     hashChecker = check_hashes.HashChecker(kwargs, nth)
 
-    logger.trace("Initialised the hash_info, nth, and pretty_printer objects.")
+    logging.debug("Initialised the hash_info, nth, and pretty_printer objects.")
 
     output = []
 
@@ -127,14 +125,11 @@ def main(**kwargs):
 
 
 def set_logger(kwargs):
-    try:
-        logger_dict = {1: "WARNING", 2: "DEBUG", 3: "TRACE"}
-        level = logger_dict[kwargs["verbose"]]
-        logger.add(sink=sys.stderr, level=level, colorize=sys.stderr.isatty())
-        logger.debug("TEST")
-        logger.opt(colors=True)
-    except Exception as e:
-        logger.remove()
+    logger_dict = {1: "WARNING", 2: "DEBUG", 3: "TRACE"}
+
+    level = kwargs["verbose"]
+    if level != 0:
+        logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
 
 def api_return_hashes_as_json(chash: [str], args: dict = {}):
@@ -144,7 +139,9 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     Given a list of hashes of strings
     return a list of json of all hashes in the same order as the input
     """
-    logger.remove()
+
+    # args["verbose"] = logging.getLogger().getEffectiveLevel()
+    # debugger.logging(f"Logging level in Name-That-Hash is {args["verbose"])
     # nth = the object which names the hash types
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
