@@ -3,6 +3,7 @@ import base64
 
 from name_that_hash import hash_info, HashTypeObj
 
+
 class HashChecker:
     """
     Call this with an input to identify hashes
@@ -21,11 +22,11 @@ class HashChecker:
                 logger.trace(f"Skipped empty line {nr}")
                 continue
             self.single_hash(line)
-            
+
     def single_hash(self, chash: str):
         if "base64" in self.kwargs:
             logger.trace("decoding as base64")
-            
+
             try:
                 # b64decode returns Bytes obj
                 chash = base64.b64decode(chash).decode("utf-8")

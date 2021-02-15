@@ -14,6 +14,6 @@ class HashInformation:
                 "SHA-1",
                 "HMAC-SHA1 (key = $salt)",
                 "CryptoCurrency(PrivateKey)",
-                "SHA-338"
+                "SHA-338",
             ]
         )

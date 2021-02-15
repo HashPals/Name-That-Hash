@@ -6,6 +6,7 @@ import base64
 from rich import print, text
 
 import logging
+
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
 from name_that_hash import hash_namer, hashes, prettifier
@@ -14,6 +15,7 @@ from name_that_hash import check_hashes
 
 # Lets you import as an API
 # or run as a package
+
 
 def print_help(ctx):
     click.echo(ctx.get_help())
@@ -38,7 +40,10 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 @click.command()
 @click.option("-t", "--text", help="Check one hash", type=str)
 @click.option(
-    "-f", "--file", type=click.File("r", encoding='utf-8'), help="Newline separated hash file input"
+    "-f",
+    "--file",
+    type=click.File("r", encoding="utf-8"),
+    help="Newline separated hash file input",
 )
 @click.option(
     "-g",
@@ -129,7 +134,9 @@ def set_logger(kwargs):
 
     level = kwargs["verbose"]
     if level != 0:
-        logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+        logging.basicConfig(
+            format="%(name)s - %(levelname)s - %(message)s", level=logging.DEBUG
+        )
 
 
 def api_return_hashes_as_json(chash: [str], args: dict = {}):
