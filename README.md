@@ -121,7 +121,7 @@ You can read more about [contributing here](https://github.com/HashPals/Name-Tha
 
 Many thanks to [Jabba](https://github.com/JabbaTheBunny) & Jayyy for their help :)
 
-Thanks to [HashID](https://github.com/psypanda/hashID[) and [Hash-Identifier](https://code.google.com/archive/p/hash-identifier/) for their work in this field, which heavily inspired this. 💝 The database of hashes was originally taken from them, but we've significantly modified it. Thank you so much for creating that database of 3000+ hashes 😻
+Thanks to [HashID](https://github.com/psypanda/hashID) and [Hash-Identifier](https://code.google.com/archive/p/hash-identifier/) for their work in this field, which heavily inspired this. 💝 The database of hashes was originally taken from them, but we've significantly modified it. Thank you so much for creating that database of 3000+ hashes 😻
 
 Thanks to the TryHackMe Community too, and especially [Oriel](https://twitter.com/OrielOrielOriel) for her feedback on early versions.
 
