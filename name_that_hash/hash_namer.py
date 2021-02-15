@@ -11,11 +11,12 @@ class Name_That_Hash:
         self.prototypes = list(prototypes)
 
     def identify(self, chash: str):
-        logger.trace(chash)
+        logger.debug(chash)
         chash = chash.strip()
         output = []
         for prototype in self.prototypes:
             if prototype.regex.match(chash):
                 for mode in prototype.modes:
                     output.append(mode)
+        print("identified hashes")
         return output

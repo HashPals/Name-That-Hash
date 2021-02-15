@@ -22,19 +22,20 @@ class Prettifier:
             self.hashcat = kwargs["no_hashcat"]
 
     def greppable_output(self, objs: List):
-        logger.trace("Grepable output")
-        logger.trace(objs)
+        logger.debug("Grepable output")
+        logger.debug(objs)
         """
         takes the prototypes and turns it into json
         returns the json
 
         Doesn't print it, it prints in main
         """
+        print(objs)
         outputs_as_dict = {}
+        logger.debug(outputs_as_dict)
         for i in objs:
-            logger.trace(i)
+            logger.debug(i)
             outputs_as_dict.update(i[0].hash_obj)
-        logger.info("Returning from grepable output.")
         return json.dumps(outputs_as_dict, indent=2)
 
     def pretty_print(self, objs):

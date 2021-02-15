@@ -17,6 +17,7 @@ from name_that_hash import check_hashes
 # Lets you import as an API
 # or run as a package
 
+
 def print_help(ctx):
     click.echo(ctx.get_help())
     ctx.exit()
@@ -40,7 +41,10 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 @click.command()
 @click.option("-t", "--text", help="Check one hash", type=str)
 @click.option(
-    "-f", "--file", type=click.File("r", encoding='utf-8'), help="Newline separated hash file input"
+    "-f",
+    "--file",
+    type=click.File("r", encoding="utf-8"),
+    help="Newline separated hash file input",
 )
 @click.option(
     "-g",
@@ -121,7 +125,7 @@ def main(**kwargs):
         output = hashChecker.output
 
     if kwargs["greppable"]:
-        print(pretty_printer.greppable_output(output))
+        print(pretty_printer.greppable_output([output]))
     else:
         pretty_printer.pretty_print(output)
 
@@ -144,17 +148,26 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     Given a list of hashes of strings
     return a list of json of all hashes in the same order as the input
     """
-    logger.remove()
     # nth = the object which names the hash types
+
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
+    print("made nth type")
     # prettifier print things :)
     pretty_printer = prettifier.Prettifier(args, api=True)
+    print("made prettifier")
     hashChecker = check_hashes.HashChecker(args, nth)
+    print("checked hashes")
 
     output = []
+    print("outputs")
     for i in chash:
+        print(f"Checking single hash {i}")
         hashChecker.single_hash(i)
+        print("build the hash checker")
         output.append(hashChecker.output)
+        print("*********** output appending")
+        print(output)
+    print("printing greppable")
     return pretty_printer.greppable_output(output)
 
 

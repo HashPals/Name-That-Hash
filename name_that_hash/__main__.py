@@ -24,7 +24,7 @@ if __name__ == "__main__":
             f"Name That Hash requires Python 3.7+, you are using {python_version}. Please install a higher Python version."
         )
         sys.exit(1)
-    
+
     from name_that_hash import runner
 
     runner.main()
