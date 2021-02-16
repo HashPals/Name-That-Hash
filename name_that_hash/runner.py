@@ -35,12 +35,12 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 
 
 @click.command()
-@click.option("-t", "--text", help="Check one hash", type=str)
+@click.option("-t", "--text", help="Check one hash, use single quotes as double quotes messes up on Linux.", type=str)
 @click.option(
     "-f",
     "--file",
     type=click.File("r", encoding="utf-8"),
-    help="Newline separated hash file input",
+    help="Checks every hash in a newline separated file.",
 )
 @click.option(
     "-g",
@@ -49,6 +49,7 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     type=bool,
     help="Are you going to grep this output? Prints in JSON format.",
 )
+@click.option("-b64", "--base64", is_flag=True, help="Decodes hashes in Base64 before identification. For files with mixed Base64 & non-encoded it attempts base64 first and then falls back to normal hash identification per hash.")
 @click.option(
     "-a",
     "--accessible",
@@ -67,7 +68,6 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     type=int,
     help="Turn on debugging logs. -vvv for maximum logs.",
 )
-@click.option("-b64", "--base64", is_flag=True, help="All hashes are in Base64 format.")
 def main(**kwargs):
     """Name That Hash - Instantly name the type of any hash!
 
