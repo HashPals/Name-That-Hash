@@ -95,9 +95,6 @@ To use.
 We're also in:
 * [REMnux](https://remnux.org/)
 
-**Notes**:
-* Homebrew does not let you use the API, use MacPorts instead if you must use a Mac OS Package Manager.
-
 # 💡 Documentation
 Want to learn how popularity works?
 
@@ -121,7 +118,7 @@ You can read more about [contributing here](https://github.com/HashPals/Name-Tha
 
 Many thanks to [Jabba](https://github.com/JabbaTheBunny) & Jayyy for their help :)
 
-Thanks to [HashID](https://github.com/psypanda/hashID[) and [Hash-Identifier](https://code.google.com/archive/p/hash-identifier/) for their work in this field, which heavily inspired this. 💝 The database of hashes was originally taken from them, but we've significantly modified it. Thank you so much for creating that database of 3000+ hashes 😻
+Thanks to [HashID](https://github.com/psypanda/hashID) and [Hash-Identifier](https://code.google.com/archive/p/hash-identifier/) for their work in this field, which heavily inspired this. 💝 The database of hashes was originally taken from them, but we've significantly modified it. Thank you so much for creating that database of 3000+ hashes 😻
 
 Thanks to the TryHackMe Community too, and especially [Oriel](https://twitter.com/OrielOrielOriel) for her feedback on early versions.
 
@@ -139,7 +136,7 @@ Finally, thanks too Blackout for helping write descriptions of hashes 🐱‍�
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -150,6 +147,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/digitalsleuth"><img src="https://avatars.githubusercontent.com/u/62841822?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Digital Sleuth</b></sub></a><br /><a href="https://github.com/HashPals/Name-That-Hash/commits?author=digitalsleuth" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/amadejpapez"><img src="https://avatars.githubusercontent.com/u/63184600?v=4?s=100" width="100px;" alt=""/><br /><sub><b>amadejpapez</b></sub></a><br /><a href="https://github.com/HashPals/Name-That-Hash/issues?q=author%3Aamadejpapez" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
