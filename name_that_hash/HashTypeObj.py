@@ -14,10 +14,8 @@ class HashType:
         # prorotypes is given as a generator
         self.prototypes = nth.identify(chash)
         self.prototypes = self.sort_by_popular()
-        print("sorted by popular")
 
         self.hash_obj = {self.chash: self.prototypes}
-        print("built hash obj")
 
     def get_prototypes(self):
         return self.prototypes

@@ -30,7 +30,6 @@ class Prettifier:
 
         Doesn't print it, it prints in main
         """
-        print(objs)
         outputs_as_dict = {}
         logger.debug(outputs_as_dict)
         for i in objs:

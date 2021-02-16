@@ -18,5 +18,4 @@ class Name_That_Hash:
             if prototype.regex.match(chash):
                 for mode in prototype.modes:
                     output.append(mode)
-        print("identified hashes")
         return output

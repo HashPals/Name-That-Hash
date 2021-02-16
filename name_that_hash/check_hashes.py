@@ -34,4 +34,3 @@ class HashChecker:
             except:
                 logger.trace("Failed to base64 decode")
         self.output.append(HashTypeObj.HashType(chash, self.nth, self.hashinfo_obj))
-        print("single hash works a okay")

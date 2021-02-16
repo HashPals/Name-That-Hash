@@ -6,10 +6,6 @@ import base64
 from rich import print, text
 from loguru import logger
 
-logger.add(
-    sys.stderr, format="{time} {level} {message}", filter="my_module", level="INFO"
-)
-
 from name_that_hash import hash_namer, hashes, prettifier
 
 from name_that_hash import check_hashes
@@ -151,23 +147,14 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     # nth = the object which names the hash types
 
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
-    print("made nth type")
     # prettifier print things :)
     pretty_printer = prettifier.Prettifier(args, api=True)
-    print("made prettifier")
     hashChecker = check_hashes.HashChecker(args, nth)
-    print("checked hashes")
 
     output = []
-    print("outputs")
     for i in chash:
-        print(f"Checking single hash {i}")
         hashChecker.single_hash(i)
-        print("build the hash checker")
         output.append(hashChecker.output)
-        print("*********** output appending")
-        print(output)
-    print("printing greppable")
     return pretty_printer.greppable_output(output)
 
 
