@@ -35,7 +35,7 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 
 
 @click.command()
-@click.option("-t", "--text", help="Check one hash, use single quotes as double quotes messes up on Linux.", type=str)
+@click.option("-t", "--text", help="Check one hash, use single quotes ' as inverted commas \" messes up on Linux.", type=str)
 @click.option(
     "-f",
     "--file",
@@ -81,7 +81,7 @@ def main(**kwargs):
         nth --text '5f4dcc3b5aa765d61d8327deb882cf99'\n
         nth --file hash\n
         nth --text '5f4dcc3b5aa765d61d8327deb882cf99' --greppable\n
-        Note: Use single quotes ' as double quotes " do not work well on Linux.\n
+        Note: Use single quotes ' as inverted commas " do not work well on Linux.\n
     """
     no_args = True
     for i in kwargs.values():
