@@ -95,9 +95,6 @@ To use.
 We're also in:
 * [REMnux](https://remnux.org/)
 
-**Notes**:
-* Homebrew does not let you use the API, use MacPorts instead if you must use a Mac OS Package Manager.
-
 # 💡 Documentation
 Want to learn how popularity works?
 
