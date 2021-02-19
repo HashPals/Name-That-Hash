@@ -13,12 +13,6 @@ from name_that_hash import check_hashes
 # Lets you import as an API
 # or run as a package
 
-
-def print_help(ctx):
-    click.echo(ctx.get_help())
-    ctx.exit()
-
-
 def banner():
     text = r"""[bold blue]
   _   _                           _____ _           _          _   _           _     
@@ -83,16 +77,13 @@ def main(**kwargs):
         nth --text '5f4dcc3b5aa765d61d8327deb882cf99' --greppable\n
         Note: Use single quotes ' as inverted commas " do not work well on Linux.\n
     """
-    no_args = True
-    for i in kwargs.values():
-        if i:
-            no_args = False
-            break
-    if no_args:
+    
+    if not len(sys.argv) > 1:
         with click.Context(main) as ctx:
-            click.echo(main.get_help(ctx))
+            click.echo(ctx.get_help())
+            ctx.exit()
             exit(0)
-
+            
     # Load the verbosity, so that we can start logging
     set_logger(kwargs)
     logger.debug(kwargs)
