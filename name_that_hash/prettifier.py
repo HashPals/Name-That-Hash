@@ -22,7 +22,7 @@ class Prettifier:
             self.hashcat = kwargs["no_hashcat"]
 
     def greppable_output(self, objs: List):
-        logger.debug("Grepable output")
+        logger.debug("Greppable output")
         logger.debug(objs)
         """
         takes the prototypes and turns it into json
