@@ -54,7 +54,7 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     "-a",
     "--accessible",
     is_flag=True,
-    help="Turn on accessible mode, does not print ASCII art. Also dooes not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely feature but no banner, use --no-banner. ",
+    help="Turn on accessible mode, does not print ASCII art. Also does not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely feature but no banner, use --no-banner. ",
 )
 @click.option("--no-banner", is_flag=True, help="Removes banner from startup.")
 @click.option(
