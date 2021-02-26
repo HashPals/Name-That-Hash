@@ -131,7 +131,6 @@ def set_logger(kwargs):
         logger_dict = {1: "WARNING", 2: "DEBUG", 3: "TRACE"}
         level = logger_dict[kwargs["verbose"]]
         logger.add(sink=sys.stderr, level=level, colorize=sys.stderr.isatty())
-        logger.debug("TEST")
         logger.opt(colors=True)
     except Exception as e:
         logger.remove()

@@ -43,3 +43,9 @@ def test__b64():
     runner = CliRunner()
     result = runner.invoke(main, ["-t", "NWY0ZGNjM2I1YWE3NjVkNjFkODMyN2RlYjg4MmNmOTk=", '-b64'])
     assert "MD5" in result.output
+
+def test_file_input():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-f", "tests/mocks/hashes.txt", '-b64', '-g'])
+    assert "SHA-1" in result.output
+    assert "SHA-512" in result.output
