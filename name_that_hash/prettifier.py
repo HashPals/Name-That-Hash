@@ -22,7 +22,6 @@ class Prettifier:
             self.hashcat = kwargs["no_hashcat"]
 
     def greppable_output(self, objs: List):
-        print("helloooooooooooooooooooo")
         logger.debug("Greppable output")
         logger.debug(f"Objects is {objs}")
         """
