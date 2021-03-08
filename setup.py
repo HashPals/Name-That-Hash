@@ -26,7 +26,7 @@ setup(
             "name-that-hash = name_that_hash.runner:main",
         ]
     },
-    packages=["Name_That_Hash"],
+    packages=["name_that_hash"],
     package_dir={"": "."},
     package_data={},
     install_requires=["click==7.*,>=7.1.2", "loguru==0.*,>=0.5.3", "rich==9.*,>=9.9.0"],
