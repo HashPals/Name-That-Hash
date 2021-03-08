@@ -1,2 +1,2 @@
-pytest
+pytest==5.*,>=5.2.0
 ipython
