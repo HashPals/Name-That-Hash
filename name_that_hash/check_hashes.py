@@ -24,8 +24,7 @@ class HashChecker:
             self.single_hash(line)
 
     def single_hash(self, chash: str):
-        if "base64" in self.kwargs:
-
+        if "base64" in self.kwargs and self.kwargs["base64"]:
             logger.trace("decoding as base64")
 
             try:
