@@ -170,7 +170,7 @@ def api_return_hashes_identity(chash: [str], args: dict = {}):
     """
     # nth = the object which names the hash types
 
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     hashChecker = check_hashes.HashChecker(args, nth)
 
