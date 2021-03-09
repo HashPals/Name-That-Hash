@@ -129,167 +129,6 @@ def main(**kwargs):
         pretty_printer.pretty_print(output)
 
 
-def identify_hash(*, query_hash:str,
-                    greppable:bool = False, base64:bool = False,
-                    accessible:bool = False, show_banner:bool = True,
-                    john:bool = True, hashcat:bool = True,
-                    quiet:bool = False, verbose:bool = False):
-    """Name That Hash - Instantly name the type of any hash!
-
-    NTH script interface
-
-    Github:\n
-    https://github.com/hashpals/name-that-hash
-
-    From the creator of RustScan and Ciphey. Follow me on Twitter!\n
-    https://twitter.com/bee_sec_san
-
-    Example usage:\n
-        from name_that_hash import identify_hash
-
-        ## identify a simple hash (similar to nth command line)
-        ## x : {QUERY_HASH : [{POSIBLE_HASH_IDENTITY}, ...]}
-        x = identify_hashes(query_hash="5f4dcc3b5aa765d61d8327deb882cf99")
-
-        ## base64, greppable, accessible, verbose work similar to nth command line
-        ## quiet option doesn't show any output to command line and
-                simply return {QUERY_HASH : [{POSIBLE_HASH_IDENTITY}, ...]}
-        ## show_banner options show the banner if is True otherwise doesn't show it
-        ## john and hashcat show the hash type of jtr or hc if are True otherwise don't show them
-    """
-    #import pdb; pdb.set_trace()
-
-    # Load the verbosity, so that we can start logging
-    set_logger({'verbose': verbose})
-
-    kwargs = {
-        "base64": base64,
-        'greppable': greppable,
-        'accessible': accessible,
-        'no_banner': not show_banner,
-        'no_john': not john,
-        'no_hashcat': not hashcat,
-        'verbose': verbose
-    }
-
-    logger.debug(kwargs)
-
-    # Banner handling
-    if show_banner and not (accessible or greppable or quiet):
-        logger.info("Running the banner.")
-        banner()
-
-    # nth = the object which names the hash types
-    nth = hash_namer.Name_That_Hash(hashes.prototypes)
-    # prettifier print things :)
-    pretty_printer = prettifier.Prettifier(kwargs)
-
-    hashChecker = check_hashes.HashChecker(kwargs, nth)
-
-    logger.trace("Initialized the hash_info, nth, and pretty_printer objects.")
-
-    output = []
-
-    hashChecker.single_hash(query_hash)
-    output = hashChecker.output
-
-    if not quiet:
-        if greppable:
-            print(pretty_printer.greppable_output([output]))
-        else:
-            pretty_printer.pretty_print(output)
-
-
-    hashType = output[0]
-    posible_hash_identities = hashType.hash_obj
-
-    return posible_hash_identities #{QUERY_HASH : [{POSIBLE_HASH_IDENTITY}, ...]}
-
-
-def identify_hashes(*, hashes_file:str,
-                    greppable:bool = False, base64:bool = False,
-                    accessible:bool = False, show_banner:bool = True,
-                    john:bool = True, hashcat:bool = True,
-                    quiet:bool = False,verbose:bool = False):
-    """Name That Hash - Instantly name the type of any hash!
-
-    Github:\n
-    https://github.com/hashpals/name-that-hash
-
-    From the creator of RustScan and Ciphey. Follow me on Twitter!\n
-    https://twitter.com/bee_sec_san
-
-    Example usage:\n
-        from name_that_hash import identify_hash
-
-        ## identify a simple hash (similar to nth command line)
-        ## x : {QUERY_HASH : [{POSIBLE_HASH_IDENTITY}, ...], ...}
-        x = identify_hashes(hashes_file=PATH_TO_HASHES_FILE)
-
-        ## base64, greppable, accessible, verbose work similar to nth command line
-        ## quiet option doesn't show any output to command line and
-                simply return {QUERY_HASH : [{POSIBLE_HASH_IDENTITY}, ...], ...}
-        ## show_banner options show the banner if is True otherwise doesn't show it
-        ## john and hashcat show the hash type of jtr or hc if are True otherwise don't show them
-    """
-    #import pdb; pdb.set_trace()
-
-    try:
-        if not (os.path.isfile(hashes_file) and os.access(hashes_file, os.R_OK)):
-            if not os.path.isfile(hashes_file):
-                raise FileNotFoundError(f"Hashes file {hashes_file} doesn't exist")
-            else: # hashes file hasn't read permission
-                raise PermissionError(f"Hashes file has not read permission")
-
-        # Load the verbosity, so that we can start logging
-        set_logger({'verbose': verbose})
-
-        kwargs = {
-            "base64": base64,
-            'greppable': greppable,
-            'accessible': accessible,
-            'no_banner': not show_banner,
-            'no_john': not john,
-            'no_hashcat': not hashcat,
-            'verbose': verbose
-        }
-
-        logger.debug(kwargs)
-
-        # Banner handling
-        if show_banner and not (accessible or greppable or quiet):
-            logger.info("Running the banner.")
-            banner()
-
-        # nth = the object which names the hash types
-        nth = hash_namer.Name_That_Hash(hashes.prototypes)
-        # prettifier print things :)
-        pretty_printer = prettifier.Prettifier(kwargs)
-
-        hashChecker = check_hashes.HashChecker(kwargs, nth)
-
-        logger.trace("Initialized the hash_info, nth, and pretty_printer objects.")
-
-        output = []
-
-        with open(hashes_file, 'r') as query_hashes:
-            hashChecker.file_input(query_hashes)
-        output = hashChecker.output
-
-        if not quiet:
-            if greppable:
-                print(pretty_printer.greppable_output([output]))
-            else:
-                pretty_printer.pretty_print(output)
-
-
-        posible_hashes_identities = [hashType.hash_obj for hashType in output]
-
-        return posible_hashes_identities #{QUERY_HASH : [{POSIBLE_HASH_IDENTITY}, ...], ...}
-
-    except Exception as error:
-        print(error)
-
 def set_logger(kwargs):
     try:
         logger_dict = {1: "WARNING", 2: "DEBUG", 3: "TRACE"}
@@ -319,6 +158,29 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
         hashChecker.single_hash(i)
         output.append(hashChecker.output)
     return pretty_printer.greppable_output(output)
+
+
+def api_return_hashes_identity(chash: [str], args: dict = {}):
+    """
+    Using name-that-hash as an API? Call this function!
+
+    Given a list of hashes of strings
+    return a list of dictionaries with the supplied hashes as key and the posible identities as values
+    return format: [{QUERY_HASH : [{POSIBLE_HASH_IDENTITY}, ...]}, ...]
+    """
+    # nth = the object which names the hash types
+
+    import pdb; pdb.set_trace()
+    nth = hash_namer.Name_That_Hash(hashes.prototypes)
+    hashChecker = check_hashes.HashChecker(args, nth)
+
+    output = []
+
+    for i in chash:
+        hashChecker.single_hash(i)
+        output.append(hashChecker.output)
+
+    return [hashTypeObj[0].hash_obj for hashTypeObj in output]
 
 
 if __name__ == "__main__":

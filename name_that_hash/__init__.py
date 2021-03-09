@@ -5,8 +5,8 @@ from name_that_hash import runner
 
 # script interface
 from name_that_hash.runner import (
-    identify_hash,
-    identify_hashes
+    api_return_hashes_as_json,
+    api_return_hashes_identity
 )
 
 if __name__ == "__main__":
