@@ -30,12 +30,13 @@ class Prettifier:
 
         Doesn't print it, it prints in main
         """
+        #import pdb; pdb.set_trace()
         outputs_as_dict = {}
         for i in objs:
             logger.debug(f"In for loop with object {i}")
-            for y in i:
-                outputs_as_dict.update(y.hash_obj)
-                logger.debug(f"Output_as_dicts is now {outputs_as_dict}")
+            #for y in i:
+            outputs_as_dict.update(i.hash_obj)
+            logger.debug(f"Output_as_dicts is now {outputs_as_dict}")
         return json.dumps(outputs_as_dict, indent=2)
 
     def pretty_print(self, objs):

@@ -148,16 +148,16 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     """
     # nth = the object which names the hash types
 
+    import pdb; pdb.set_trace()
+
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     # prettifier print things :)
     pretty_printer = prettifier.Prettifier(args, api=True)
     hashChecker = check_hashes.HashChecker(args, nth)
 
-    output = []
     for i in chash:
         hashChecker.single_hash(i)
-        output.append(hashChecker.output)
-    return pretty_printer.greppable_output(output)
+    return pretty_printer.greppable_output(hashChecker.output)
 
 
 def api_return_hashes_identity(chash: [str], args: dict = {}):
@@ -170,17 +170,14 @@ def api_return_hashes_identity(chash: [str], args: dict = {}):
     """
     # nth = the object which names the hash types
 
-    #import pdb; pdb.set_trace()
+    import pdb; pdb.set_trace()
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
     hashChecker = check_hashes.HashChecker(args, nth)
 
-    output = []
-
     for i in chash:
         hashChecker.single_hash(i)
-        output.append(hashChecker.output)
 
-    return [hashTypeObj[0].hash_obj for hashTypeObj in output]
+    return [hashTypeObj.hash_obj for hashTypeObj in hashChecker.output]
 
 
 if __name__ == "__main__":
