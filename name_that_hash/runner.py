@@ -84,7 +84,7 @@ def main(**kwargs):
         nth --text '5f4dcc3b5aa765d61d8327deb882cf99' --greppable\n
         Note: Use single quotes ' as inverted commas " do not work well on Linux.\n
     """
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
 
     no_args = True
     for i in kwargs.values():
