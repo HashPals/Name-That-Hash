@@ -1377,6 +1377,20 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(
+            r"\$krb5tgs\$23\$\*(.*)\*\$(.*)",
+            re.IGNORECASE,
+        ),
+        modes=[
+            HashInfo(
+                name=u"Kerberos 5 TGS-REP etype 23",
+                hashcat=13100,
+                john="krb5tgs",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(
             r"^\$oldoffice\$[01]\*[a-f0-9]{32}\*[a-f0-9]{32}\*[a-f0-9]{32}$",
             re.IGNORECASE,
         ),
