@@ -30,13 +30,16 @@ class Prettifier:
 
         Doesn't print it, it prints in main
         """
+        return json.dumps(self.turn_hash_objs_into_dict(objs), indent=2)
+
+    def turn_hash_objs_into_dict(self, objs: List):
+        print(f"objs is {objs}")
         outputs_as_dict = {}
-        for i in objs:
-            logger.debug(f"In for loop with object {i}")
-            for y in i:
-                outputs_as_dict.update(y.hash_obj)
-                logger.debug(f"Output_as_dicts is now {outputs_as_dict}")
-        return json.dumps(outputs_as_dict, indent=2)
+
+        for y in objs:
+            outputs_as_dict.update(y.hash_obj)
+            logger.debug(f"Output_as_dicts is now {outputs_as_dict}")
+        return outputs_as_dict
 
     def pretty_print(self, objs):
         logger.trace("In pretty printing")

@@ -38,9 +38,29 @@ def test_bcrypt_dollar():
     assert "bcrypt" in x
 
 
-def base64_works():
+def test_base64_works():
     # for issue #23
     hashes = ["NWY0ZGNjM2I1YWE3NjVkNjFkODMyN2RlYjg4MmNmOTk="]
 
     x = runner.api_return_hashes_as_json(hashes, {"base64": True})
-    assert "bcrypt" in x
+    assert "MD5" in x
+
+
+def test_scrypt_succeeds():
+    # for issue #23
+    hashes = [
+        "SCRYPT:1024:1:1:MDIwMzMwNTQwNDQyNQ==:5FW+zWivLxgCWj7qLiQbeC8zaNQ+qdO0NUinvqyFcfo="
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "scrypt" in x
+
+
+def test_scrypt_python_dict():
+    # for issue #23
+    hashes = [
+        "SCRYPT:1024:1:1:MDIwMzMwNTQwNDQyNQ==:5FW+zWivLxgCWj7qLiQbeC8zaNQ+qdO0NUinvqyFcfo="
+    ]
+
+    x = runner.api_return_hashes_as_dict(hashes)
+    assert "SCRYPT:1024:1:1:MDIwMzMwNTQwNDQyNQ==:5FW+zWivLxgCWj7qLiQbeC8zaNQ+qdO0NUinvqyFcfo=" in x

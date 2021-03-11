@@ -1314,7 +1314,15 @@ prototypes = [
         regex=re.compile(
             r"^SCRYPT:[0-9]{1,}:[0-9]{1}:[0-9]{1}:[a-z0-9:\/+=]{1,}$", re.IGNORECASE
         ),
-        modes=[HashInfo(name="scrypt", hashcat=8900, john=None, extended=False)],
+        modes=[
+            HashInfo(
+                name="scrypt",
+                hashcat=8900,
+                john=None,
+                extended=False,
+                description="Used in Dogecoin and Litecoin.",
+            )
+        ],
     ),
     Prototype(
         regex=re.compile(r"^\$8\$[a-z0-9\/.]{14}\$[a-z0-9\/.]{43}$", re.IGNORECASE),
@@ -1377,7 +1385,7 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(
-            r"\$krb5tgs\$23\$\*(.*)\*\$(.*)",
+            r"\$krb5tgs\$23\$\*[^*]*\*\$[a-f0-9]{32}\$[a-f0-9]{64,40960}",
             re.IGNORECASE,
         ),
         modes=[
@@ -1386,6 +1394,7 @@ prototypes = [
                 hashcat=13100,
                 john="krb5tgs",
                 extended=False,
+                description="Used in Windows Active Directory.",
             ),
         ],
     ),
