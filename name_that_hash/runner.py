@@ -35,7 +35,12 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
 
 
 @click.command()
-@click.option("-t", "--text", help="Check one hash, use single quotes ' as inverted commas \" messes up on Linux.", type=str)
+@click.option(
+    "-t",
+    "--text",
+    help="Check one hash, use single quotes ' as inverted commas \" messes up on Linux.",
+    type=str,
+)
 @click.option(
     "-f",
     "--file",
@@ -49,7 +54,12 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     type=bool,
     help="Are you going to grep this output? Prints in JSON format.",
 )
-@click.option("-b64", "--base64", is_flag=True, help="Decodes hashes in Base64 before identification. For files with mixed Base64 & non-encoded it attempts base64 first and then falls back to normal hash identification per hash.")
+@click.option(
+    "-b64",
+    "--base64",
+    is_flag=True,
+    help="Decodes hashes in Base64 before identification. For files with mixed Base64 & non-encoded it attempts base64 first and then falls back to normal hash identification per hash.",
+)
 @click.option(
     "-a",
     "--accessible",
@@ -121,7 +131,7 @@ def main(**kwargs):
         output = hashChecker.output
 
     if kwargs["greppable"]:
-        print(pretty_printer.greppable_output([output]))
+        print(pretty_printer.greppable_output(output))
     else:
         pretty_printer.pretty_print(output)
 
@@ -143,6 +153,19 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     Given a list of hashes of strings
     return a list of json of all hashes in the same order as the input
     """
+    pretty_printer = prettifier.Prettifier(args, api=True)
+    return pretty_printer.greppable_output(compute_hashes_for_api(chash, args))
+
+
+def api_return_hashes_as_dict(chash: [str], args: dict = {}):
+    """
+    Returns the hashes as a Python dictionary
+    """
+    pretty_printer = prettifier.Prettifier(args, api=True)
+    return pretty_printer.turn_hash_objs_into_dict(compute_hashes_for_api(chash, args))
+
+
+def compute_hashes_for_api(chash: [str], args: dict = {}):
     # nth = the object which names the hash types
 
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
@@ -150,11 +173,9 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     pretty_printer = prettifier.Prettifier(args, api=True)
     hashChecker = check_hashes.HashChecker(args, nth)
 
-    output = []
     for i in chash:
         hashChecker.single_hash(i)
-        output.append(hashChecker.output)
-    return pretty_printer.greppable_output(output)
+    return hashChecker.output
 
 
 if __name__ == "__main__":

@@ -22,6 +22,7 @@ class HashChecker:
                 logger.trace(f"Skipped empty line {nr}")
                 continue
             self.single_hash(line)
+            logger.debug(f"*************** {self.output}")
 
     def single_hash(self, chash: str):
         if "base64" in self.kwargs and self.kwargs["base64"]:
