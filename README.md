@@ -93,7 +93,8 @@ To use.
 [![Packaging status](https://repology.org/badge/vertical-allrepos/name-that-hash.svg)](https://repology.org/project/name-that-hash/versions)
 
 We're also in:
-* [REMnux](https://remnux.org/)
+* [REMnux](https://remnux.org/).
+* The Arch User Repository.
 
 # 💡 Documentation
 Want to learn how popularity works?
