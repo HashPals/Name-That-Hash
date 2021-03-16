@@ -55,17 +55,6 @@ def test_scrypt_succeeds():
     x = runner.api_return_hashes_as_json(hashes)
     assert "scrypt" in x
 
-    def test_kerberos():
-    hashes = [
-
-        "$krb5tgs$18$user$realm$8efd91bb01cc69dd07e46009$7352410d6aafd72c64972a66058b02aa1c28ac580ba41137d5a170467f06f17faf5dfb3f95ecf4fad74821fdc7e63a3195573f45f962f86942cb24255e544ad8d05178d560f683a3f59ce94e82c8e724a3af0160be549b472dd83e6b80733ad349973885e9082617294c6cbbea92349671883eaf068d7f5dcfc0405d97fda27435082b82b24f3be27f06c19354bf32066933312c770424eb6143674756243c1bde78ee3294792dcc49008a1b54f32ec5d5695f899946d42a67ce2fb1c227cb1d2004c0"
-        "$krb5pa$17$hashcat$HASHCATDOMAIN.COM$a17776abe5383236c58582f515843e029ecbff43706d177651b7b6cdb2713b17597ddb35b1c9c470c281589fd1d51cca125414d19e40e333"
-        "$krb5pa$17$user1$EXAMPLE.COM$$c5461873dc13665771b98ba80be53939e906d90ae1ba79cf2e21f0395e50ee56379fbef4d0298cfccfd6cf8f907329120048fd05e8ae5df4"
-    ]
-
-    x = runner.api_return_hashes_as_json(hashes)
-    assert "kerberos" in x
-
 
 def test_kerberos1():
     hashes = [
@@ -130,6 +119,7 @@ def test_kerberos8():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "kerberos8" in x
+
 
 def test_scrypt_python_dict():
     # for issue #23
