@@ -1637,7 +1637,7 @@ prototypes = [
                 hashcat=19900,
                 john="krb5pa-sha1",
                 extended=False,
-                description="Used for Windows Active Directory"
+                description="Used for Windows Active Directory",
                 )
         ],
     ),
