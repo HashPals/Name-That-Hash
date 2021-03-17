@@ -974,7 +974,7 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(
-            r"^\$(krb5pa|mskrb5)\$([0-9]{2})?\$.+\$[a-f0-9]{1,}$", re.IGNORECASE
+            r"^\$(krb5pa|mskrb5)\$(23)?\$.+\$[a-f0-9]{1,}$", re.IGNORECASE
         ),
         modes=[
             HashInfo(
@@ -1567,6 +1567,78 @@ prototypes = [
                 john="pdf",
                 extended=False,
             )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$krb5asrep\$23\$[^:]+:[a-f0-9]{32,32}\$[a-f0-9]{64,40960}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Kerberos 5 AS-REP etype 23",
+                hashcat=18200,
+                john="krb5pa-sha1",
+                extended=False,
+                description="Used for Windows Active Directory"
+                )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$krb5tgs\$17\$[^$]{1,512}\$[^$]{1,512}\$[^$]{1,4}?\$?[a-f0-9]{1,32}\$[a-f0-9]{64,40960}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Kerberos 5 TGS-REP etype 17 (AES128-CTS-HMAC-SHA1-96)",
+                hashcat=19600,
+                john=None,
+                extended=False,
+                description="Used for Windows Active Directory"
+                )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$krb5tgs\$18\$[^$]{1,512}\$[^$]{1,512}\$[^$]{1,4}?\$?[a-f0-9]{1,32}\$[a-f0-9]{64,40960}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Kerberos 5 TGS-REP etype 18 (AES256-CTS-HMAC-SHA1-96)",
+                hashcat=19700,
+                john=None,
+                extended=False,
+                description="Used for Windows Active Directory"
+                )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$[a-f0-9]{104,112}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Kerberos 5, etype 17, Pre-Auth",
+                hashcat=19800,
+                john=None,
+                extended=False,
+                description="Used for Windows Active Directory"
+                )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$\$[a-f0-9]{104,112}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Kerberos 5, etype 17, Pre-Auth (with salt)",
+                hashcat=None,
+                john="krb5pa-sha1",
+                extended=False,
+                description="Used for Windows Active Directory"
+                )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$krb5pa\$18\$[^$]{1,512}\$[^$]{1,512}\$\$?[^$]{1,512}?\$?[a-f0-9]{104,112}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Kerberos 5, etype 18, Pre-Auth",
+                hashcat=19900,
+                john="krb5pa-sha1",
+                extended=False,
+                description="Used for Windows Active Directory"
+                )
         ],
     ),
 ]
