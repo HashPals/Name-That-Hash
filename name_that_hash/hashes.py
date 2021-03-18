@@ -47,7 +47,7 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^(\$crc32\$[a-f0-9]{8}.)?[a-f0-9]{8}$", re.IGNORECASE),
-        modes=[HashInfo(name="CRC-32", hashcat=None, john="crc32", extended=False)],
+        modes=[HashInfo(name="CRC-32", hashcat=11500, john="crc32", extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^\+[a-z0-9\/.]{12}$", re.IGNORECASE),
