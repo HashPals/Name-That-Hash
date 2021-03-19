@@ -102,7 +102,7 @@ class Prettifier:
             if hc is not None and john:
                 out += f"HC: {hc} "
             elif hc is not None:
-                out += f"HC: {hc}"
+                out += f"HC: {hc} "
 
         if not self.john:
             if john is not None and des:
