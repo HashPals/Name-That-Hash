@@ -1692,7 +1692,7 @@ prototypes = [
             hashcat=11300,
             john="Bitcoin",
             extended=False,
-            description="This is a wallet address. Use bitcoin2john.py to crack it as a Bitcoin wallet, see https://github.com/openwall/john/issues/1415"
+            description="Use bitcoin2john.py to crack it as a Bitcoin wallet, see https://github.com/openwall/john/issues/1415"
             )
         ],
     ),
