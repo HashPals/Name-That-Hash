@@ -129,3 +129,27 @@ def test_scrypt_python_dict():
 
     x = runner.api_return_hashes_as_dict(hashes)
     assert "SCRYPT:1024:1:1:MDIwMzMwNTQwNDQyNQ==:5FW+zWivLxgCWj7qLiQbeC8zaNQ+qdO0NUinvqyFcfo=" in x
+
+def test_telegram():
+    hashes = [
+        "$telegram$0*518c001aeb3b4ae96c6173be4cebe60a85f67b1e087b045935849e2f815b5e41*25184098058621950709328221838128"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "Telegram Mobile App Passcode (SHA256)" in x
+
+def test_blake2():
+    hashes = [
+        "$BLAKE2$296c269e70ac5f0095e6fb47693480f0f7b97ccd0307f5c3bfa4df8f5ca5c9308a0e7108e80a0a9c0ebb715e8b7109b072046c6cd5e155b4cfd2f27216283b1e"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "BLAKE2b-512" in x
+
+def test_office():
+    hashes = [
+        "$oldoffice$0*55045061647456688860411218030058*e7e24d163fbd743992d4b8892bf3f2f7*493410dbc832557d3fe1870ace8397e2:91b2e062b9"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "MS Office" in x
