@@ -1657,14 +1657,14 @@ prototypes = [
     regex=re.compile(r"^0x[a-fA-F0-9]{40}$", re.IGNORECASE),
     modes=[
         HashInfo(
-            name="Etherum PBKDF2",
-            hashcat=15700,
+            name="Ethereum PBKDF2",
+            hashcat=15600,
             john="ethereum-opencl",
             extended=False,
             description="Use ethereum2john.py to crack."
             ),
         HashInfo(
-            name="Etherum Presale",
+            name="Ethereum Presale",
             hashcat=16300,
             john="ethereum-presale-opencl",
             extended=False,
@@ -1673,13 +1673,14 @@ prototypes = [
         ],
     ),
     Prototype(
-    regex=re.compile(r"^(4|8)?[0-9A-Z]{1}[0-9a-zA-Z]{93}([0-9a-zA-Z]{11})?$", re.IGNORECASE),
+    regex=re.compile(r"\$monero\$(0)\*[a-f0-9]{32,3196}", re.IGNORECASE),
     modes=[
         HashInfo(
             name="Monero",
             hashcat=None,
-            john=None,
+            john="Monero",
             extended=False,
+            description="Use monero2john.py to crack."
             )
         ],
     ),
@@ -1688,9 +1689,10 @@ prototypes = [
     modes=[
         HashInfo(
             name="Dogecoin",
-            hashcat=None,
-            john=None,
+            hashcat=11300,
+            john="Bitcoin",
             extended=False,
+            description="You might be able to use bitcoin2john.py to crack it as a Bitcoin wallet, see https://github.com/openwall/john/issues/1415."
             )
         ],
     ),
