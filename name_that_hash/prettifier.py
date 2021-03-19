@@ -62,7 +62,7 @@ class Prettifier:
     def pretty_print_one(self, objs: List, multi_print: bool):
         out = f"\n[bold magenta]{objs.chash}[/bold magenta]\n"
 
-        # It didn't find any hahses.
+        # It didn't find any hashes.
         if len(objs.prototypes) == 0:
             out += "[bold #FF0000]No hashes found.[/bold #FF0000]"
             console.print(out)
