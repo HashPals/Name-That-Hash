@@ -1642,7 +1642,7 @@ prototypes = [
         ],
     ),
     Prototype(
-    regex=re.compile(r"^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$", re.IGNORECASE),
+    regex=re.compile(r"\$bitcoin\$[0-9]{2,4}\$[a-fA-F0-9$]{250,350}", re.IGNORECASE),
     modes=[
         HashInfo(
             name="Bitcoin / Litecoin",
@@ -1654,7 +1654,7 @@ prototypes = [
         ],
     ),
     Prototype(
-    regex=re.compile(r"^0x[a-fA-F0-9]{40}$", re.IGNORECASE),
+    regex=re.compile(r"\$ethereum\$[a-z0-9*]{150,250}", re.IGNORECASE),
     modes=[
         HashInfo(
             name="Ethereum PBKDF2",
@@ -1692,7 +1692,7 @@ prototypes = [
             hashcat=11300,
             john="Bitcoin",
             extended=False,
-            description="You might be able to use bitcoin2john.py to crack it as a Bitcoin wallet, see https://github.com/openwall/john/issues/1415."
+            description="This is a wallet address. Use bitcoin2john.py to crack it as a Bitcoin wallet, see https://github.com/openwall/john/issues/1415"
             )
         ],
     ),
