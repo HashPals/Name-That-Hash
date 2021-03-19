@@ -1641,4 +1641,57 @@ prototypes = [
                 )
         ],
     ),
+    Prototype(
+    regex=re.compile(r"^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Bitcoin / Litecoin",
+            hashcat=11300,
+            john="bitcoin",
+            extended=False,
+            description="Use Bitcoin2John.py to extract the hash for cracking."
+            )
+        ],
+    ),
+    Prototype(
+    regex=re.compile(r"^0x[a-fA-F0-9]{40}$", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Etherum PBKDF2",
+            hashcat=15700,
+            john="ethereum-opencl",
+            extended=False,
+            description="Use ethereum2john.py to crack."
+            ),
+        HashInfo(
+            name="Etherum Presale",
+            hashcat=16300,
+            john="ethereum-presale-opencl",
+            extended=False,
+            description="Use ethereum2john.py to crack."
+        )
+        ],
+    ),
+    Prototype(
+    regex=re.compile(r"^(4|8)?[0-9A-Z]{1}[0-9a-zA-Z]{93}([0-9a-zA-Z]{11})?$", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Monero",
+            hashcat=None,
+            john=None,
+            extended=False,
+            )
+        ],
+    ),
+    Prototype(
+    regex=re.compile(r"^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Dogecoin",
+            hashcat=None,
+            john=None,
+            extended=False,
+            )
+        ],
+    ),
 ]

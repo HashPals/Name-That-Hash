@@ -129,3 +129,39 @@ def test_scrypt_python_dict():
 
     x = runner.api_return_hashes_as_dict(hashes)
     assert "SCRYPT:1024:1:1:MDIwMzMwNTQwNDQyNQ==:5FW+zWivLxgCWj7qLiQbeC8zaNQ+qdO0NUinvqyFcfo=" in x
+
+def test_etherum():
+    # for issue #23
+    hashes = [
+        "0x281055afc982d96fab65b3a49cac8b878184cb16"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "Etherum" in x
+
+def test_bitcoin():
+    # for issue #23
+    hashes = [
+        "1HB5XMLmzFVj8ALj6mfBsbifRoD4miY36v"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "Bitcoin / Litecoin" in x
+
+def test_monero():
+    # for issue #23
+    hashes = [
+        "43aqFVkBTKr1Xeu4cXKMVL8sbzWmNh2o8YHGP15bFVWrbmbvMDNDP4hKWaZDthEVG44aTAJzt1PugjhvmtBHZRhUPoSUaGX"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "Monero" in x
+
+def test_dogecoin():
+    # for issue #23
+    hashes = [
+        "DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "Dogecoin" in x
