@@ -1618,7 +1618,7 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$\$[a-f0-9]{104,112}$", re.IGNORECASE),
+        regex=re.compile(r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$[^$]{0,512}\$[a-f0-9]{104,112}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Kerberos 5, etype 17, Pre-Auth (with salt)",
