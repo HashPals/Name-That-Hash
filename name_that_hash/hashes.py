@@ -1641,4 +1641,47 @@ prototypes = [
                 )
         ],
     ),
+    Prototype(
+    regex=re.compile(r"\$bitcoin\$[0-9]{2,4}\$[a-fA-F0-9$]{250,350}", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Bitcoin / Litecoin",
+            hashcat=11300,
+            john="bitcoin",
+            extended=False,
+            description="Use Bitcoin2John.py to extract the hash for cracking."
+            )
+        ],
+    ),
+    Prototype(
+    regex=re.compile(r"\$ethereum\$[a-z0-9*]{150,250}", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Ethereum Wallet, PBKDF2-HMAC-SHA256",
+            hashcat=15600,
+            john="ethereum-opencl",
+            extended=False,
+            description="Use ethereum2john.py to crack."
+            ),
+        HashInfo(
+            name="Ethereum Pre-Sale Wallet, PBKDF2-HMAC-SHA256",
+            hashcat=16300,
+            john="ethereum-presale-opencl",
+            extended=False,
+            description="Use ethereum2john.py to crack."
+        )
+        ],
+    ),
+    Prototype(
+    regex=re.compile(r"\$monero\$(0)\*[a-f0-9]{32,3196}", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Monero",
+            hashcat=None,
+            john="monero",
+            extended=False,
+            description="Use monero2john.py to crack."
+            )
+        ],
+    ),
 ]
