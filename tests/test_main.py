@@ -156,12 +156,3 @@ def test_monero():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "Monero" in x
-
-def test_dogecoin():
-    # for issue #23
-    hashes = [
-        "DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"
-    ]
-
-    x = runner.api_return_hashes_as_json(hashes)
-    assert "Dogecoin" in x
