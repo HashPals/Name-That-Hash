@@ -1704,7 +1704,6 @@ prototypes = [
             hashcat=16600,
             john="electrum",
             extended=False,
-            description="Electrum Bitcoin Wallet hash"
             )
         ],
     ),
@@ -1716,7 +1715,6 @@ prototypes = [
             hashcat=21700,
             john="electrum",
             extended=False,
-            description="Electrum Bitcoin Wallet hash"
             )
         ],
     ),
@@ -1728,7 +1726,6 @@ prototypes = [
             hashcat=21800,
             john="electrum",
             extended=False,
-            description="Electrum Bitcoin Wallet hash"
             )
         ],
     ),
