@@ -1696,4 +1696,40 @@ prototypes = [
             )
         ],
     ),
+    Prototype(
+        regex=re.compile(r"^\$electrum\$[1-3]\*[a-f0-9]{32,32}\*[a-f0-9]{32,32}$", re.IGNORECASE),
+        modes=[
+        HashInfo(
+            name="Electrum Wallet (Salt-Type 1-3)",
+            hashcat=16600,
+            john="electrum",
+            extended=False,
+            description="Electrum Bitcoin Wallet hash"
+            )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$electrum\$4\*[a-f0-9]{1,66}\*[a-f0-9]{128,32768}\*[a-f0-9]{64,64}$", re.IGNORECASE),
+        modes=[
+        HashInfo(
+            name="Electrum Wallet (Salt-Type 4)",
+            hashcat=21700,
+            john="electrum",
+            extended=False,
+            description="Electrum Bitcoin Wallet hash"
+            )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$electrum\$5\*[a-f0-9]{66,66}\*[a-f0-9]{2048,2048}\*[a-f0-9]{64,64}$", re.IGNORECASE),
+        modes=[
+        HashInfo(
+            name="Electrum Wallet (Salt-Type 5)",
+            hashcat=21800,
+            john="electrum",
+            extended=False,
+            description="Electrum Bitcoin Wallet hash"
+            )
+        ],
+    ),
 ]
