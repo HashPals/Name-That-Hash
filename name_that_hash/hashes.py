@@ -1618,7 +1618,7 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$\$[a-f0-9]{104,112}$", re.IGNORECASE),
+        regex=re.compile(r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$[^$]{0,512}\$[a-f0-9]{104,112}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Kerberos 5, etype 17, Pre-Auth (with salt)",
@@ -1630,12 +1630,24 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5pa\$18\$[^$]{1,512}\$[^$]{1,512}\$\$?[^$]{1,512}?\$?[a-f0-9]{104,112}$", re.IGNORECASE),
+        regex=re.compile(r"^\$krb5pa\$18\$[^$]{1,512}\$[^$]{1,512}\$[^$]{0,512}\$[a-f0-9]{104,112}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Kerberos 5, etype 18, Pre-Auth (with salt)",
+                hashcat=None,
+                john="krb5pa-sha1",
+                extended=False,
+                description="Used for Windows Active Directory"
+                )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$krb5pa\$18\$[^$]{1,512}\$[^$]{1,512}\$[a-f0-9]{104,112}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Kerberos 5, etype 18, Pre-Auth",
                 hashcat=19900,
-                john="krb5pa-sha1",
+                john=None,
                 extended=False,
                 description="Used for Windows Active Directory"
                 )
@@ -1649,6 +1661,16 @@ prototypes = [
             hashcat=22301,
             john="Telegram",
             extended=False,
+        ),
+    Prototype(
+    regex=re.compile(r"\$bitcoin\$[0-9]{2,4}\$[a-fA-F0-9$]{250,350}", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Bitcoin / Litecoin",
+            hashcat=11300,
+            john="bitcoin",
+            extended=False,
+            description="Use Bitcoin2John.py to extract the hash for cracking."
             )
         ],
     ),
@@ -1676,3 +1698,68 @@ prototypes = [
         ],
     ),
 ]
+    Prototype(
+    regex=re.compile(r"\$ethereum\$[a-z0-9*]{150,250}", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Ethereum Wallet, PBKDF2-HMAC-SHA256",
+            hashcat=15600,
+            john="ethereum-opencl",
+            extended=False,
+            description="Use ethereum2john.py to crack."
+            ),
+        HashInfo(
+            name="Ethereum Pre-Sale Wallet, PBKDF2-HMAC-SHA256",
+            hashcat=16300,
+            john="ethereum-presale-opencl",
+            extended=False,
+            description="Use ethereum2john.py to crack."
+        )
+        ],
+    ),
+    Prototype(
+    regex=re.compile(r"\$monero\$(0)\*[a-f0-9]{32,3196}", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="Monero",
+            hashcat=None,
+            john="monero",
+            extended=False,
+            description="Use monero2john.py to crack."
+            )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$electrum\$[1-3]\*[a-f0-9]{32,32}\*[a-f0-9]{32,32}$", re.IGNORECASE),
+        modes=[
+        HashInfo(
+            name="Electrum Wallet (Salt-Type 1-3)",
+            hashcat=16600,
+            john="electrum",
+            extended=False,
+            )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$electrum\$4\*[a-f0-9]{1,66}\*[a-f0-9]{128,32768}\*[a-f0-9]{64,64}$", re.IGNORECASE),
+        modes=[
+        HashInfo(
+            name="Electrum Wallet (Salt-Type 4)",
+            hashcat=21700,
+            john="electrum",
+            extended=False,
+            )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$electrum\$5\*[a-f0-9]{66,66}\*[a-f0-9]{2048,2048}\*[a-f0-9]{64,64}$", re.IGNORECASE),
+        modes=[
+        HashInfo(
+            name="Electrum Wallet (Salt-Type 5)",
+            hashcat=21800,
+            john="electrum",
+            extended=False,
+            )
+        ],
+    ),
+      ]
