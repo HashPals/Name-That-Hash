@@ -15,5 +15,7 @@ class HashInformation:
                 "HMAC-SHA1 (key = $salt)",
                 "CryptoCurrency(PrivateKey)",
                 "SHA-338",
+                "Domain Cached Credentials",
+                "Domain Cached Credentials 2"
             ]
         )
