@@ -95,6 +95,8 @@ To use.
 We're also in:
 * [REMnux](https://remnux.org/).
 * [The Arch User Repository (AUR)](https://aur.archlinux.org/packages/python-name-that-hash).
+* [MacPorts](https://ports.macports.org/port/name-that-hash/summary).
+* [Homebrew](https://formulae.brew.sh/formula/name-that-hash).
 
 # 💡 Documentation
 Want to learn how popularity works?
