@@ -175,3 +175,8 @@ def test_electrum3():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "Electrum Wallet (Salt-Type 5)" in x
+
+def test_balke2b_256():
+	hashes = ["69217a3079908094e11121d042354a7c1f55b6482ca1a51e1b250dfd1ed0eef9"]
+	x = runner.api_return_hashes_as_json(hashes)
+	assert "Blake2b 256" in x

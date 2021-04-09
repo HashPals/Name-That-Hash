@@ -1729,4 +1729,15 @@ prototypes = [
             )
         ],
     ),
+    Prototype(
+    regex=re.compile(r"^[a-f0-9]{64}$", re.IGNORECASE),
+    modes=[
+        HashInfo(
+            name="BLAKE2b-256",
+            hashcat=None,
+            john=None,
+            extended=True,
+            )
+        ],
+    ),
 ]
