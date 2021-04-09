@@ -94,7 +94,7 @@ To use.
 
 We're also in:
 * [REMnux](https://remnux.org/).
-* The Arch User Repository.
+* [The Arch User Repository (AUR)](https://aur.archlinux.org/packages/python-name-that-hash).
 
 # 💡 Documentation
 Want to learn how popularity works?
