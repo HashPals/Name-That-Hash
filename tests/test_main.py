@@ -175,3 +175,22 @@ def test_electrum3():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "Electrum Wallet (Salt-Type 5)" in x
+
+
+def test_itunes():
+    hashes = ["$itunes_backup$*10*8b715f516ff8e64442c478c2d9abb046fc6979ab079007d3dbcef3ddd84217f4c3db01362d88fa68*10000*2353363784073608264337337723324886300850*10000000*425b4bb4e200b5fd4c66979c9caca31716052063"]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "iTunes backup >= 10.0 11" in x
+
+def test_winzip():
+    hashes = ["$zip2$*0*3*0*e3222d3b65b5a2785b192d31e39ff9de*1320*e*19648c3e063c82a9ad3ef08ed833*3135c79ecb86cd6f48fc*$/zip2$"]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "WinZip" in x
+
+def test_androidbackup():
+    hashes = ["$ab$5*0*10000*b8900e4885ff9cad8f01ee1957a43bd633fea12491440514ae27aa83f2f5c006ec7e7fa0bce040add619919b4eb60608304b7d571a2ed87fd58c9ad6bc5fcf4c*7d254d93e16be9312fb1ccbfc6265c40cb0c5eab7b605a95a116e2383fb1cf12b688223f96221dcd2bf5410d4ca6f90e0789ee00157fa91658b42665d6b6844c*fc9f6be604d1c59ac32664ec2c5b9b30*00c4972149af3adcc235899e9d20611ea6e8de2212afcb9fcfefde7e35b691c2d0994eb47e4f9a260526ba47f4caea71af9c7fadcd5685d50126276f6acdd59966528b13ccc26036a0eaba2f2451aa64b05766d0edd03c988dcf87e2a9eec52d"]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "Android Backup" in x

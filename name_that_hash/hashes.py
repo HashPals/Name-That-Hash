@@ -1729,4 +1729,37 @@ prototypes = [
             )
         ],
     ),
+    Prototype(
+        regex=re.compile(r"\$ab\$[0-9]{1}\*[0-9]{1}\*[0-9]{1,6}\*[a-f0-9]{128}\*[a-f0-9]{128}\*[a-f0-9]{32}\*[a-f0-9]{192}", re.IGNORECASE),
+        modes=[
+        HashInfo(
+            name="Android Backup",
+            hashcat=18900,
+            john="androidbackup",
+            extended=False,
+            )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$zip2\$\*[0-9]{1}\*[0-9]{1}\*[0-9]{1}\*[a-f0-9]{16,32}\*[a-f0-9]{1,6}\*[a-f0-9]{1,6}\*[a-f0-9]{0,16384}\*[a-f0-9]{20}\*\$\/zip2\$", re.IGNORECASE),
+        modes=[
+        HashInfo(
+            name="WinZip",
+            hashcat=13600,
+            john="ZIP",
+            extended=False,
+            )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$itunes_backup\$\*[0-9]{1,2}\*[a-f0-9]{80}\*[0-9]{1,6}\*[a-f0-9]{40}\*[0-9]{0,10}\*[a-f0-9]{0,40}", re.IGNORECASE),
+        modes=[
+        HashInfo(
+            name="iTunes backup >= 10.0 11",
+            hashcat=14800,
+            john="itunes-backup",
+            extended=False,
+            )
+        ],
+    ),
 ]
