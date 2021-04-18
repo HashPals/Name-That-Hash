@@ -194,7 +194,7 @@ def test_androidbackup():
     x = runner.api_return_hashes_as_json(hashes)
     assert "Android Backup" in x
 
-def test_balke2b256():
+def test_blake2b256():
 	hashes = ["87e402405c9c268532ba64e5130476237cfc1289e2e993d62c97f3b14febcbf0"]
 	
 	x = runner.api_return_hashes_as_json(hashes)
