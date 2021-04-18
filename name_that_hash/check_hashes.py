@@ -1,5 +1,5 @@
-from loguru import logger
 import base64
+import logging
 
 from name_that_hash import hash_info, HashTypeObj
 
@@ -19,18 +19,20 @@ class HashChecker:
         for nr, line in enumerate(f, start=1):
             line = str(line).strip()
             if not line:
-                logger.trace(f"Skipped empty line {nr}")
+                logging.debug(f"Skipped empty line {nr}")
                 continue
             self.single_hash(line)
-            logger.debug(f"*************** {self.output}")
+            logging.debug(f"{self.output}")
 
     def single_hash(self, chash: str):
         if "base64" in self.kwargs and self.kwargs["base64"]:
-            logger.trace("decoding as base64")
+            logging.debug("decoding as base64")
 
             try:
                 # b64decode returns Bytes obj
                 chash = base64.b64decode(chash).decode("utf-8")
             except:
-                logger.trace("Failed to base64 decode")
-        self.output.append(HashTypeObj.HashType(chash, self.nth, self.hashinfo_obj))
+                logging.debug("Failed to base64 decode")
+        self.output.append(HashTypeObj.HashType(chash, self.nth, self.hashinfo_obj, self.kwargs))
+        
+    

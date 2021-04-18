@@ -4,7 +4,7 @@ from typing import NamedTuple, List
 import base64
 
 from rich import print, text
-from loguru import logger
+import logging
 
 from name_that_hash import hash_namer, hashes, prettifier
 
@@ -66,6 +66,13 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     is_flag=True,
     help="Turn on accessible mode, does not print ASCII art. Also does not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely feature but no banner, use --no-banner. ",
 )
+@click.option(
+    "-e",
+    "--extreme",
+    is_flag=True,
+    type=bool,
+    help="Searches for hashes within a string. This mode will get 5d41402abc4b2a76b9719d911017c592 from ####5d41402abc4b2a76b9719d911017c592###",
+)
 @click.option("--no-banner", is_flag=True, help="Removes banner from startup.")
 @click.option(
     "--no-john", is_flag=True, help="Don't print John The Ripper Information."
@@ -104,12 +111,12 @@ def main(**kwargs):
             exit(0)
 
     # Load the verbosity, so that we can start logging
-    set_logger(kwargs)
-    logger.debug(kwargs)
+    set_logging(kwargs)
+    logging.debug(kwargs)
 
     # Banner handling
     if not kwargs["accessible"] and not kwargs["no_banner"] and not kwargs["greppable"]:
-        logger.info("Running the banner.")
+        logging.info("Running the banner.")
         banner()
 
     # nth = the object which names the hash types
@@ -119,7 +126,7 @@ def main(**kwargs):
 
     hashChecker = check_hashes.HashChecker(kwargs, nth)
 
-    logger.trace("Initialised the hash_info, nth, and pretty_printer objects.")
+    logging.debug("Initialised the hash_info, nth, and pretty_printer objects.")
 
     output = []
 
@@ -129,6 +136,8 @@ def main(**kwargs):
     elif kwargs["file"]:
         hashChecker.file_input(kwargs["file"])
         output = hashChecker.output
+    elif kwargs["extreme"]:
+        output = hashChecker.find_all_hashes()
 
     if kwargs["greppable"]:
         print(pretty_printer.greppable_output(output))
@@ -136,14 +145,12 @@ def main(**kwargs):
         pretty_printer.pretty_print(output)
 
 
-def set_logger(kwargs):
-    try:
-        logger_dict = {1: "WARNING", 2: "DEBUG", 3: "TRACE"}
-        level = logger_dict[kwargs["verbose"]]
-        logger.add(sink=sys.stderr, level=level, colorize=sys.stderr.isatty())
-        logger.opt(colors=True)
-    except Exception as e:
-        logger.remove()
+def set_logging(kwargs):
+    if kwargs["verbose"]:
+        logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+    else:
+        logging.basicConfig(level=logging.CRITICAL)
+
 
 
 def api_return_hashes_as_json(chash: [str], args: dict = {}):

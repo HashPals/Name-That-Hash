@@ -5,14 +5,17 @@ class HashType:
     and provides ways to print that hash
     """
 
-    def __init__(self, chash: str, nth, hash_info):
+    def __init__(self, chash: str, nth, hash_info, kwargs):
         self.chash = chash
         self.nth = nth
 
         self.popular = hash_info.popular
 
         # prorotypes is given as a generator
-        self.prototypes = nth.identify(chash)
+        if "extreme" in kwargs and kwargs["extreme"]:
+            self.prototypes = nth.identify_all(chash)
+        else:
+            self.prototypes = nth.identify(chash)
         self.prototypes = self.sort_by_popular()
 
         self.hash_obj = {self.chash: self.prototypes}
