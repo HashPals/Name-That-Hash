@@ -599,6 +599,7 @@ prototypes = [
             HashInfo(
                 name="GOST CryptoPro S-Box", hashcat=None, john=None, extended=False
             ),
+            HashInfo(name="Blake2b-256", hashcat=None, john=None,extended=False),
             HashInfo(name="SHA3-256", hashcat=17400, john=None, extended=False),
             HashInfo(name="Skein-256", hashcat=None, john="skein-256", extended=False),
             HashInfo(name="Skein-512(256)", hashcat=None, john=None, extended=False),

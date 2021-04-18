@@ -176,7 +176,6 @@ def test_electrum3():
     x = runner.api_return_hashes_as_json(hashes)
     assert "Electrum Wallet (Salt-Type 5)" in x
 
-
 def test_itunes():
     hashes = ["$itunes_backup$*10*8b715f516ff8e64442c478c2d9abb046fc6979ab079007d3dbcef3ddd84217f4c3db01362d88fa68*10000*2353363784073608264337337723324886300850*10000000*425b4bb4e200b5fd4c66979c9caca31716052063"]
 
@@ -194,3 +193,9 @@ def test_androidbackup():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "Android Backup" in x
+
+def test_blake2b256():
+	hashes = ["87e402405c9c268532ba64e5130476237cfc1289e2e993d62c97f3b14febcbf0"]
+	
+	x = runner.api_return_hashes_as_json(hashes)
+	assert "Blake2b-256" in x
