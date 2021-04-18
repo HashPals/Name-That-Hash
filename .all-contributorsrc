@@ -23,6 +23,17 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "SkeletalDemise",
+      "name": "SkeletalDemise",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29117662?v=4",
+      "profile": "https://github.com/SkeletalDemise",
+      "contributions": [
+        "code",
+        "maintenance",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
