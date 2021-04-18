@@ -23,6 +23,15 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "swanandx",
+      "name": "Swanand Mulay",
+      "avatar_url": "https://avatars.githubusercontent.com/u/73115739?v=4",
+      "profile": "http://swanandx.github.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
