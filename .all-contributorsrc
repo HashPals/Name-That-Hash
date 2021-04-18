@@ -23,6 +23,17 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "bee-san",
+      "name": "Brandon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10378052?v=4",
+      "profile": "https://skerritt.blog",
+      "contributions": [
+        "code",
+        "maintenance",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
