@@ -139,7 +139,7 @@ Finally, thanks too Blackout for helping write descriptions of hashes 🐱‍�
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -151,6 +151,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/digitalsleuth"><img src="https://avatars.githubusercontent.com/u/62841822?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Digital Sleuth</b></sub></a><br /><a href="https://github.com/HashPals/Name-That-Hash/commits?author=digitalsleuth" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/amadejpapez"><img src="https://avatars.githubusercontent.com/u/63184600?v=4?s=100" width="100px;" alt=""/><br /><sub><b>amadejpapez</b></sub></a><br /><a href="https://github.com/HashPals/Name-That-Hash/issues?q=author%3Aamadejpapez" title="Bug reports">🐛</a> <a href="https://github.com/HashPals/Name-That-Hash/commits?author=amadejpapez" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/SkeletalDemise"><img src="https://avatars.githubusercontent.com/u/29117662?v=4?s=100" width="100px;" alt=""/><br /><sub><b>SkeletalDemise</b></sub></a><br /><a href="https://github.com/HashPals/Name-That-Hash/commits?author=SkeletalDemise" title="Code">💻</a> <a href="#maintenance-SkeletalDemise" title="Maintenance">🚧</a> <a href="#ideas-SkeletalDemise" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
