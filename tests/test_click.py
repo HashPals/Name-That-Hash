@@ -69,8 +69,3 @@ def test_kerberos_works():
     )
     assert "Kerberos" in result.output
 
-def test_file_input():
-    runner = CliRunner()
-    result = runner.invoke(main, ["-t", "***87e402405c9c268532ba64e5130476237cfc1289e2e993d62c97f3b14febcbf0***", "-e", "-g"])
-    assert "Blake2b-256" in result.output
-
