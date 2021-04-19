@@ -33,7 +33,6 @@ class Prettifier:
         return json.dumps(self.turn_hash_objs_into_dict(objs), indent=2)
 
     def turn_hash_objs_into_dict(self, objs: List):
-        print(f"objs is {objs}")
         outputs_as_dict = {}
 
         for y in objs:
