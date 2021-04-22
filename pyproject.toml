@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "name-that-hash"
-version = "1.7.1"
+version = "1.7.2"
 description = "The Modern Hash Identifcation System"
 authors = ["brandon <brandon@skerritt.blog>"]
 license = "GPL-3.0-or-later"

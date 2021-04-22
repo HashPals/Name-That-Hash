@@ -23,7 +23,6 @@ class Prettifier:
 
     def greppable_output(self, objs: List):
         logging.debug("Greppable output")
-        logging.debug(f"Objects is {objs}")
         """
         takes the prototypes and turns it into json
         returns the json
