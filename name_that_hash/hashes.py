@@ -1763,4 +1763,38 @@ prototypes = [
             )
         ],
     ),
+    Prototype(
+        regex=re.compile(r"\$telegram\$[a-f0-9*]{99}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Telegram Mobile App Passcode (SHA256)",
+                hashcat=22301,
+                john="Telegram",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$BLAKE2\$[a-f0-9]{128}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="BLAKE2b-512",
+                hashcat=600,
+                john=None,
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$oldoffice\$[a-f0-9*]{100}:[a-f0-9]{10}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="MS Office ⇐ 2003 $0/$1, MD5 + RC4, collider #2",
+                hashcat=9720,
+                john=None,
+                extended=False,
+                description="Use office2john.py to grab the hash."
+            ),
+        ],
+    ),
 ]
