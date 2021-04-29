@@ -223,4 +223,20 @@ def test_office():
     ]
 
     x = runner.api_return_hashes_as_json(hashes)
-    assert re.findall("MS Office", x)
+    assert re.findall(r"MS Office [^#]+ MD5 \+ RC4[^#]+ #2", x)
+
+def test_office2():
+    hashes = [
+        "$oldoffice$3*83328705222323020515404251156288*2855956a165ff6511bc7f4cd77b9e101*941861655e73a09c40f7b1e9dfd0c256ed285acd:b8f63619ca"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert re.findall(r"MS Office [^#]+ SHA1 \+ RC4[^#]+ #2", x)
+
+def test_office3():
+    hashes = [
+        "$office$2016$0$100000$876MLoKTq42+/DLp415iZQ==$TNDvpvYyvlSUy97UOLKNhXynhUDDA7H8kLql0ISH5SxcP6hbthdjaTo4Z3/MU0dcR2SAd+AduYb3TB5CLZ8+ow=="
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "MS Office 2016 - SheetProtection" in x
