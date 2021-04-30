@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 
-USER root
+USER root.     
 
 RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install --upgrade name-that-hash && \
