@@ -1358,7 +1358,7 @@ prototypes = [
         ),
         modes=[
             HashInfo(
-                name="Microsoft Office 2010", hashcat=9500, john=None, extended=False
+                name="Microsoft Office 2010", hashcat=9500, john="office", extended=False
             )
         ],
     ),
@@ -1369,7 +1369,7 @@ prototypes = [
         ),
         modes=[
             HashInfo(
-                name="Microsoft Office 2013", hashcat=9600, john=None, extended=False
+                name="Microsoft Office 2013", hashcat=9600, john="office", extended=False
             )
         ],
     ),
@@ -1417,12 +1417,6 @@ prototypes = [
                 john="oldoffice",
                 extended=False,
             ),
-            HashInfo(
-                name=u"Microsoft Office ≤ 2003 (MD5+RC4) collider-mode #2",
-                hashcat=9720,
-                john="oldoffice",
-                extended=False,
-            ),
         ],
     ),
     Prototype(
@@ -1434,21 +1428,26 @@ prototypes = [
             HashInfo(
                 name=u"Microsoft Office ≤ 2003 (SHA1+RC4)",
                 hashcat=9800,
-                john=None,
+                john="oldoffice",
                 extended=False,
             ),
             HashInfo(
                 name=u"Microsoft Office ≤ 2003 (SHA1+RC4) collider-mode #1",
                 hashcat=9810,
-                john=None,
+                john="oldoffice",
                 extended=False,
             ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$oldoffice\$[34]\*[a-f0-9]{32}\*[a-f0-9]{32}\*[a-f0-9]{40}:[a-f0-9]{10}", re.IGNORECASE),
+        modes=[
             HashInfo(
-                name=u"Microsoft Office ≤ 2003 (SHA1+RC4) collider-mode #2",
+                name=u"MS Office ⇐ 2003 $3, SHA1 + RC4, collider #2",
                 hashcat=9820,
-                john=None,
+                john="oldoffice",
                 extended=False,
-            ),
+            )
         ],
     ),
     Prototype(
@@ -1791,9 +1790,20 @@ prototypes = [
             HashInfo(
                 name="MS Office ⇐ 2003 $0/$1, MD5 + RC4, collider #2",
                 hashcat=9720,
-                john=None,
+                john="oldoffice",
                 extended=False,
                 description="Use office2john.py to grab the hash."
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$office\$2016\$[0-9]\$[0-9]{6}\$[^$]{24}\$[^$]{88}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="MS Office 2016 - SheetProtection",
+                hashcat=25300,
+                john=None,
+                extended=False,
             ),
         ],
     ),
