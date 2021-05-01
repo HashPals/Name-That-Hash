@@ -9,7 +9,6 @@ license = "GPL-3.0-or-later"
 python = "^3.6"
 click = "^7.1.2"
 rich = ">=9.9,<11.0"
-loguru = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
