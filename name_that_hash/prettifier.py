@@ -32,11 +32,11 @@ class Prettifier:
         logging.debug("Greppable output")
 
         """
-		takes the prototypes and turns it into json
-		returns the json
+	takes the prototypes and turns it into json
+	returns the json
 
-		Doesn't print it, it prints in main
-		"""
+	Doesn't print it, it prints in main
+	"""
         return json.dumps(self.turn_hash_objs_into_dict(objs), indent=2)
 
     def turn_hash_objs_into_dict(self, objs: List):
@@ -62,16 +62,16 @@ class Prettifier:
     def pretty_print(self, objs):
         logging.debug("In pretty printing")
         """
-		prints it prettily in the format:
-		most popular hashes
-		1.
-		2.
-		3.
-		4.
+	prints it prettily in the format:
+	most popular hashes
+	1.
+	2.
+	3.
+	4.
 
 
-		then everything else on one line.
-		"""
+	then everything else on one line.
+	"""
         multi_print = True if len(objs) > 1 else False
         for i in objs:
             logging.debug(i)
