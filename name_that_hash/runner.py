@@ -167,7 +167,7 @@ def api_return_hashes_as_json(chash: [str], args: dict = {"popular_only": False}
     return pretty_printer.greppable_output(compute_hashes_for_api(chash, args))
 
 
-def api_return_hashes_as_dict(chash: [str], args: dict = {}):
+def api_return_hashes_as_dict(chash: [str], args: dict = {"popular_only": False}):
     """
     Returns the hashes as a Python dictionary
     """

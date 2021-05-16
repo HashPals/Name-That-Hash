@@ -24,8 +24,13 @@ class Prettifier:
         self.args = kwargs
         self.hashinfo_obj = hash_info.HashInformation()
 
+        if not "popular_only" in self.args:
+            self.args["popular_only"] = False
+
     def greppable_output(self, objs: List):
+
         logging.debug("Greppable output")
+
         """
 		takes the prototypes and turns it into json
 		returns the json
@@ -42,14 +47,17 @@ class Prettifier:
             logging.debug(f"Output_as_dicts is now {outputs_as_dict}")
 
         if self.args["popular_only"]:
-            popular_only = {}
-            for hash in list(outputs_as_dict.keys()):
-                popular_only[hash] = []
-                for hash_type in outputs_as_dict[hash]:
-                    if hash_type["name"] in self.hashinfo_obj.popular:
-                        popular_only[hash].append(hash_type)
-            return popular_only
+            return self.get_popular_only(outputs_as_dict)
         return outputs_as_dict
+
+    def get_popular_only(self, outputs_as_dict):
+        popular_only = {}
+        for hash in list(outputs_as_dict.keys()):
+            popular_only[hash] = []
+            for hash_type in outputs_as_dict[hash]:
+                if hash_type["name"] in self.hashinfo_obj.popular:
+                    popular_only[hash].append(hash_type)
+        return popular_only
 
     def pretty_print(self, objs):
         logging.debug("In pretty printing")

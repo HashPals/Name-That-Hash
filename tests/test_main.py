@@ -17,7 +17,18 @@ def test_it_identifies_correctly_correctly():
     x = runner.api_return_hashes_as_json(hashes)
     assert "NTLM" in x
 
+def test_for_popular():
+    hashes = ["5f4dcc3b5aa765d61d8327deb882cf99"]
 
+    x = runner.api_return_hashes_as_json(hashes, {"popular_only": True})
+    assert "ZipMonster" not in x
+
+def test_for_popular_2():
+    hashes = ["5f4dcc3b5aa765d61d8327deb882cf99"]
+
+    x = runner.api_return_hashes_as_json(hashes, {"popular_only": True})
+    assert "MD5" in x
+    
 def test_main_succeeds():
     runn = click.testing.CliRunner()
     result = runn.invoke(runner.main)
