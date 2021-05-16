@@ -599,7 +599,7 @@ prototypes = [
             HashInfo(
                 name="GOST CryptoPro S-Box", hashcat=None, john=None, extended=False
             ),
-            HashInfo(name="Blake2b-256", hashcat=None, john=None,extended=False),
+            HashInfo(name="Blake2b-256", hashcat=None, john=None, extended=False),
             HashInfo(name="SHA3-256", hashcat=17400, john=None, extended=False),
             HashInfo(name="Skein-256", hashcat=None, john="skein-256", extended=False),
             HashInfo(name="Skein-512(256)", hashcat=None, john=None, extended=False),
@@ -1358,7 +1358,10 @@ prototypes = [
         ),
         modes=[
             HashInfo(
-                name="Microsoft Office 2010", hashcat=9500, john="office", extended=False
+                name="Microsoft Office 2010",
+                hashcat=9500,
+                john="office",
+                extended=False,
             )
         ],
     ),
@@ -1369,7 +1372,10 @@ prototypes = [
         ),
         modes=[
             HashInfo(
-                name="Microsoft Office 2013", hashcat=9600, john="office", extended=False
+                name="Microsoft Office 2013",
+                hashcat=9600,
+                john="office",
+                extended=False,
             )
         ],
     ),
@@ -1440,7 +1446,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$oldoffice\$[34]\*[a-f0-9]{32}\*[a-f0-9]{32}\*[a-f0-9]{40}:[a-f0-9]{10}", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$oldoffice\$[34]\*[a-f0-9]{32}\*[a-f0-9]{32}\*[a-f0-9]{40}:[a-f0-9]{10}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name=u"MS Office ⇐ 2003 $3, SHA1 + RC4, collider #2",
@@ -1570,195 +1579,235 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5asrep\$23\$[^:]+:[a-f0-9]{32,32}\$[a-f0-9]{64,40960}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$krb5asrep\$23\$[^:]+:[a-f0-9]{32,32}\$[a-f0-9]{64,40960}$",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="Kerberos 5 AS-REP etype 23",
                 hashcat=18200,
                 john="krb5pa-sha1",
                 extended=False,
-                description="Used for Windows Active Directory"
-                )
+                description="Used for Windows Active Directory",
+            )
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5tgs\$17\$[^$]{1,512}\$[^$]{1,512}\$[^$]{1,4}?\$?[a-f0-9]{1,32}\$[a-f0-9]{64,40960}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$krb5tgs\$17\$[^$]{1,512}\$[^$]{1,512}\$[^$]{1,4}?\$?[a-f0-9]{1,32}\$[a-f0-9]{64,40960}$",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="Kerberos 5 TGS-REP etype 17 (AES128-CTS-HMAC-SHA1-96)",
                 hashcat=19600,
                 john=None,
                 extended=False,
-                description="Used for Windows Active Directory"
-                )
+                description="Used for Windows Active Directory",
+            )
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5tgs\$18\$[^$]{1,512}\$[^$]{1,512}\$[^$]{1,4}?\$?[a-f0-9]{1,32}\$[a-f0-9]{64,40960}", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$krb5tgs\$18\$[^$]{1,512}\$[^$]{1,512}\$[^$]{1,4}?\$?[a-f0-9]{1,32}\$[a-f0-9]{64,40960}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="Kerberos 5 TGS-REP etype 18 (AES256-CTS-HMAC-SHA1-96)",
                 hashcat=19700,
                 john=None,
                 extended=False,
-                description="Used for Windows Active Directory"
-                )
+                description="Used for Windows Active Directory",
+            )
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$[a-f0-9]{104,112}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$[a-f0-9]{104,112}$",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="Kerberos 5, etype 17, Pre-Auth",
                 hashcat=19800,
                 john=None,
                 extended=False,
-                description="Used for Windows Active Directory"
-                )
+                description="Used for Windows Active Directory",
+            )
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$[^$]{0,512}\$[a-f0-9]{104,112}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$krb5pa\$17\$[^$]{1,512}\$[^$]{1,512}\$[^$]{0,512}\$[a-f0-9]{104,112}$",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="Kerberos 5, etype 17, Pre-Auth (with salt)",
                 hashcat=None,
                 john="krb5pa-sha1",
                 extended=False,
-                description="Used for Windows Active Directory"
-                )
+                description="Used for Windows Active Directory",
+            )
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5pa\$18\$[^$]{1,512}\$[^$]{1,512}\$[^$]{0,512}\$[a-f0-9]{104,112}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$krb5pa\$18\$[^$]{1,512}\$[^$]{1,512}\$[^$]{0,512}\$[a-f0-9]{104,112}$",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="Kerberos 5, etype 18, Pre-Auth (with salt)",
                 hashcat=None,
                 john="krb5pa-sha1",
                 extended=False,
-                description="Used for Windows Active Directory"
-                )
+                description="Used for Windows Active Directory",
+            )
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5pa\$18\$[^$]{1,512}\$[^$]{1,512}\$[a-f0-9]{104,112}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$krb5pa\$18\$[^$]{1,512}\$[^$]{1,512}\$[a-f0-9]{104,112}$",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="Kerberos 5, etype 18, Pre-Auth",
                 hashcat=19900,
                 john=None,
                 extended=False,
-                description="Used for Windows Active Directory"
-                )
-        ],
-    ),
-    Prototype(
-    regex=re.compile(r"\$bitcoin\$[0-9]{2,4}\$[a-fA-F0-9$]{250,350}", re.IGNORECASE),
-    modes=[
-        HashInfo(
-            name="Bitcoin / Litecoin",
-            hashcat=11300,
-            john="bitcoin",
-            extended=False,
-            description="Use Bitcoin2John.py to extract the hash for cracking."
+                description="Used for Windows Active Directory",
             )
         ],
     ),
     Prototype(
-    regex=re.compile(r"\$ethereum\$[a-z0-9*]{150,250}", re.IGNORECASE),
-    modes=[
-        HashInfo(
-            name="Ethereum Wallet, PBKDF2-HMAC-SHA256",
-            hashcat=15600,
-            john="ethereum-opencl",
-            extended=False,
-            description="Use ethereum2john.py to crack."
+        regex=re.compile(
+            r"\$bitcoin\$[0-9]{2,4}\$[a-fA-F0-9$]{250,350}", re.IGNORECASE
+        ),
+        modes=[
+            HashInfo(
+                name="Bitcoin / Litecoin",
+                hashcat=11300,
+                john="bitcoin",
+                extended=False,
+                description="Use Bitcoin2John.py to extract the hash for cracking.",
+            )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$ethereum\$[a-z0-9*]{150,250}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Ethereum Wallet, PBKDF2-HMAC-SHA256",
+                hashcat=15600,
+                john="ethereum-opencl",
+                extended=False,
+                description="Use ethereum2john.py to crack.",
             ),
-        HashInfo(
-            name="Ethereum Pre-Sale Wallet, PBKDF2-HMAC-SHA256",
-            hashcat=16300,
-            john="ethereum-presale-opencl",
-            extended=False,
-            description="Use ethereum2john.py to crack."
-        )
+            HashInfo(
+                name="Ethereum Pre-Sale Wallet, PBKDF2-HMAC-SHA256",
+                hashcat=16300,
+                john="ethereum-presale-opencl",
+                extended=False,
+                description="Use ethereum2john.py to crack.",
+            ),
         ],
     ),
     Prototype(
-    regex=re.compile(r"\$monero\$(0)\*[a-f0-9]{32,3196}", re.IGNORECASE),
-    modes=[
-        HashInfo(
-            name="Monero",
-            hashcat=None,
-            john="monero",
-            extended=False,
-            description="Use monero2john.py to crack."
+        regex=re.compile(r"\$monero\$(0)\*[a-f0-9]{32,3196}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Monero",
+                hashcat=None,
+                john="monero",
+                extended=False,
+                description="Use monero2john.py to crack.",
             )
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$electrum\$[1-3]\*[a-f0-9]{32,32}\*[a-f0-9]{32,32}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$electrum\$[1-3]\*[a-f0-9]{32,32}\*[a-f0-9]{32,32}$", re.IGNORECASE
+        ),
         modes=[
-        HashInfo(
-            name="Electrum Wallet (Salt-Type 1-3)",
-            hashcat=16600,
-            john="electrum",
-            extended=False,
+            HashInfo(
+                name="Electrum Wallet (Salt-Type 1-3)",
+                hashcat=16600,
+                john="electrum",
+                extended=False,
             )
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$electrum\$4\*[a-f0-9]{1,66}\*[a-f0-9]{128,32768}\*[a-f0-9]{64,64}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$electrum\$4\*[a-f0-9]{1,66}\*[a-f0-9]{128,32768}\*[a-f0-9]{64,64}$",
+            re.IGNORECASE,
+        ),
         modes=[
-        HashInfo(
-            name="Electrum Wallet (Salt-Type 4)",
-            hashcat=21700,
-            john="electrum",
-            extended=False,
+            HashInfo(
+                name="Electrum Wallet (Salt-Type 4)",
+                hashcat=21700,
+                john="electrum",
+                extended=False,
             )
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$electrum\$5\*[a-f0-9]{66,66}\*[a-f0-9]{2048,2048}\*[a-f0-9]{64,64}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$electrum\$5\*[a-f0-9]{66,66}\*[a-f0-9]{2048,2048}\*[a-f0-9]{64,64}$",
+            re.IGNORECASE,
+        ),
         modes=[
-        HashInfo(
-            name="Electrum Wallet (Salt-Type 5)",
-            hashcat=21800,
-            john="electrum",
-            extended=False,
+            HashInfo(
+                name="Electrum Wallet (Salt-Type 5)",
+                hashcat=21800,
+                john="electrum",
+                extended=False,
             )
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$ab\$[0-9]{1}\*[0-9]{1}\*[0-9]{1,6}\*[a-f0-9]{128}\*[a-f0-9]{128}\*[a-f0-9]{32}\*[a-f0-9]{192}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$ab\$[0-9]{1}\*[0-9]{1}\*[0-9]{1,6}\*[a-f0-9]{128}\*[a-f0-9]{128}\*[a-f0-9]{32}\*[a-f0-9]{192}",
+            re.IGNORECASE,
+        ),
         modes=[
-        HashInfo(
-            name="Android Backup",
-            hashcat=18900,
-            john="androidbackup",
-            extended=False,
+            HashInfo(
+                name="Android Backup",
+                hashcat=18900,
+                john="androidbackup",
+                extended=False,
             )
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$zip2\$\*[0-9]{1}\*[0-9]{1}\*[0-9]{1}\*[a-f0-9]{16,32}\*[a-f0-9]{1,6}\*[a-f0-9]{1,6}\*[a-f0-9]{0,16384}\*[a-f0-9]{20}\*\$\/zip2\$", re.IGNORECASE),
+        regex=re.compile(
+            r"\$zip2\$\*[0-9]{1}\*[0-9]{1}\*[0-9]{1}\*[a-f0-9]{16,32}\*[a-f0-9]{1,6}\*[a-f0-9]{1,6}\*[a-f0-9]{0,16384}\*[a-f0-9]{20}\*\$\/zip2\$",
+            re.IGNORECASE,
+        ),
         modes=[
-        HashInfo(
-            name="WinZip",
-            hashcat=13600,
-            john="ZIP",
-            extended=False,
+            HashInfo(
+                name="WinZip",
+                hashcat=13600,
+                john="ZIP",
+                extended=False,
             )
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$itunes_backup\$\*[0-9]{1,2}\*[a-f0-9]{80}\*[0-9]{1,6}\*[a-f0-9]{40}\*[0-9]{0,10}\*[a-f0-9]{0,40}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$itunes_backup\$\*[0-9]{1,2}\*[a-f0-9]{80}\*[0-9]{1,6}\*[a-f0-9]{40}\*[0-9]{0,10}\*[a-f0-9]{0,40}",
+            re.IGNORECASE,
+        ),
         modes=[
-        HashInfo(
-            name="iTunes backup >= 10.0 11",
-            hashcat=14800,
-            john="itunes-backup",
-            extended=False,
+            HashInfo(
+                name="iTunes backup >= 10.0 11",
+                hashcat=14800,
+                john="itunes-backup",
+                extended=False,
             )
         ],
     ),
@@ -1792,12 +1841,14 @@ prototypes = [
                 hashcat=9720,
                 john="oldoffice",
                 extended=False,
-                description="Use office2john.py to grab the hash."
+                description="Use office2john.py to grab the hash.",
             ),
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$office\$2016\$[0-9]\$[0-9]{6}\$[^$]{24}\$[^$]{88}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$office\$2016\$[0-9]\$[0-9]{6}\$[^$]{24}\$[^$]{88}", re.IGNORECASE
+        ),
         modes=[
             HashInfo(
                 name="MS Office 2016 - SheetProtection",

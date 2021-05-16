@@ -68,4 +68,3 @@ def test_kerberos_works():
         ],
     )
     assert "Kerberos" in result.output
-
