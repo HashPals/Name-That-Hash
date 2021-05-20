@@ -1565,6 +1565,34 @@ prototypes = [
         ],
     ),
     Prototype(
+        regex=re.compile(r"\$pdf\$1\*[2|3]\*[0-9]{2}\*[-0-9]{1,6}\*[0-9]\*[0-9]{2}\*[a-f0-9]{32,32}\*[0-9]{2}\*[a-f0-9]{64}\*[0-9]{2}\*[a-f0-9]{64}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PDF 1.1 - 1.3 (Acrobat 2 - 4)",
+                hashcat=10400,
+                john="pdf",
+                extended=False,
+            ),
+            HashInfo(
+                name="PDF 1.1 - 1.3 (Acrobat 2 - 4), collider #1",
+                hashcat=10410,
+                john="pdf",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$pdf\$1\*[2|3]\*[0-9]{2}\*[-0-9]{1,6}\*[0-9]\*[0-9]{2}\*[a-f0-9]{32}\*[0-9]{2}\*[a-f0-9]{64}\*[0-9]{2}\*[a-f0-9]{64}:[a-f0-9]{10}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PDF 1.1 - 1.3 (Acrobat 2 - 4), collider #2",
+                hashcat=10420,
+                john=None,
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
         regex=re.compile(
             r"^\$pdf\$[24]\*[34]\*128\*[0-9-]{1,5}\*1\*(16|32)\*[a-f0-9]{32,64}\*32\*[a-f0-9]{64}\*(8|16|32)\*[a-f0-9]{16,64}$",
             re.IGNORECASE,
@@ -1583,6 +1611,29 @@ prototypes = [
             r"^\$krb5asrep\$23\$[^:]+:[a-f0-9]{32,32}\$[a-f0-9]{64,40960}$",
             re.IGNORECASE,
         ),
+        regex=re.compile(r"\$pdf\$5\*[5|6]\*[0-9]{3}\*[-0-9]{1,6}\*[0-9]\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PDF 1.7 Level 3 (Acrobat 9)",
+                hashcat=10600,
+                john="pdf",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$pdf\$5\*[5|6]\*[0-9]{3}\*[-0-9]{1,6}\*[0-9]\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PDF 1.7 Level 8 (Acrobat 10 - 11)",
+                hashcat=10700,
+                john="pdf",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$krb5asrep\$23\$[^:]+:[a-f0-9]{32,32}\$[a-f0-9]{64,40960}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Kerberos 5 AS-REP etype 23",
@@ -1853,6 +1904,61 @@ prototypes = [
             HashInfo(
                 name="MS Office 2016 - SheetProtection",
                 hashcat=25300,
+                john=None,
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$7z\$[0-9]\$[0-9]{1,2}\$[0-9]{1}\$[^$]{0,64}\$[0-9]{1,2}\$[a-f0-9]{32}\$[0-9]{1,10}\$[0-9]{1,6}\$[0-9]{1,6}\$[a-f0-9]{2,}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="7-zip",
+                hashcat=11600,
+                john="7z",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$zip3\$\*[0-9]\*[0-9]\*256\*[0-9]\*[a-f0-9]{0,32}\*[a-f0-9]{288}\*[0-9]\*[0-9]\*[0-9]\*[^\s]{0,64}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="SecureZIP AES-256",
+                hashcat=23003,
+                john="securezip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$zip3\$\*[0-9]\*[0-9]\*192\*[0-9]\*[a-f0-9]{0,32}\*[a-f0-9]{288}\*[0-9]\*[0-9]\*[0-9]\*[^\s]{0,64}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="SecureZIP AES-192",
+                hashcat=23002,
+                john="securezip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"\$zip3\$\*[0-9]\*[0-9]\*128\*[0-9]\*[a-f0-9]{0,32}\*[a-f0-9]{288}\*[0-9]\*[0-9]\*[0-9]\*[^\s]{0,64}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="SecureZIP AES-128",
+                hashcat=23001,
+                john="securezip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"[a-f0-9]{24}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP Master Key",
+                hashcat=20500,
                 john=None,
                 extended=False,
             ),
