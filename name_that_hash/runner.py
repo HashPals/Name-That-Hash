@@ -147,13 +147,16 @@ def main(**kwargs):
 
 def set_logging(kwargs):
     if kwargs["verbose"]:
-        logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format="%(asctime)s - %(message)s",
+            datefmt="%d-%b-%y %H:%M:%S",
+        )
     else:
         logging.basicConfig(level=logging.CRITICAL)
 
 
-
-def api_return_hashes_as_json(chash: [str], args: dict = {}):
+def api_return_hashes_as_json(chash: [str], args: dict = {"popular_only": False}):
     """
     Using name-that-hash as an API? Call this function!
 
@@ -164,7 +167,7 @@ def api_return_hashes_as_json(chash: [str], args: dict = {}):
     return pretty_printer.greppable_output(compute_hashes_for_api(chash, args))
 
 
-def api_return_hashes_as_dict(chash: [str], args: dict = {}):
+def api_return_hashes_as_dict(chash: [str], args: dict = {"popular_only": False}):
     """
     Returns the hashes as a Python dictionary
     """

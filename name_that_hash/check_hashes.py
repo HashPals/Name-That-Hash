@@ -33,6 +33,6 @@ class HashChecker:
                 chash = base64.b64decode(chash).decode("utf-8")
             except:
                 logging.debug("Failed to base64 decode")
-        self.output.append(HashTypeObj.HashType(chash, self.nth, self.hashinfo_obj, self.kwargs))
-        
-    
+        self.output.append(
+            HashTypeObj.HashType(chash, self.nth, self.hashinfo_obj, self.kwargs)
+        )

@@ -14,7 +14,6 @@ def test_it_runs():
     assert result.exit_code == 0
     assert "SHA-512" in result.output
 
-
 def test_greppable():
     runner = CliRunner()
     result = runner.invoke(
@@ -68,4 +67,3 @@ def test_kerberos_works():
         ],
     )
     assert "Kerberos" in result.output
-

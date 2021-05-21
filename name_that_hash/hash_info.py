@@ -16,6 +16,6 @@ class HashInformation:
                 "CryptoCurrency(PrivateKey)",
                 "SHA-338",
                 "Domain Cached Credentials",
-                "Domain Cached Credentials 2"
+                "Domain Cached Credentials 2",
             ]
         )

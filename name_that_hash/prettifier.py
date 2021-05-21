@@ -2,6 +2,7 @@ import json
 from typing import NamedTuple, List
 from rich.console import Console
 import logging
+from name_that_hash import HashTypeObj, hash_info
 
 # we need a global console to control highlighting / printing
 console = Console(highlighter=False)
@@ -20,15 +21,22 @@ class Prettifier:
             self.a11y = kwargs["accessible"]
             self.john = kwargs["no_john"]
             self.hashcat = kwargs["no_hashcat"]
+        self.args = kwargs
+        self.hashinfo_obj = hash_info.HashInformation()
+
+        if not "popular_only" in self.args:
+            self.args["popular_only"] = False
 
     def greppable_output(self, objs: List):
-        logging.debug("Greppable output")
-        """
-        takes the prototypes and turns it into json
-        returns the json
 
-        Doesn't print it, it prints in main
+        logging.debug("Greppable output")
+
         """
+	takes the prototypes and turns it into json
+	returns the json
+
+	Doesn't print it, it prints in main
+	"""
         return json.dumps(self.turn_hash_objs_into_dict(objs), indent=2)
 
     def turn_hash_objs_into_dict(self, objs: List):
@@ -37,21 +45,33 @@ class Prettifier:
         for y in objs:
             outputs_as_dict.update(y.hash_obj)
             logging.debug(f"Output_as_dicts is now {outputs_as_dict}")
+
+        if self.args["popular_only"]:
+            return self.get_popular_only(outputs_as_dict)
         return outputs_as_dict
+
+    def get_popular_only(self, outputs_as_dict):
+        popular_only = {}
+        for hash in list(outputs_as_dict.keys()):
+            popular_only[hash] = []
+            for hash_type in outputs_as_dict[hash]:
+                if hash_type["name"] in self.hashinfo_obj.popular:
+                    popular_only[hash].append(hash_type)
+        return popular_only
 
     def pretty_print(self, objs):
         logging.debug("In pretty printing")
         """
-        prints it prettily in the format:
-        most popular hashes
-        1.
-        2.
-        3.
-        4.
+	prints it prettily in the format:
+	most popular hashes
+	1.
+	2.
+	3.
+	4.
 
 
-        then everything else on one line.
-        """
+	then everything else on one line.
+	"""
         multi_print = True if len(objs) > 1 else False
         for i in objs:
             logging.debug(i)
