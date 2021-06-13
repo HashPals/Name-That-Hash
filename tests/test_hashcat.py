@@ -13,12 +13,8 @@ def test_if_all_tests_exist():
     database = re.findall(r"hashcat=(\d+)", database)
     tests = re.findall(r"test_hashcat_(\d+)", tests)
 
-    # this hashcat modes are no longer supported, we still show them and have a message about it
-    not_supported = ["123", "190", "1431", "3300", "3500", "3610", "3720", "3721", "4210", "4600", "5000"]
-
     for mode in database:
-        if mode not in not_supported:
-            assert mode in tests, "No test for this hash type found"
+        assert mode in tests, "No test for this hash type found"
 
 
 def test_hashcat_0():
@@ -1308,3 +1304,72 @@ def test_hashcat_14700():
     ]
     x = runner.api_return_hashes_as_json(hashes)
     assert '"hashcat": 14700,' in x
+
+def test_hashcat_3500():
+    hashes = [
+        "9882d0778518b095917eb589f6998441"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 3500,' in x
+
+def test_hashcat_4210():
+    hashes = [
+        "09ea048c345ad336ebe38ae5b6c4de24:1234"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 4210,' in x
+
+def test_hashcat_3610():
+    hashes = [
+        "7b57255a15958ef898543ea6cc3313bc:1234"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 3610,' in x
+
+def test_hashcat_3720():
+    hashes = [
+        "10ce488714fdbde9453670e0e4cbe99c:1234"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 3720,' in x
+
+def test_hashcat_3721():
+    hashes = [
+        "fa01af9f0de5f377ae8befb03865178e:5678"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 3721,' in x
+
+def test_hashcat_123():
+    hashes = [
+        "0x326C6D7B4E4F794B79474E36704F35723958397163735263516265456E31"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 123,' in x
+
+    hashes = [
+        "0xAFC55E260B8F45C0C6512BCE776C1AD8312B56E6"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 123,' in x
+
+def test_hashcat_4600():
+    hashes = [
+        "dc57f246485e62d99a5110afc9264b4ccbfcf3cc"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 4600,' in x
+
+def test_hashcat_3300():
+    hashes = [
+        "$md5$rounds=904$iPPKEBnEkp3JV8uX$0L6m7rOFTVFn.SGqo2M9W1"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 3300,' in x
+
+def test_hashcat_190():
+    hashes = [
+        "b89eaac7e61417341b710b727768294d0e6a277b"
+    ]
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 190,' in x
