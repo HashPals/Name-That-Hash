@@ -2387,4 +2387,37 @@ prototypes = [
             ),
         ],
     ),
+    Prototype(
+        regex=re.compile(r"^\$argon2i\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Argon2i",
+                hashcat=None,
+                john=None,
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$argon2id\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Argon2id",
+                hashcat=None,
+                john=None,
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$argon2d\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Argon2d",
+                hashcat=None,
+                john=None,
+                extended=False,
+            ),
+        ],
+    ),
 ]
