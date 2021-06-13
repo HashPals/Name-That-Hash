@@ -4,10 +4,10 @@ from name_that_hash import runner
 
 
 def test_if_all_tests_exist():
-    with open("name_that_hash/hashes.py", "r") as file:
+    with open("name_that_hash/hashes.py", "r", encoding="utf8") as file:
         database = file.read()
 
-    with open("tests/test_hashcat.py", "r") as file:
+    with open("tests/test_hashcat.py", "r", encoding="utf8") as file:
         tests = file.read()
 
     database = re.findall(r"hashcat=(\d+)", database)
