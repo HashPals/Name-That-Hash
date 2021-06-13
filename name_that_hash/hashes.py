@@ -1,12 +1,8 @@
-from collections import namedtuple
 import re
+from collections import namedtuple
 from dataclasses import dataclass
 
 Prototype = namedtuple("Prototype", ["regex", "modes"])
-"""HashInfo = namedtuple(
-    "HashInfo", ["name", "hashcat", "john", "extended", "description"]
-)"""
-
 
 @dataclass
 class HashInfo:
@@ -46,7 +42,7 @@ prototypes = [
         modes=[HashInfo(name="CRC-24", hashcat=None, john=None, extended=False)],
     ),
     Prototype(
-        regex=re.compile(r"^(\$crc32\$[a-f0-9]{8}.)?[a-f0-9]{8}$", re.IGNORECASE),
+        regex=re.compile(r"^(\$crc32\$)?([a-f0-9]{8}.)?[a-f0-9]{8}$", re.IGNORECASE),
         modes=[HashInfo(name="CRC-32", hashcat=11500, john="crc32", extended=False)],
     ),
     Prototype(
@@ -69,11 +65,20 @@ prototypes = [
         regex=re.compile(r"^[a-f0-9]{16}$", re.IGNORECASE),
         modes=[
             HashInfo(name="MySQL323", hashcat=200, john="mysql", extended=False),
-            HashInfo(name="DES(Oracle)", hashcat=3100, john=None, extended=False),
             HashInfo(name="Half MD5", hashcat=5100, john=None, extended=False),
-            HashInfo(name="Oracle 7-10g", hashcat=3100, john=None, extended=False),
             HashInfo(name="FNV-164", hashcat=None, john=None, extended=False),
             HashInfo(name="CRC-64", hashcat=None, john=None, extended=False),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^[a-f0-9]{16}:[a-f0-9]{0,30}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Oracle H: Type (Oracle 7+), DES(Oracle)",
+                hashcat=3100,
+                john=None,
+                extended=False,
+            ),
         ],
     ),
     Prototype(
@@ -98,7 +103,7 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^_[a-z0-9\/.]{19}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="BSDi Crypt", hashcat=None, john="bsdicrypt", extended=False)
+            HashInfo(name="BSDi Crypt", hashcat=12400, john="bsdicrypt", extended=False)
         ],
     ),
     Prototype(
@@ -119,7 +124,7 @@ prototypes = [
         modes=[HashInfo(name="Crypt16", hashcat=None, john=None, extended=False)],
     ),
     Prototype(
-        regex=re.compile(r"^[a-f0-9]{32}(:.+)?$", re.IGNORECASE),
+        regex=re.compile(r"^[a-f0-9]{32}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="MD5",
@@ -130,34 +135,93 @@ prototypes = [
             ),
             HashInfo(name="MD4", hashcat=900, john="raw-md4", extended=False),
             HashInfo(name="Double MD5", hashcat=2600, john=None, extended=False),
-            HashInfo(name="LM", hashcat=3000, john="lm", extended=False),
-            HashInfo(
-                name="RIPEMD-128", hashcat=None, john="ripemd-128", extended=False
-            ),
-            HashInfo(
-                name="Haval-128", hashcat=None, john="haval-128-4", extended=False
-            ),
-            HashInfo(
-                name="Haval-128 (3 rounds)",
-                hashcat=None,
-                john="dynamic_160",
-                extended=False,
-            ),
-            HashInfo(
-                name="Haval-128 (5 rounds)",
-                hashcat=None,
-                john="dynamic_180",
-                extended=False,
-            ),
             HashInfo(name="Tiger-128", hashcat=None, john=None, extended=False),
             HashInfo(name="Skein-256(128)", hashcat=None, john=None, extended=False),
             HashInfo(name="Skein-512(128)", hashcat=None, john=None, extended=False),
             HashInfo(
                 name="Lotus Notes/Domino 5", hashcat=8600, john="lotus5", extended=False
             ),
+            HashInfo(
+                name="md5(md5(md5($pass)))",
+                hashcat=3500,
+                john=None,
+                extended=True,
+                description="Hashcat mode is only supported in hashcat-legacy."
+            ),
+            HashInfo(
+                name="md5(uppercase(md5($pass)))",
+                hashcat=4300,
+                john=None,
+                extended=True,
+            ),
+            HashInfo(name="md5(sha1($pass))", hashcat=4400, john=None, extended=True),
+            HashInfo(
+                name="md5($username.0.$pass)",
+                hashcat=4210,
+                john=None,
+                extended=True,
+                description="Hashcat mode is only supported in hashcat-legacy."
+            ),
+            HashInfo(
+                name="md5(utf16($pass))", hashcat=None, john="dynamic_29", extended=True
+            ),
+            HashInfo(
+                name="md4(utf16($pass))", hashcat=None, john="dynamic_33", extended=True
+            ),
+            HashInfo(
+                name="md5(md4($pass))", hashcat=None, john="dynamic_34", extended=True
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"(?:\$haval\$)?[a-f0-9]{32,64}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Haval-128",
+                hashcat=None,
+                john="haval-128-4",
+                extended=False
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"(?:\$ripemd\$)?[a-f0-9]{32,40}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RIPEMD-128",
+                hashcat=None,
+                john="ripemd-128",
+                extended=False
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^[a-f0-9]{16}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="LM",
+                hashcat=3000,
+                john="lm",
+                extended=False
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"(?:\$dynamic_39\$)?[a-f0-9]{32}\$[a-z0-9]{1,32}\$?[a-z0-9]{1,500}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="net-md5",
+                hashcat=None,
+                john="dynamic_39",
+                extended=True
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^[a-f0-9]{32}:[a-z0-9]+$", re.IGNORECASE),
+        modes=[
             HashInfo(name="Skype", hashcat=23, john=None, extended=False),
             HashInfo(name="ZipMonster", hashcat=None, john=None, extended=True),
-            HashInfo(name="PrestaShop", hashcat=11000, john=None, extended=True),
             HashInfo(
                 name="md5(md5(md5($pass)))", hashcat=3500, john=None, extended=True
             ),
@@ -189,16 +253,24 @@ prototypes = [
                 extended=True,
             ),
             HashInfo(
-                name="md5(md5($salt).$pass)", hashcat=3610, john=None, extended=True
+                name="md5(md5($salt).$pass)",
+                hashcat=3610,
+                john=None,
+                extended=True,
+                description="Hashcat mode is only supported in hashcat-legacy."
             ),
             HashInfo(
                 name="md5($salt.md5($pass))", hashcat=3710, john=None, extended=True
             ),
             HashInfo(
-                name="md5($pass.md5($salt))", hashcat=3720, john=None, extended=True
+                name="md5($pass.md5($salt))",
+                hashcat=3720,
+                john=None,
+                extended=True,
+                description="Hashcat mode is only supported in hashcat-legacy.",
             ),
             HashInfo(
-                name="md5($salt.$pass.$salt)", hashcat=3810, john=None, extended=True
+                name="md5($salt.$pass.$salt)", hashcat=3800, john=None, extended=True
             ),
             HashInfo(
                 name="md5(md5($pass).md5($salt))",
@@ -219,29 +291,27 @@ prototypes = [
                 extended=True,
             ),
             HashInfo(
-                name="md5($username.0.$pass)", hashcat=4210, john=None, extended=True
-            ),
-            HashInfo(
-                name="md5(utf16($pass))", hashcat=None, john="dynamic_29", extended=True
-            ),
-            HashInfo(
                 name="md4($salt.$pass)", hashcat=None, john="dynamic_31", extended=True
             ),
             HashInfo(
                 name="md4($pass.$salt)", hashcat=None, john="dynamic_32", extended=True
             ),
             HashInfo(
-                name="md4(utf16($pass))", hashcat=None, john="dynamic_33", extended=True
-            ),
-            HashInfo(
-                name="md5(md4($pass))", hashcat=None, john="dynamic_34", extended=True
-            ),
-            HashInfo(name="net-md5", hashcat=None, john="dynamic_39", extended=True),
-            HashInfo(
                 name="md5($salt.pad16($pass))",
                 hashcat=None,
                 john="dynamic_39",
                 extended=True,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^[a-f0-9]{32}:[a-z0-9]{56}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PrestaShop",
+                hashcat=11000,
+                john=None,
+                extended=True
             ),
         ],
     ),
@@ -373,7 +443,13 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{32}:[a-f0-9]{32}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="WebEdition CMS", hashcat=3721, john=None, extended=False)
+            HashInfo(
+                name="WebEdition CMS",
+                hashcat=3721,
+                john=None,
+                extended=False,
+                description="Hashcat mode is only supported in hashcat-legacy."
+            )
         ],
     ),
     Prototype(
@@ -402,7 +478,7 @@ prototypes = [
                 hashcat=100,
                 john="raw-sha1",
                 extended=False,
-                description="[link=https://en.wikipedia.org/wiki/SHA-1]Used for checksums.[/link]",
+                description="Used for checksums.[link=https://en.wikipedia.org/wiki/SHA-1]See more[/link]",
             ),
             HashInfo(name="Double SHA-1", hashcat=4500, john=None, extended=False),
             HashInfo(
@@ -460,7 +536,11 @@ prototypes = [
             HashInfo(name="Tiger-160", hashcat=None, john=None, extended=False),
             HashInfo(name="HAS-160", hashcat=None, john=None, extended=False),
             HashInfo(
-                name="LinkedIn", hashcat=190, john="raw-sha1-linkedin", extended=False
+                name="LinkedIn",
+                hashcat=190,
+                john="raw-sha1-linkedin",
+                extended=False,
+                description="Hashcat mode is only supported in oclHashcat."
             ),
             HashInfo(name="Skein-256(160)", hashcat=None, john=None, extended=False),
             HashInfo(name="Skein-512(160)", hashcat=None, john=None, extended=False),
@@ -468,7 +548,11 @@ prototypes = [
                 name="MangosWeb Enhanced CMS", hashcat=None, john=None, extended=True
             ),
             HashInfo(
-                name="sha1(sha1(sha1($pass)))", hashcat=4600, john=None, extended=True
+                name="sha1(sha1(sha1($pass)))",
+                hashcat=4600,
+                john=None,
+                extended=True,
+                description="Hashcat mode is only supported in hashcat-legacy."
             ),
             HashInfo(name="sha1(md5($pass))", hashcat=4700, john=None, extended=True),
             HashInfo(name="sha1($pass.$salt)", hashcat=110, john=None, extended=True),
@@ -497,7 +581,7 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\*[a-f0-9]{40}$", re.IGNORECASE),
+        regex=re.compile(r"^[a-f0-9]{40}$", re.IGNORECASE),
         modes=[
             HashInfo(name="MySQL5.x", hashcat=300, john="mysql-sha1", extended=False),
             HashInfo(name="MySQL4.1", hashcat=300, john="mysql-sha1", extended=False),
@@ -577,7 +661,13 @@ prototypes = [
             re.IGNORECASE,
         ),
         modes=[
-            HashInfo(name="Sun MD5 Crypt", hashcat=3300, john="sunmd5", extended=False)
+            HashInfo(
+                name="Sun MD5 Crypt",
+                hashcat=3300,
+                john="sunmd5",
+                extended=False,
+                description="Hashcat mode is only supported in hashcat-legacy."
+            )
         ],
     ),
     Prototype(
@@ -639,6 +729,7 @@ prototypes = [
             HashInfo(
                 name="Skein-224", hashcat=None, john="dynamic_330", extended=False
             ),
+            HashInfo(name="Keccak-224", hashcat=17700, john=None, extended=False),
         ],
     ),
     Prototype(
@@ -987,21 +1078,21 @@ prototypes = [
                 hashcat=None,
                 john=None,
                 extended=False,
-                description="[link = https://bugs.php.net/bug.php?id=60783]Not considered a hash function.[/link]",
+                description="Not considered a hash function.[link = https://bugs.php.net/bug.php?id=60783]See more[/link]",
             ),
             HashInfo(
                 name="Salsa20",
                 hashcat=None,
                 john=None,
                 extended=False,
-                description="[link = https://bugs.php.net/bug.php?id=60783]Not considered a hash function.[/link]",
+                description="Not considered a hash function.[link = https://bugs.php.net/bug.php?id=60783]See more[/link]",
             ),
             HashInfo(
                 name="Blake2",
                 hashcat=600,
                 john="raw-blake2",
                 extended=False,
-                description="[link = https://en.wikipedia.org/wiki/BLAKE_(hash_function)#Users_of_BLAKE2]Used in Wireguard, Zcash, IPFS and more.[/link]",
+                description="Used in Wireguard, Zcash, IPFS and more.[link = https://en.wikipedia.org/wiki/BLAKE_(hash_function)#Users_of_BLAKE2]See more[/link]",
             ),
             HashInfo(name="SHA3-512", hashcat=17600, john="raw-sha3", extended=False),
             HashInfo(name="Skein-512", hashcat=None, john="skein-512", extended=False),
@@ -1030,19 +1121,34 @@ prototypes = [
                 john="hmac-sha512",
                 extended=True,
             ),
-            HashInfo(
-                name="Keccak-384", hashcat=17900, john="dynamic_440", extended=False
-            ),
-            HashInfo(name="Keccak-256", hashcat=17800, john=None, extended=False),
-            HashInfo(
-                name="Keccak-224", hashcat=17700, john="dynamic_430", extended=False
-            ),
             HashInfo(name="BLAKE2-224", hashcat=None, john=None, extended=False),
             HashInfo(
                 name="HMAC-SHA512 (key = $salt)",
                 hashcat=1760,
                 john="hmac-sha512",
                 extended=True,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^[a-f0-9]{64}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Keccak-256",
+                hashcat=17800,
+                john=None,
+                extended=False
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^[a-f0-9]{96}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Keccak-384",
+                hashcat=17900,
+                john=None,
+                extended=False
             ),
         ],
     ),
@@ -1055,8 +1161,8 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^0x0200[a-f0-9]{136}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="MSSQL(2012)", hashcat=1731, john="msql12", extended=False),
-            HashInfo(name="MSSQL(2014)", hashcat=1731, john="msql12", extended=False),
+            HashInfo(name="MSSQL(2012)", hashcat=1731, john="mssql12", extended=False),
+            HashInfo(name="MSSQL(2014)", hashcat=1731, john="mssql12", extended=False),
         ],
     ),
     Prototype(
@@ -1144,7 +1250,7 @@ prototypes = [
         modes=[
             HashInfo(
                 name="Minecraft(AuthMe Reloaded)",
-                hashcat=None,
+                hashcat=20711,
                 john=None,
                 extended=False,
             )
@@ -1240,7 +1346,7 @@ prototypes = [
         modes=[
             HashInfo(
                 name="Redmine Project Management Web App",
-                hashcat=7600,
+                hashcat=4521,
                 john=None,
                 extended=False,
             )
@@ -1278,7 +1384,15 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^0x[a-f0-9]{60}\s0x[a-f0-9]{40}$", re.IGNORECASE),
-        modes=[HashInfo(name="EPi", hashcat=123, john=None, extended=False)],
+        modes=[
+            HashInfo(
+                name="EPi",
+                hashcat=123,
+                john=None,
+                extended=False,
+                description="Hashcat mode is no longer supported.",
+            )
+        ],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{40}:[^*]{1,25}$", re.IGNORECASE),
@@ -1348,7 +1462,7 @@ prototypes = [
             r"^\$sha1\$[0-9]+\$[a-z0-9\/.]{0,64}\$[a-z0-9\/.]{28}$", re.IGNORECASE
         ),
         modes=[
-            HashInfo(name="SHA-1 Crypt", hashcat=None, john="sha1crypt", extended=False)
+            HashInfo(name="SHA-1 Crypt", hashcat=15100, john="sha1crypt", extended=False)
         ],
     ),
     Prototype(
@@ -1379,7 +1493,7 @@ prototypes = [
         ),
         modes=[
             HashInfo(
-                name="PBKDF2-SHA1(Generic)", hashcat=None, john=None, extended=False
+                name="PBKDF2-SHA1(Generic)", hashcat=20400, john=None, extended=False
             )
         ],
     ),
@@ -1390,7 +1504,7 @@ prototypes = [
         modes=[
             HashInfo(
                 name="PBKDF2-SHA256(Generic)",
-                hashcat=None,
+                hashcat=20300,
                 john="pbkdf2-hmac-sha256",
                 extended=False,
             )
@@ -1402,7 +1516,7 @@ prototypes = [
         ),
         modes=[
             HashInfo(
-                name="PBKDF2-SHA512(Generic)", hashcat=None, john=None, extended=False
+                name="PBKDF2-SHA512(Generic)", hashcat=20200, john=None, extended=False
             )
         ],
     ),
@@ -1797,11 +1911,14 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(
-            r"^sha256[:$][0-9]+[:$][a-z0-9\/+]+[:$][a-z0-9\/+]{32,128}$", re.IGNORECASE
+            r"^sha256[:$][0-9]+[:$][a-z0-9\/+=]+[:$][a-z0-9\/+]{32,128}$", re.IGNORECASE
         ),
         modes=[
             HashInfo(
-                name="PBKDF2-HMAC-SHA256(PHP)", hashcat=10900, john=None, extended=False
+                name="PBKDF2-HMAC-SHA256(PHP)",
+                hashcat=10900,
+                john=None,
+                extended=False
             )
         ],
     ),
@@ -2003,7 +2120,7 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(
-            r"\$bitcoin\$[0-9]{2,4}\$[a-fA-F0-9$]{250,350}", re.IGNORECASE
+            r"\$bitcoin\$[0-9]{2,4}\$[a-f0-9$]{250,350}", re.IGNORECASE
         ),
         modes=[
             HashInfo(
@@ -2110,7 +2227,7 @@ prototypes = [
             HashInfo(
                 name="WinZip",
                 hashcat=13600,
-                john="ZIP",
+                john="zip",
                 extended=False,
             )
         ],
@@ -2260,17 +2377,6 @@ prototypes = [
                 name="SecureZIP AES-128",
                 hashcat=23001,
                 john="securezip",
-                extended=False,
-            ),
-        ],
-    ),
-    Prototype(
-        regex=re.compile(r"[a-f0-9]{24}", re.IGNORECASE),
-        modes=[
-            HashInfo(
-                name="PKZIP Master Key",
-                hashcat=20500,
-                john=None,
                 extended=False,
             ),
         ],
