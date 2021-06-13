@@ -98,6 +98,13 @@ We're also in:
 * [MacPorts](https://ports.macports.org/port/name-that-hash/summary).
 * [Homebrew](https://formulae.brew.sh/formula/name-that-hash).
 
+# ⚱ Fun Facts
+
+* We have a test-matrix which makes sure all of our hashes are up-to-date, including the HashCat mode and John the Ripper modes!
+* Unlike other hash identifiers which identify non-hashes, we have removed these so you'll only get real hashes (base64 who?)
+* Each and every hash is tested multiple times, for both false positives and true positives. No mistakes here!
+* There is a magical lamp that summons a genie somewhere in the source code.
+
 # 💡 Documentation
 Want to learn how popularity works?
 

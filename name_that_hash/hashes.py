@@ -103,7 +103,16 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{24}$", re.IGNORECASE),
-        modes=[HashInfo(name="CRC-96(ZIP)", hashcat=None, john=None, extended=False)],
+        modes=[
+            HashInfo(name="CRC-96(ZIP)", hashcat=None, john=None, extended=False),
+            HashInfo(name="PKZIP Master Key", hashcat=20500, john=None, extended=False),
+            HashInfo(
+                name="PKZIP Master Key (6 byte optimization)",
+                john=None,
+                hashcat=20510,
+                extended=False,
+            ),
+        ],
     ),
     Prototype(
         regex=re.compile(r"^[a-z0-9\/.]{24}$", re.IGNORECASE),
@@ -127,6 +136,18 @@ prototypes = [
             ),
             HashInfo(
                 name="Haval-128", hashcat=None, john="haval-128-4", extended=False
+            ),
+            HashInfo(
+                name="Haval-128 (3 rounds)",
+                hashcat=None,
+                john="dynamic_160",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-128 (5 rounds)",
+                hashcat=None,
+                john="dynamic_180",
+                extended=False,
             ),
             HashInfo(name="Tiger-128", hashcat=None, john=None, extended=False),
             HashInfo(name="Skein-256(128)", hashcat=None, john=None, extended=False),
@@ -387,6 +408,54 @@ prototypes = [
             HashInfo(
                 name="RIPEMD-160", hashcat=6000, john="ripemd-160", extended=False
             ),
+            HashInfo(
+                name="Haval-160 (3 rounds)",
+                hashcat=6000,
+                john="dynamic_190",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-160 (4 rounds)",
+                hashcat=6000,
+                john="dynamic_200",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-160 (5 rounds)",
+                hashcat=6000,
+                john="dynamic_210",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-192 (3 rounds)",
+                hashcat=6000,
+                john="dynamic_220",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-192 (4 rounds)",
+                hashcat=6000,
+                john="dynamic_230",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-192 (5 rounds)",
+                hashcat=6000,
+                john="dynamic_240",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-224 (4 rounds)",
+                hashcat=6000,
+                john="dynamic_260",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-224 (5 rounds)",
+                hashcat=6000,
+                john="dynamic_270",
+                extended=False,
+            ),
             HashInfo(name="Haval-160", hashcat=None, john=None, extended=False),
             HashInfo(name="Tiger-160", hashcat=None, john=None, extended=False),
             HashInfo(name="HAS-160", hashcat=None, john=None, extended=False),
@@ -514,11 +583,62 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{56}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-224", hashcat=None, john="raw-sha224", extended=False),
+            HashInfo(name="SHA-224", hashcat=1300, john="raw-sha224", extended=False),
+            HashInfo(
+                name="sha224($salt.$pass)",
+                hashcat=None,
+                john="dynamic_51",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha224($pass.$salt))",
+                hashcat=None,
+                john="dynamic_52",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha224(sha224($pass))",
+                hashcat=None,
+                john="dynamic_53",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha224(sha224_raw($pass))",
+                hashcat=None,
+                john="dynamic_54",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha224(sha224($pass).$salt)",
+                hashcat=None,
+                john="dynamic_55",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha224($salt.sha224($pass))",
+                hashcat=None,
+                john="dynamic_56",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha224(sha224($salt).sha224($pass))",
+                hashcat=None,
+                john="dynamic_57",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha224(sha224($pass).sha224($pass))",
+                hashcat=None,
+                john="dynamic_58",
+                extended=True,
+            ),
             HashInfo(name="Haval-224", hashcat=None, john=None, extended=False),
             HashInfo(name="SHA3-224", hashcat=17300, john=None, extended=False),
             HashInfo(name="Skein-256(224)", hashcat=None, john=None, extended=False),
             HashInfo(name="Skein-512(224)", hashcat=None, john=None, extended=False),
+            HashInfo(
+                name="Skein-224", hashcat=None, john="dynamic_330", extended=False
+            ),
         ],
     ),
     Prototype(
@@ -591,24 +711,88 @@ prototypes = [
                 extended=False,
                 description="256-bit key and is a good partner-function for AES. Can be used in Shadow files.",
             ),
-            HashInfo(name="RIPEMD-256", hashcat=None, john=None, extended=False),
             HashInfo(
-                name="Haval-256", hashcat=None, john="haval-256-3", extended=False
+                name="RIPEMD-256", hashcat=None, john="dynamic_140", extended=False
+            ),
+            HashInfo(
+                name="Haval-256 (3 rounds)",
+                hashcat=None,
+                john="dynamic_140",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-256 (4 rounds)",
+                hashcat=None,
+                john="dynamic_290",
+                extended=False,
+            ),
+            HashInfo(
+                name="Haval-256 (5 rounds)",
+                hashcat=None,
+                john="dynamic_300",
+                extended=False,
             ),
             HashInfo(name="GOST R 34.11-94", hashcat=6900, john="gost", extended=False),
             HashInfo(
                 name="GOST CryptoPro S-Box", hashcat=None, john=None, extended=False
             ),
             HashInfo(name="Blake2b-256", hashcat=None, john=None, extended=False),
-            HashInfo(name="SHA3-256", hashcat=17400, john=None, extended=False),
+            HashInfo(
+                name="SHA3-256", hashcat=17400, john="dynamic_380", extended=False
+            ),
+            HashInfo(name="PANAMA", hashcat=None, john="dynamic_320", extended=False),
+            HashInfo(name="BLAKE2-256", hashcat=None, john=None, extended=False),
+            HashInfo(name="BLAKE2-384", hashcat=None, john=None, extended=False),
             HashInfo(name="Skein-256", hashcat=None, john="skein-256", extended=False),
             HashInfo(name="Skein-512(256)", hashcat=None, john=None, extended=False),
             HashInfo(name="Ventrilo", hashcat=None, john=None, extended=True),
             HashInfo(
-                name="sha256($pass.$salt)", hashcat=1410, john=None, extended=True
+                name="sha256($pass.$salt)",
+                hashcat=1410,
+                john="dynamic_62",
+                extended=True,
             ),
             HashInfo(
-                name="sha256($salt.$pass)", hashcat=1420, john=None, extended=True
+                name="sha256($salt.$pass)",
+                hashcat=1420,
+                john="dynamic_61",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha256(sha256($pass))",
+                hashcat=1420,
+                john="dynamic_63",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha256(sha256_raw($pass)))",
+                hashcat=1420,
+                john="dynamic_64",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha256(sha256($pass).$salt)",
+                hashcat=1420,
+                john="dynamic_65",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha256($salt.sha256($pass))",
+                hashcat=1420,
+                john="dynamic_66",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha256(sha256($salt).sha256($pass))",
+                hashcat=1420,
+                john="dynamic_67",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha256(sha256($pass).sha256($pass))",
+                hashcat=1420,
+                john="dynamic_68",
+                extended=True,
             ),
             HashInfo(
                 name="sha256(unicode($pass).$salt)",
@@ -684,7 +868,11 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{80}$", re.IGNORECASE),
-        modes=[HashInfo(name="RIPEMD-320", hashcat=None, john=None, extended=False)],
+        modes=[
+            HashInfo(
+                name="RIPEMD-320", hashcat=None, john="dynamic_150", extended=False
+            )
+        ],
     ),
     Prototype(
         regex=re.compile(
@@ -707,9 +895,58 @@ prototypes = [
         regex=re.compile(r"^[a-f0-9]{96}$", re.IGNORECASE),
         modes=[
             HashInfo(name="SHA-384", hashcat=10800, john="raw-sha384", extended=False),
-            HashInfo(name="SHA3-384", hashcat=None, john=None, extended=False),
+            HashInfo(name="SHA3-384", hashcat=None, john="dynamic_390", extended=False),
             HashInfo(name="Skein-512(384)", hashcat=None, john=None, extended=False),
             HashInfo(name="Skein-1024(384)", hashcat=None, john=None, extended=False),
+            HashInfo(
+                name="sha384($salt.$pass)",
+                hashcat=None,
+                john="dynamic_71",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha384($pass.$salt)",
+                hashcat=None,
+                john="dynamic_72",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha384(sha384($pass))",
+                hashcat=None,
+                john="dynamic_73",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha384(sha384_raw($pass))",
+                hashcat=None,
+                john="dynamic_74",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha384(sha384($pass).$salt)",
+                hashcat=None,
+                john="dynamic_75",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha384($salt.sha384($pass))",
+                hashcat=None,
+                john="dynamic_76",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha384(sha384($salt).sha384($pass))",
+                hashcat=None,
+                john="dynamic_77",
+                extended=True,
+            ),
+            HashInfo(
+                name="sha384(sha384($pass).sha384($pass))",
+                hashcat=None,
+                john="dynamic_78",
+                extended=True,
+            ),
+            HashInfo(name="Skein-384", hashcat=None, john="dynamic_350", extended=True),
         ],
     ),
     Prototype(
@@ -793,9 +1030,14 @@ prototypes = [
                 john="hmac-sha512",
                 extended=True,
             ),
-            HashInfo(name="Keccak-384", hashcat=17900, john=None, extended=False),
+            HashInfo(
+                name="Keccak-384", hashcat=17900, john="dynamic_440", extended=False
+            ),
             HashInfo(name="Keccak-256", hashcat=17800, john=None, extended=False),
-            HashInfo(name="Keccak-224", hashcat=17700, john=None, extended=False),
+            HashInfo(
+                name="Keccak-224", hashcat=17700, john="dynamic_430", extended=False
+            ),
+            HashInfo(name="BLAKE2-224", hashcat=None, john=None, extended=False),
             HashInfo(
                 name="HMAC-SHA512 (key = $salt)",
                 hashcat=1760,
@@ -1367,6 +1609,20 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(
+            r"^\\$office\\$2016\\$[0-9]\\$[0-9]{6}\\$[^$]{24}\\$[^$]{88}$",
+            re.IGNORECASE,
+        ),
+        modes=[
+            HashInfo(
+                name="Microsoft Office 2016 - SheetProtection",
+                hashcat=25300,
+                john=None,
+                extended=False,
+            )
+        ],
+    ),
+    Prototype(
+        regex=re.compile(
             r"^\$office\$\*2013\*[0-9]{6}\*[0-9]{3}\*[0-9]{2}\*[a-z0-9]{32}\*[a-z0-9]{32}\*[a-z0-9]{64}$",
             re.IGNORECASE,
         ),
@@ -1565,7 +1821,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$pdf\$1\*[2|3]\*[0-9]{2}\*[-0-9]{1,6}\*[0-9]\*[0-9]{2}\*[a-f0-9]{32,32}\*[0-9]{2}\*[a-f0-9]{64}\*[0-9]{2}\*[a-f0-9]{64}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$pdf\$1\*[2|3]\*[0-9]{2}\*[-0-9]{1,6}\*[0-9]\*[0-9]{2}\*[a-f0-9]{32,32}\*[0-9]{2}\*[a-f0-9]{64}\*[0-9]{2}\*[a-f0-9]{64}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="PDF 1.1 - 1.3 (Acrobat 2 - 4)",
@@ -1582,7 +1841,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$pdf\$1\*[2|3]\*[0-9]{2}\*[-0-9]{1,6}\*[0-9]\*[0-9]{2}\*[a-f0-9]{32}\*[0-9]{2}\*[a-f0-9]{64}\*[0-9]{2}\*[a-f0-9]{64}:[a-f0-9]{10}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$pdf\$1\*[2|3]\*[0-9]{2}\*[-0-9]{1,6}\*[0-9]\*[0-9]{2}\*[a-f0-9]{32}\*[0-9]{2}\*[a-f0-9]{64}\*[0-9]{2}\*[a-f0-9]{64}:[a-f0-9]{10}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="PDF 1.1 - 1.3 (Acrobat 2 - 4), collider #2",
@@ -1607,7 +1869,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$pdf\$5\*[5|6]\*[0-9]{3}\*[-0-9]{1,6}\*[0-9]\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$pdf\$5\*[5|6]\*[0-9]{3}\*[-0-9]{1,6}\*[0-9]\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="PDF 1.7 Level 3 (Acrobat 9)",
@@ -1618,7 +1883,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$pdf\$5\*[5|6]\*[0-9]{3}\*[-0-9]{1,6}\*[0-9]\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$pdf\$5\*[5|6]\*[0-9]{3}\*[-0-9]{1,6}\*[0-9]\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}\*[0-9]{1,4}\*[a-f0-9]{0,1024}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="PDF 1.7 Level 8 (Acrobat 10 - 11)",
@@ -1629,7 +1897,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$krb5asrep\$23\$[^:]+:[a-f0-9]{32,32}\$[a-f0-9]{64,40960}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$krb5asrep\$23\$[^:]+:[a-f0-9]{32,32}\$[a-f0-9]{64,40960}$",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="Kerberos 5 AS-REP etype 23",
@@ -1851,11 +2122,17 @@ prototypes = [
         ),
         modes=[
             HashInfo(
-                name="iTunes backup >= 10.0 11",
+                name="iTunes backup >= 10.0",
                 hashcat=14800,
                 john="itunes-backup",
                 extended=False,
-            )
+            ),
+            HashInfo(
+                name="iTunes backup < 10.0",
+                hashcat=14700,
+                john="itunes-backup",
+                extended=False,
+            ),
         ],
     ),
     Prototype(
@@ -1865,6 +2142,32 @@ prototypes = [
                 name="Telegram Mobile App Passcode (SHA256)",
                 hashcat=22301,
                 john="Telegram",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(
+            r"^\\$telegram\\$1\\*4000\\*[a-f0-9]{64}\\*[a-f0-9]{576}$", re.IGNORECASE
+        ),
+        modes=[
+            HashInfo(
+                name="Telegram Desktop 1.3.9",
+                hashcat=None,
+                john="telegram",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(
+            r"^\\$telegram\\$2\\*100000\\*[a-f0-9]{64}\\*[a-f0-9]{576}$", re.IGNORECASE
+        ),
+        modes=[
+            HashInfo(
+                name="Telegram Desktop >= 2.1.14-beta / 2.2.0",
+                hashcat=None,
+                john="telegram",
                 extended=False,
             ),
         ],
@@ -1906,7 +2209,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$7z\$[0-9]\$[0-9]{1,2}\$[0-9]{1}\$[^$]{0,64}\$[0-9]{1,2}\$[a-f0-9]{32}\$[0-9]{1,10}\$[0-9]{1,6}\$[0-9]{1,6}\$[a-f0-9]{2,}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$7z\$[0-9]\$[0-9]{1,2}\$[0-9]{1}\$[^$]{0,64}\$[0-9]{1,2}\$[a-f0-9]{32}\$[0-9]{1,10}\$[0-9]{1,6}\$[0-9]{1,6}\$[a-f0-9]{2,}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="7-zip",
@@ -1917,7 +2223,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$zip3\$\*[0-9]\*[0-9]\*256\*[0-9]\*[a-f0-9]{0,32}\*[a-f0-9]{288}\*[0-9]\*[0-9]\*[0-9]\*[^\s]{0,64}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$zip3\$\*[0-9]\*[0-9]\*256\*[0-9]\*[a-f0-9]{0,32}\*[a-f0-9]{288}\*[0-9]\*[0-9]\*[0-9]\*[^\s]{0,64}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="SecureZIP AES-256",
@@ -1928,7 +2237,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$zip3\$\*[0-9]\*[0-9]\*192\*[0-9]\*[a-f0-9]{0,32}\*[a-f0-9]{288}\*[0-9]\*[0-9]\*[0-9]\*[^\s]{0,64}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$zip3\$\*[0-9]\*[0-9]\*192\*[0-9]\*[a-f0-9]{0,32}\*[a-f0-9]{288}\*[0-9]\*[0-9]\*[0-9]\*[^\s]{0,64}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="SecureZIP AES-192",
@@ -1939,7 +2251,10 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$zip3\$\*[0-9]\*[0-9]\*128\*[0-9]\*[a-f0-9]{0,32}\*[a-f0-9]{288}\*[0-9]\*[0-9]\*[0-9]\*[^\s]{0,64}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$zip3\$\*[0-9]\*[0-9]\*128\*[0-9]\*[a-f0-9]{0,32}\*[a-f0-9]{288}\*[0-9]\*[0-9]\*[0-9]\*[^\s]{0,64}",
+            re.IGNORECASE,
+        ),
         modes=[
             HashInfo(
                 name="SecureZIP AES-128",
@@ -1956,6 +2271,17 @@ prototypes = [
                 name="PKZIP Master Key",
                 hashcat=20500,
                 john=None,
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\\$pkzip2?\\$[a-f0-9\\*]+\\$\/pkzip2?\\$$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP",
+                hashcat=None,
+                john="pkzip",
                 extended=False,
             ),
         ],

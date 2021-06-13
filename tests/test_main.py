@@ -17,18 +17,21 @@ def test_it_identifies_correctly_correctly():
     x = runner.api_return_hashes_as_json(hashes)
     assert "NTLM" in x
 
+
 def test_for_popular():
     hashes = ["5f4dcc3b5aa765d61d8327deb882cf99"]
 
     x = runner.api_return_hashes_as_json(hashes, {"popular_only": True})
     assert "ZipMonster" not in x
 
+
 def test_for_popular_2():
     hashes = ["5f4dcc3b5aa765d61d8327deb882cf99"]
 
     x = runner.api_return_hashes_as_json(hashes, {"popular_only": True})
     assert "MD5" in x
-    
+
+
 def test_main_succeeds():
     runn = click.testing.CliRunner()
     result = runn.invoke(runner.main)
@@ -216,7 +219,7 @@ def test_itunes():
     ]
 
     x = runner.api_return_hashes_as_json(hashes)
-    assert "iTunes backup >= 10.0 11" in x
+    assert "iTunes backup >= 10.0" in x
 
 
 def test_winzip():
@@ -288,6 +291,7 @@ def test_office3():
     x = runner.api_return_hashes_as_json(hashes)
     assert "MS Office 2016 - SheetProtection" in x
 
+
 def test_7zip():
     hashes = [
         "$7z$0$19$0$$16$c46ee87167606ba2cedbc7b61e970c63$3341692866$16$9$7f6b4ddc563d6481339775c52b653f00"
@@ -307,9 +311,7 @@ def test_securezip():
 
 
 def test_pkzipMasterKey():
-    hashes = [
-        "f1eff5c0368d10311dcfc419"
-    ]
+    hashes = ["f1eff5c0368d10311dcfc419"]
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "PKZIP Master Key" in x
