@@ -3,7 +3,7 @@ name: Tests
 on: pull_request
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, windows-latest, windows-2019, windows-2016, ubuntu-18.04, macos-11, 	macos-latest]
     strategy:
       matrix:
         python-version: ['3.6', '3.7', '3.8', '3.9']
