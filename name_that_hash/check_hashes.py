@@ -1,7 +1,7 @@
 import base64
 import logging
 
-from name_that_hash import hash_info, HashTypeObj
+from name_that_hash import HashTypeObj, hash_info
 
 
 class HashChecker:

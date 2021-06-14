@@ -345,3 +345,30 @@ def test_pdf4():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "PDF 1.7 Level 8 (Acrobat 10 - 11)" in x
+
+
+def test_argon2i():
+    hashes = [
+        "$argon2i$v=19$m=200,t=5,p=10$MDk4NzZ0NGdmcmhzZGs$YO+KtnzglyaX52PL0WfoY4JfAOxhwNSmokYh+TWU"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "Argon2i" in x
+
+
+def test_argon2id():
+    hashes = [
+        "$argon2id$v=19$m=150,t=9,p=5$MDk4NzZ0NGdmcmhzZGs$mS34N/lEqBpGWQDGI1/Ztp7QEvDgvMoqPOsdXQB7dsDlGdAAamxncg"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "Argon2id" in x
+
+
+def test_argon2d():
+    hashes = [
+        "$argon2d$v=19$m=300,t=15,p=2$MDk4NzZ0NGdmcmhzZGs$yqcjojxf8O/plrwApyAhkpojnwuZW9UPp7DgCXoHtkGPUN1nhLZYB2FtzPjcrQC4sFXRauCjwZed6NUmoZc1mcoigTfgyQ"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "Argon2d" in x

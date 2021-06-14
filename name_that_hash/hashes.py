@@ -156,13 +156,6 @@ prototypes = [
             ),
             HashInfo(name="md5(sha1($pass))", hashcat=4400, john=None, extended=True),
             HashInfo(
-                name="md5($username.0.$pass)",
-                hashcat=4210,
-                john=None,
-                extended=True,
-                description="Hashcat mode is only supported in hashcat-legacy."
-            ),
-            HashInfo(
                 name="md5(utf16($pass))", hashcat=None, john="dynamic_29", extended=True
             ),
             HashInfo(
@@ -268,6 +261,20 @@ prototypes = [
                 john=None,
                 extended=True,
                 description="Hashcat mode is only supported in hashcat-legacy.",
+            ),
+            HashInfo(
+                name="WebEdition CMS",
+                hashcat=3721,
+                john=None,
+                extended=False,
+                description="Hashcat mode is only supported in hashcat-legacy."
+            ),
+            HashInfo(
+                name="md5($username.0.$pass)",
+                hashcat=4210,
+                john=None,
+                extended=True,
+                description="Hashcat mode is only supported in hashcat-legacy."
             ),
             HashInfo(
                 name="md5($salt.$pass.$salt)", hashcat=3800, john=None, extended=True
@@ -438,18 +445,6 @@ prototypes = [
         regex=re.compile(r"^{smd5}[a-z0-9$\/.]{31}$", re.IGNORECASE),
         modes=[
             HashInfo(name="AIX(smd5)", hashcat=6300, john="aix-smd5", extended=False)
-        ],
-    ),
-    Prototype(
-        regex=re.compile(r"^[a-f0-9]{32}:[a-f0-9]{32}$", re.IGNORECASE),
-        modes=[
-            HashInfo(
-                name="WebEdition CMS",
-                hashcat=3721,
-                john=None,
-                extended=False,
-                description="Hashcat mode is only supported in hashcat-legacy."
-            )
         ],
     ),
     Prototype(
@@ -1383,7 +1378,7 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^0x[a-f0-9]{60}\s0x[a-f0-9]{40}$", re.IGNORECASE),
+        regex=re.compile(r"^0x(?:[a-f0-9]{60}|[a-f0-9]{40})$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="EPi",
@@ -2388,6 +2383,39 @@ prototypes = [
                 name="PKZIP",
                 hashcat=None,
                 john="pkzip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$argon2i\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Argon2i",
+                hashcat=None,
+                john=None,
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$argon2id\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Argon2id",
+                hashcat=None,
+                john=None,
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$argon2d\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Argon2d",
+                hashcat=None,
+                john=None,
                 extended=False,
             ),
         ],

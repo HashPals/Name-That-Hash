@@ -1,18 +1,14 @@
-import click
-import sys
-from typing import NamedTuple, List
-import base64
-
-from rich import print, text
 import logging
+from typing import List
 
-from name_that_hash import hash_namer, hashes, prettifier
+import click
+from rich import print
 
-from name_that_hash import check_hashes
+from name_that_hash import check_hashes, hash_namer, hashes, prettifier
+
 
 # Lets you import as an API
 # or run as a package
-
 
 def print_help(ctx):
     click.echo(ctx.get_help())
@@ -64,7 +60,7 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     "-a",
     "--accessible",
     is_flag=True,
-    help="Turn on accessible mode, does not print ASCII art. Also does not print very large blocks of text, as this can cause some pains with screenreaders. This reduces the information you get. If you want the least likely feature but no banner, use --no-banner. ",
+    help="Turn on accessible mode, does not print ASCII art. Also does not print very large blocks of text, as this can cause some pain with screenreaders. This reduces the information you get. If you want the least likely feature but no banner, use --no-banner. ",
 )
 @click.option(
     "-e",
@@ -86,7 +82,8 @@ https://github.com/HashPals/Name-That-Hash [/bold blue]
     help="Turn on debugging logs. -vvv for maximum logs.",
 )
 def main(**kwargs):
-    """Name That Hash - Instantly name the type of any hash!
+    """
+    Name That Hash - Instantly name the type of any hash!
 
     Github:\n
     https://github.com/hashpals/name-that-hash
@@ -156,7 +153,7 @@ def set_logging(kwargs):
         logging.basicConfig(level=logging.CRITICAL)
 
 
-def api_return_hashes_as_json(chash: [str], args: dict = {"popular_only": False}):
+def api_return_hashes_as_json(chash: List, args: dict = {"popular_only": False}):
     """
     Using name-that-hash as an API? Call this function!
 
@@ -167,20 +164,18 @@ def api_return_hashes_as_json(chash: [str], args: dict = {"popular_only": False}
     return pretty_printer.greppable_output(compute_hashes_for_api(chash, args))
 
 
-def api_return_hashes_as_dict(chash: [str], args: dict = {"popular_only": False}):
+def api_return_hashes_as_dict(chash: List, args: dict = {"popular_only": False}):
     """
-    Returns the hashes as a Python dictionary
+    Returns hashes as a Python dictionary
     """
     pretty_printer = prettifier.Prettifier(args, api=True)
     return pretty_printer.turn_hash_objs_into_dict(compute_hashes_for_api(chash, args))
 
 
-def compute_hashes_for_api(chash: [str], args: dict = {}):
+def compute_hashes_for_api(chash: List, args: dict = {}):
     # nth = the object which names the hash types
 
     nth = hash_namer.Name_That_Hash(hashes.prototypes)
-    # prettifier print things :)
-    pretty_printer = prettifier.Prettifier(args, api=True)
     hashChecker = check_hashes.HashChecker(args, nth)
 
     for i in chash:

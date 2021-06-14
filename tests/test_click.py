@@ -1,4 +1,5 @@
 from click.testing import CliRunner
+
 from name_that_hash.runner import main
 
 

@@ -1,12 +1,14 @@
 import json
-from typing import NamedTuple, List
-from rich.console import Console
 import logging
-from name_that_hash import HashTypeObj, hash_info
+from typing import NamedTuple, List
+
+from rich.console import Console
+
+from name_that_hash import hash_info
+
 
 # we need a global console to control highlighting / printing
 console = Console(highlighter=False)
-
 
 class Prettifier:
     """
@@ -28,15 +30,14 @@ class Prettifier:
             self.args["popular_only"] = False
 
     def greppable_output(self, objs: List):
-
         logging.debug("Greppable output")
 
         """
-	takes the prototypes and turns it into json
-	returns the json
+        takes the prototypes and turns it into json
+        returns the json
 
-	Doesn't print it, it prints in main
-	"""
+        Doesn't print it, it prints in main
+        """
         return json.dumps(self.turn_hash_objs_into_dict(objs), indent=2)
 
     def turn_hash_objs_into_dict(self, objs: List):
@@ -62,22 +63,21 @@ class Prettifier:
     def pretty_print(self, objs):
         logging.debug("In pretty printing")
         """
-	prints it prettily in the format:
-	most popular hashes
-	1.
-	2.
-	3.
-	4.
+        prints it prettily in the format:
+        most popular hashes
+        1.
+        2.
+        3.
+        4.
 
 
-	then everything else on one line.
-	"""
-        multi_print = True if len(objs) > 1 else False
+        then everything else on one line.
+        """
         for i in objs:
             logging.debug(i)
-            self.pretty_print_one(i, multi_print)
+            self.pretty_print_one(i)
 
-    def pretty_print_one(self, objs: List, multi_print: bool):
+    def pretty_print_one(self, objs: List):
         out = f"\n[bold magenta]{objs.chash}[/bold magenta]\n"
 
         # It didn't find any hashes.
@@ -109,7 +109,7 @@ class Prettifier:
         return out
 
     def turn_named_tuple_pretty_print(self, nt: NamedTuple):
-        # This colours red
+        # This colour is red
         out = f"[bold #ff5f00]{nt['name']}[/bold #ff5f00], "
 
         hc = nt["hashcat"]
