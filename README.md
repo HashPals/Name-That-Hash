@@ -38,6 +38,22 @@ Name-that-hash will name that hash type!
 
 Honestly, do you need any more convincing? 😂
 
+Let's compare us to clones. To try to be unbiased, here's the only things you should care about:
+* Does it correctly identify hashes? How does it ensure it's accurcate?
+* Does it help me, a pentester, identify ambigious hashes like MD4 vs NTLM?
+* Is the database of hashes large? No point in using a hash-identifier which only identifies MD4!
+* How can I use it? If it's a Nokia only app it'd be hard to use.
+* Is it maintained? I don't want to implement unmaintained software.
+
+| **Features** | Name-That-Hash | Hati | 
+| --- | --- | ---|
+| Is it correct? | Yes, Name-That-Hash has 3197 tests to ensure all of our checks are correct. We even have an automated-test-matrix which checks all of our hashes against HashCat and John the Ripper. The _second_ they update the MD4 mode, add a new hash, or more examples we update our program. We're also used in programs with millions of downloads, and in chat servers with 70k+ people. If we incorrectly identify something, we'll know. | Kind of. There is no testing for Hati but everytime Name-That-Hash updates itself, Hati usually takes our updates within a week or two. Why wait when you can get it from the source? |
+| Does it help you? | Yes, Name-That-Hash has descriptions, links, and sorts hashes by rarity. If you're lost between MD4 and NTLM, the descriptions will tell you that NTLM is Windows and that might help you. We also sort hashes, so you'll never see Skype hash before SHA256. | Hati does not have any of these features. |
+| Is the database large? | Yes, we have the largest database of hashes. Because of our automated test matrix, we will always be the most up-to-date with correct information. **In fact, we're so good at keeping our database up to date other programs steal it from us!** | Technically, Hati has a larger database. This is because they support things that aren't hashes. I'd suggest being careful if you expected it to only return hashes. |
+| How can you use it? | Web app, Discord bot, CLI, CLI that returns JSON, Accessible CLI, Python Library, Web API | Ruby CLI and Ruby Library |
+| Is it maintained? | Yes, Name-That-Hash is maintained by a collective of open source creators. Around 5 people actively work on it. | 1 person works on Haiti |
+
+
 But, let's look at the features more in-depth.
 
 ## 📈 Feature Comparison
