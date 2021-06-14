@@ -2393,7 +2393,7 @@ prototypes = [
             HashInfo(
                 name="Argon2i",
                 hashcat=None,
-                john=None,
+                john="argon2",
                 extended=False,
             ),
         ],
@@ -2415,7 +2415,7 @@ prototypes = [
             HashInfo(
                 name="Argon2d",
                 hashcat=None,
-                john=None,
+                john="argon2",
                 extended=False,
             ),
         ],
