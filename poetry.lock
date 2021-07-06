@@ -156,7 +156,7 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xm
 
 [[package]]
 name = "rich"
-version = "10.4.0"
+version = "10.5.0"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 category = "main"
 optional = false
@@ -263,8 +263,8 @@ pytest = [
     {file = "pytest-6.2.4.tar.gz", hash = "sha256:50bcad0a0b9c5a72c8e4e7c9855a3ad496ca6a881a3641b4260605450772c54b"},
 ]
 rich = [
-    {file = "rich-10.4.0-py3-none-any.whl", hash = "sha256:9fb2404c4e870d4de3837c11d0cd1f26c44725865535caba1379c2343a49f6a1"},
-    {file = "rich-10.4.0.tar.gz", hash = "sha256:6e8a3e2c61e6cf6193bfcffbb89865a0973af7779d3ead913fdbbbc33f457c2c"},
+    {file = "rich-10.5.0-py3-none-any.whl", hash = "sha256:d36d4dddbb6cb87cdcb2c02f8ffd7836e1b136e3ba45d4b5a4da057f3b5e7798"},
+    {file = "rich-10.5.0.tar.gz", hash = "sha256:f8a16484b3d70708bdafd04f659f9ca0e2c0129b33a343c10c734838d361777f"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
