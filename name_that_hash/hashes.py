@@ -2420,4 +2420,15 @@ prototypes = [
             ),
         ],
     ),
+    Prototype (
+        regex = re.compile(r"\$bitlocker\$[0-9]\$[0-9]{2}\$[a-z0-9]{32}\$[a-z0-9]{7}\$[a-z0-9]{2}\$[a-z0-9]{24}\$[a-z0-9]{2}\$[a-z0-9]{120}", re.IGNORECASE),
+        modes = [
+            HashInfo(
+                    name="BitLocker",
+                    hashcat=22100,
+                    john="bitlocker",
+                extended=False
+            ),
+        ]
+    ),
 ]
