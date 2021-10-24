@@ -373,6 +373,7 @@ def test_argon2d():
     x = runner.api_return_hashes_as_json(hashes)
     assert "Argon2d" in x
 
+
 def test_bitlocker():
     hashes = [
         "$bitlocker$1$16$6f972989ddc209f1eccf07313a7266a2$1048576$12$3a33a8eaff5e6f81d907b591$60$316b0f6d4cb445fb056f0e3e0633c413526ff4481bbf588917b70a4e8f8075f5ceb45958a800b42cb7ff9b7f5e17c6145bf8561ea86f52d3592059fb"
