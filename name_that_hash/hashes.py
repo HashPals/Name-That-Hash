@@ -2427,7 +2427,18 @@ prototypes = [
                     name="BitLocker",
                     hashcat=22100,
                     john="bitlocker",
-                extended=False
+                    extended=False
+            ),
+        ]
+    ),
+    Prototype (
+        regex = re.compile(r"\$racf\$\*.{1,}\*[A-F0-9]{16}", re.IGNORECASE),
+        modes = [
+            HashInfo(
+                    name="RACF",
+                    hashcat=8500,
+                    john=None,
+                    extended=False
             ),
         ]
     ),

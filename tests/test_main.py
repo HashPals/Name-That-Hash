@@ -381,3 +381,11 @@ def test_bitlocker():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "BitLocker" in x
+
+def test_racf():
+    hashes = [
+        "$racf$*USER*FC2577C6EBE6265B"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "RACF" in x
