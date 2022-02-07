@@ -11,7 +11,7 @@ click = ">=7.1.2,<9.0.0"
 rich = ">=9.9,<11.0"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2"
+pytest = "^7.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
