@@ -2,19 +2,19 @@
 name: Tests
 on: pull_request
 jobs:
-  tests:
+  build:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ['3.6', '3.7', '3.8', '3.9']
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ['3.7', '3.8', '3.9', '3.10']
     name: Python ${{ matrix.python-version }}
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
         architecture: x64
-    - run: pip install nox==2019.11.9
-    - run: pip install poetry==1.0.5
+    - run: pip install nox
+    - run: pip install poetry
     - run: nox
