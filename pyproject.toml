@@ -6,9 +6,9 @@ authors = ["brandon <brandon@skerritt.blog>"]
 license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.2"
 click = ">=7.1.2,<9.0.0"
-rich = ">=9.9,<11.0"
+rich = ">=9.9,<13.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
