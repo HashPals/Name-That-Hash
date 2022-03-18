@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 Prototype = namedtuple("Prototype", ["regex", "modes"])
 
+
 @dataclass
 class HashInfo:
     name: str
@@ -2420,25 +2421,25 @@ prototypes = [
             ),
         ],
     ),
-    Prototype (
-        regex = re.compile(r"\$bitlocker\$[0-9]\$[0-9]{2}\$[a-z0-9]{32}\$[a-z0-9]{7}\$[a-z0-9]{2}\$[a-z0-9]{24}\$[a-z0-9]{2}\$[a-z0-9]{120}", re.IGNORECASE),
-        modes = [
+    Prototype(
+        regex=re.compile(r"\$bitlocker\$[0-9]\$[0-9]{2}\$[a-f0-9]{32}\$[a-f0-9]{7}\$[a-f0-9]{2}\$[a-f0-9]{24}\$[a-f0-9]{2}\$[a-f0-9]{120}", re.IGNORECASE),
+        modes=[
             HashInfo(
-                    name="BitLocker",
-                    hashcat=22100,
-                    john="bitlocker",
-                    extended=False
+                name="BitLocker",
+                hashcat=22100,
+                john="bitlocker",
+                extended=False
             ),
         ]
     ),
-    Prototype (
-        regex = re.compile(r"\$racf\$\*.{1,}\*[A-F0-9]{16}", re.IGNORECASE),
-        modes = [
+    Prototype(
+        regex=re.compile(r"\$racf\$\*.{1,}\*[A-F0-9]{16}", re.IGNORECASE),
+        modes=[
             HashInfo(
-                    name="RACF",
-                    hashcat=8500,
-                    john=None,
-                    extended=False
+                name="RACF",
+                hashcat=8500,
+                john=None,
+                extended=False
             ),
         ]
     ),
