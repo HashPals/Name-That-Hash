@@ -2378,11 +2378,55 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\\$pkzip2?\\$[a-f0-9\\*]+\\$\/pkzip2?\\$$", re.IGNORECASE),
+        regex=re.compile(r"^\$pkzip2?\$(1)\*[0-9]{1}\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,4}\*[0-9a-f]{1,4}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,3}\*(8)\*[0-9a-f]{1,4}(\*[0-9a-f]{1,4})?\*[0-9a-f]{1,4}\*[a-f0-9]{0,16384}\*\$\/pkzip2?\$$", re.IGNORECASE),
         modes=[
             HashInfo(
-                name="PKZIP",
-                hashcat=None,
+                name="PKZIP (Compressed)",
+                hashcat=17200,
+                john="pkzip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$pkzip2?\$(1)\*[0-9]{1}\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,4}\*[0-9a-f]{1,4}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,3}\*(0)\*[0-9a-f]{1,4}(\*[0-9a-f]{1,4})?\*[0-9a-f]{1,4}\*[a-f0-9]{0,16384}\*\$\/pkzip2?\$$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP (Uncompressed)",
+                hashcat=17210,
+                john="pkzip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,4}\*[0-9a-f]{1,4}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]{1,16384})+\*(8)\*[0-9a-f]{1,4}(\*[0-9a-f]{1,4})?\*[0-9a-f]{1,4}\*[a-f0-9]{0,16384}\*\$\/pkzip2?\$$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP (Compressed Multi-File)",
+                hashcat=17220,
+                john="pkzip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,4}\*[0-9a-f]{1,4}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]{1,16384})+\*(0)\*[0-9a-f]{1,4}(\*[0-9a-f]{1,4})?\*[0-9a-f]{1,4}\*[a-f0-9]{0,16384}\*\$\/pkzip2?\$$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP (Mixed Multi-File)",
+                hashcat=17225,
+                john="pkzip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,4}\*[0-9a-f]{1,4}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]{1,16384})+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP (Mixed Multi-File Checksum-Only)",
+                hashcat=17230,
                 john="pkzip",
                 extended=False,
             ),
