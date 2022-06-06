@@ -1349,7 +1349,7 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^(.+)?\$[a-f0-9]{16}$", re.IGNORECASE),
+        regex=re.compile(r"^([^$]+)?\$[a-f0-9]{16}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="SAP CODVN B (BCODE)", hashcat=7700, john="sapb", extended=False
@@ -2483,6 +2483,50 @@ prototypes = [
                 name="RACF",
                 hashcat=8500,
                 john=None,
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$RAR3\$\*(1)\*[0-9a-f]{1,16}\*[0-9a-f]{1,8}\*[0-9a-f]{1,16}\*[0-9a-f]{1,16}\*[01]\*([0-9a-f]+|[^*]{1,64}\*[0-9a-f]{1,16})\*30$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR3-p (Uncompressed)",
+                hashcat=23700,
+                john="rar",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$RAR3\$\*(1)\*[0-9a-f]{1,16}\*[0-9a-f]{1,8}\*[0-9a-f]{1,16}\*[0-9a-f]{1,16}\*[01]\*([0-9a-f]+|[^*]{1,64}\*[0-9a-f]{1,16})\*(31|32|33|34|35)$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR3-p (Compressed)",
+                hashcat=23800,
+                john="rar",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$RAR3\$\*0\*[0-9a-f]{1,16}\*[0-9a-f]+$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR3-hp",
+                hashcat=12500,
+                john="rar",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$rar5\$[0-9a-f]{1,2}\$[0-9a-f]{1,32}\$[0-9a-f]{1,2}\$[0-9a-f]{1,32}\$[0-9a-f]{1,2}\$[0-9a-f]{1,16}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR5",
+                hashcat=13000,
+                john="rar",
                 extended=False
             ),
         ]

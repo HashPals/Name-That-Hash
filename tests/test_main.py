@@ -417,3 +417,39 @@ def test_argon2d():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "Argon2d" in x
+
+
+def test_rar3_uncompressed():
+    hashes = [
+        "$RAR3$*1*e54a73729887cb53*49b0a846*16*14*1*34620bcca8176642a210b1051901921e*30"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "RAR3-p (Uncompressed)" in x
+
+
+def test_rar3_compressed():
+    hashes = [
+        "$RAR3$*1*ad56eb40219c9da2*834064ce*32*13*1*eb47b1abe17a1a75bce6c92ab1cef3f4126035ea95deaf08b3f32a0c7b8078e1*33"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "RAR3-p (Compressed)" in x
+
+
+def test_rar3_hp():
+    hashes = [
+        "$RAR3$*0*45109af8ab5f297a*adbf6c5385d7a40373e8f77d7b89d317"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "RAR3-hp" in x
+
+
+def test_rar5():
+    hashes = [
+        "$rar5$16$74575567518807622265582327032280$15$f8b4064de34ac02ecabfe9abdf93ed6a$8$9843834ed0f7c754"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "RAR5" in x
