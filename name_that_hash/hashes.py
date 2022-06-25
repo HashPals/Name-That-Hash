@@ -729,7 +729,7 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^(\$2[axy]|\$2)\$[0-9]{2}\$[a-z0-9\/.]{53}$", re.IGNORECASE),
+        regex=re.compile(r"^(\$2[abxy]?|\$2)\$[0-9]{2}\$[a-z0-9\/.]{53}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Blowfish(OpenBSD)",
