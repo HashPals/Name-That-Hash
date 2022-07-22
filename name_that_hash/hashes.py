@@ -2526,7 +2526,7 @@ prototypes = [
             HashInfo(
                 name="RAR5",
                 hashcat=13000,
-                john="rar",
+                john="rar5",
                 extended=False
             ),
         ]
