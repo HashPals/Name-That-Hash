@@ -2531,4 +2531,48 @@ prototypes = [
             ),
         ]
     ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*1\*\d+\*\d\*[0-9a-f]{32}\*[0-9a-f]{64}\*[0-9a-f]{32}\*[0-9a-f]{64}\*\d\*[^*]*(\*[0-9a-f]+)?$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="KeePass 1 AES (without keyfile)",
+                hashcat=13400,
+                john="KeePass",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*1\*\d+\*\d\*[0-9a-f]{32}\*[0-9a-f]{64}\*[0-9a-f]{32}\*[0-9a-f]{64}\*\d\*[^*]*(\*[0-9a-f]+)?\*\d+\*\d+\*[0-9a-f]{64}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="KeePass 1 TwoFish (with keyfile)",
+                hashcat=13400,
+                john="KeePass",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*2\*\d+\*\d+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="KeePass 2 AES (without keyfile)",
+                hashcat=13400,
+                john="KeePass",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*2\*\d+\*\d+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*\d+\*\d+\*[0-9a-f]+$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="KeePass 2 AES (with keyfile)",
+                hashcat=13400,
+                john="KeePass",
+                extended=False
+            ),
+        ]
+    ),
 ]
