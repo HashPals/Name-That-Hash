@@ -748,6 +748,18 @@ prototypes = [
         ],
     ),
     Prototype(
+        regex=re.compile(r"^\$y\$[.\/A-Za-z0-9]+\$[.\/a-zA-Z0-9]+\$[.\/A-Za-z0-9]{43}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="yescrypt",
+                hashcat="Not yet supported, see notes in summary.",
+                john="On systems that use libxcrypt, you may use --format=crypt to use JtR in passthrough mode which uses the system's crypt function.",
+                extended=False,
+                description="Can be used in Linux Shadow Files in modern Linux distributions like Ubuntu 22.04, Debian 11, Fedora 35. On hashcat this is not yet implemented, please vote (👍 \"thumbs up\") on this issue: https://github.com/hashcat/hashcat/issues/2816."
+            )
+        ],
+    ),
+    Prototype(
         regex=re.compile(r"^[a-f0-9]{40}:[a-f0-9]{16}$", re.IGNORECASE),
         modes=[HashInfo(name="Android PIN", hashcat=5800, john=None, extended=False)],
     ),
