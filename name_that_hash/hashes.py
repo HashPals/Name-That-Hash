@@ -2500,5 +2500,16 @@ prototypes = [
                 extended=False
             ),
         ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$odf\$\*1\*1\*100000\*32\*[a-f0-9]{64}\*16\*[a-f0-9]{32}\*16\*[a-f0-9]{32}\*0\*[a-f0-9]{2048}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Open Document Format (ODF) 1.2 (SHA-256, AES)",
+                hashcat=18400,
+                john=None,
+                extended=False
+            ),
+        ]
     )
 ]
