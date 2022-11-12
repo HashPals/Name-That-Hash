@@ -121,6 +121,30 @@ prototypes = [
         ],
     ),
     Prototype(
+        regex=re.compile(r"^\$keepass\$\*1\*50000\*(0|1)\*([a-f0-9]{32})\*([a-f0-9]{64})\*([a-f0-9]{32})\*([a-f0-9]{64})\*1\*(192|1360)\*([a-f0-9]{384})$"),
+        modes=[
+            HashInfo(name="Keepass 1 AES / without keyfile", hashcat=13400, john=None, extended=False),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*1\*6000\*(0|1)\*([a-f0-9]{32})\*([a-f0-9]{64})\*([a-f0-9]{32})\*([a-f0-9]{64})\*1\*(192|1360)\*([a-f0-9]{2720})\*1\*64\*([a-f0-9]{64})$"),
+        modes=[
+            HashInfo(name="Keepass 1 Twofish / with keyfile", hashcat=13400, john=None, extended=False),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*2\*6000\*222(\*[a-f0-9]{64}){2}(\*[a-f0-9]{32}){1}(\*[a-f0-9]{64}){2}\*1\*64(\*[a-f0-9]{64}){1}$"),
+        modes=[
+            HashInfo(name="Keepass 2 AES / with keyfile", hashcat=13400, john=None, extended=False),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*2\*6000\*222\*(([a-f0-9]{32,64})(\*)?)+$"),
+        modes=[
+            HashInfo(name="Keepass 2 AES / without keyfile", hashcat=13400, john=None, extended=False),
+        ],
+    ),
+    Prototype(
         regex=re.compile(r"^[a-z0-9\/.]{24}$", re.IGNORECASE),
         modes=[HashInfo(name="Crypt16", hashcat=None, john=None, extended=False)],
     ),
