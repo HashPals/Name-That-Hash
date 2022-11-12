@@ -2479,4 +2479,15 @@ prototypes = [
             ),
         ]
     ),
+    Prototype(
+        regex=re.compile(r"^\$RAR3\$\*1\*[a-f0-9]{16}\*[a-f0-9]{8}\*16\*14\*1\*[a-f0-9]{32}\*30", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR3-p (Uncompressed)",
+                hashcat=23700,
+                john=None,
+                extended=False
+            ),
+        ]
+    )
 ]
