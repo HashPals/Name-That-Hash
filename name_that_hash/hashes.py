@@ -2489,5 +2489,16 @@ prototypes = [
                 extended=False
             ),
         ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$sshng\$4\$16\$[0-9]{32}\$1232\$[a-f0-9]{2464}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RSA/DSA/EC/OpenSSH Private Keys ($4$)",
+                hashcat=22941,
+                john=None,
+                extended=False
+            ),
+        ]
     )
 ]
