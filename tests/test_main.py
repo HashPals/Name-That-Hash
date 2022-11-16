@@ -471,3 +471,12 @@ def test_keepass_2():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "KeePass 2" in x
+
+
+def test_yescrypt():
+    hashes = [
+        "$y$j9T$.9s2wZRY3hcP/udKIFher1$sIBIYsiMmFlXhKOO4ZDJDXo54byuq7a4xAD0k9jw2m4"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "yescrypt" in x
