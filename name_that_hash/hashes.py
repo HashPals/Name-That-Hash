@@ -121,6 +121,30 @@ prototypes = [
         ],
     ),
     Prototype(
+        regex=re.compile(r"^\$keepass\$\*1\*50000\*(0|1)\*([a-f0-9]{32})\*([a-f0-9]{64})\*([a-f0-9]{32})\*([a-f0-9]{64})\*1\*(192|1360)\*([a-f0-9]{384})$"),
+        modes=[
+            HashInfo(name="Keepass 1 AES / without keyfile", hashcat=13400, john=None, extended=False),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*1\*6000\*(0|1)\*([a-f0-9]{32})\*([a-f0-9]{64})\*([a-f0-9]{32})\*([a-f0-9]{64})\*1\*(192|1360)\*([a-f0-9]{2720})\*1\*64\*([a-f0-9]{64})$"),
+        modes=[
+            HashInfo(name="Keepass 1 Twofish / with keyfile", hashcat=13400, john=None, extended=False),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*2\*6000\*222(\*[a-f0-9]{64}){2}(\*[a-f0-9]{32}){1}(\*[a-f0-9]{64}){2}\*1\*64(\*[a-f0-9]{64}){1}$"),
+        modes=[
+            HashInfo(name="Keepass 2 AES / with keyfile", hashcat=13400, john=None, extended=False),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*2\*6000\*222\*(([a-f0-9]{32,64})(\*)?)+$"),
+        modes=[
+            HashInfo(name="Keepass 2 AES / without keyfile", hashcat=13400, john=None, extended=False),
+        ],
+    ),
+    Prototype(
         regex=re.compile(r"^[a-z0-9\/.]{24}$", re.IGNORECASE),
         modes=[HashInfo(name="Crypt16", hashcat=None, john=None, extended=False)],
     ),
@@ -745,6 +769,18 @@ prototypes = [
                 extended=False,
             ),
             HashInfo(name="bcrypt", hashcat=3200, john="bcrypt", extended=False),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$y\$[.\/A-Za-z0-9]+\$[.\/a-zA-Z0-9]+\$[.\/A-Za-z0-9]{43}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="yescrypt",
+                hashcat="Not yet supported, see notes in summary.",
+                john="On systems that use libxcrypt, you may use --format=crypt to use JtR in passthrough mode which uses the system's crypt function.",
+                extended=False,
+                description="Can be used in Linux Shadow Files in modern Linux distributions like Ubuntu 22.04, Debian 11, Fedora 35. On hashcat this is not yet implemented, please vote (👍 \"thumbs up\") on this issue: https://github.com/hashcat/hashcat/issues/2816."
+            )
         ],
     ),
     Prototype(
@@ -2443,4 +2479,37 @@ prototypes = [
             ),
         ]
     ),
+    Prototype(
+        regex=re.compile(r"^\$RAR3\$\*1\*[a-f0-9]{16}\*[a-f0-9]{8}\*16\*14\*1\*[a-f0-9]{32}\*30", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR3-p (Uncompressed)",
+                hashcat=23700,
+                john=None,
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$sshng\$4\$16\$[0-9]{32}\$1232\$[a-f0-9]{2464}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RSA/DSA/EC/OpenSSH Private Keys ($4$)",
+                hashcat=22941,
+                john=None,
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$odf\$\*1\*1\*100000\*32\*[a-f0-9]{64}\*16\*[a-f0-9]{32}\*16\*[a-f0-9]{32}\*0\*[a-f0-9]{2048}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="Open Document Format (ODF) 1.2 (SHA-256, AES)",
+                hashcat=18400,
+                john=None,
+                extended=False
+            ),
+        ]
+    )
 ]
