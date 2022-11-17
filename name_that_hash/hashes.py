@@ -53,7 +53,7 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^[a-z0-9\/.]{13}$", re.IGNORECASE),
+        regex=re.compile(r"^[a-z0-9\/.]{12}[.26AEIMQUYcgkosw]{1}$", re.IGNORECASE),
         modes=[
             HashInfo(name="DES(Unix)", hashcat=1500, john="descrypt", extended=False),
             HashInfo(
