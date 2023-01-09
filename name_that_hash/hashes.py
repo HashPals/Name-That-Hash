@@ -753,7 +753,7 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^(\$2[axy]|\$2)\$[0-9]{2}\$[a-z0-9\/.]{53}$", re.IGNORECASE),
+        regex=re.compile(r"^(\$2[abxy]?|\$2)\$[0-9]{2}\$[a-z0-9\/.]{53}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Blowfish(OpenBSD)",
@@ -1385,7 +1385,7 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^(.+)?\$[a-f0-9]{16}$", re.IGNORECASE),
+        regex=re.compile(r"^([^$]+)?\$[a-f0-9]{16}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="SAP CODVN B (BCODE)", hashcat=7700, john="sapb", extended=False
@@ -2252,7 +2252,7 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(
-            r"\$zip2\$\*[0-9]{1}\*[0-9]{1}\*[0-9]{1}\*[a-f0-9]{16,32}\*[a-f0-9]{1,6}\*[a-f0-9]{1,6}\*[a-f0-9]{0,16384}\*[a-f0-9]{20}\*\$\/zip2\$",
+            r"\$zip2\$\*[0-9]{1}\*[0-9]{1}\*[0-9]{1}\*[a-f0-9]{16,32}\*[a-f0-9]{1,6}\*[a-f0-9]{1,6}\*[a-f0-9]+\*[a-f0-9]{20}\*\$\/zip2\$",
             re.IGNORECASE,
         ),
         modes=[
@@ -2414,11 +2414,55 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\\$pkzip2?\\$[a-f0-9\\*]+\\$\/pkzip2?\\$$", re.IGNORECASE),
+        regex=re.compile(r"^\$pkzip2?\$(1)\*[0-9]{1}\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,8}\*[0-9a-f]{1,4}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*(8)\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
         modes=[
             HashInfo(
-                name="PKZIP",
-                hashcat=None,
+                name="PKZIP (Compressed)",
+                hashcat=17200,
+                john="pkzip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$pkzip2?\$(1)\*[0-9]{1}\*[0-9]{1}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*(0)\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP (Uncompressed)",
+                hashcat=17210,
+                john="pkzip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,3}\*([^0*][0-9a-f]{0,2})\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]+)+\*(8)\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP (Compressed Multi-File)",
+                hashcat=17220,
+                john="pkzip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,8}\*([0-9a-f]{1,8})\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]+)+\*([08])\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP (Mixed Multi-File)",
+                hashcat=17225,
+                john="pkzip",
+                extended=False,
+            ),
+        ],
+    ),
+    Prototype(
+        regex=re.compile(r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]+)+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="PKZIP (Mixed Multi-File Checksum-Only)",
+                hashcat=17230,
                 john="pkzip",
                 extended=False,
             ),
@@ -2480,23 +2524,100 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$RAR3\$\*1\*[a-f0-9]{16}\*[a-f0-9]{8}\*16\*14\*1\*[a-f0-9]{32}\*30", re.IGNORECASE),
-        modes=[
-            HashInfo(
-                name="RAR3-p (Uncompressed)",
-                hashcat=23700,
-                john=None,
-                extended=False
-            ),
-        ]
-    ),
-    Prototype(
         regex=re.compile(r"^\$sshng\$4\$16\$[0-9]{32}\$1232\$[a-f0-9]{2464}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="RSA/DSA/EC/OpenSSH Private Keys ($4$)",
                 hashcat=22941,
                 john=None,
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$RAR3\$\*(1)\*[0-9a-f]{1,16}\*[0-9a-f]{1,8}\*[0-9a-f]{1,16}\*[0-9a-f]{1,16}\*[01]\*([0-9a-f]+|[^*]{1,64}\*[0-9a-f]{1,16})\*30$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR3-p (Uncompressed)",
+                hashcat=23700,
+                john="rar",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$RAR3\$\*(1)\*[0-9a-f]{1,16}\*[0-9a-f]{1,8}\*[0-9a-f]{1,16}\*[0-9a-f]{1,16}\*[01]\*([0-9a-f]+|[^*]{1,64}\*[0-9a-f]{1,16})\*(31|32|33|34|35)$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR3-p (Compressed)",
+                hashcat=23800,
+                john="rar",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$RAR3\$\*0\*[0-9a-f]{1,16}\*[0-9a-f]+$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR3-hp",
+                hashcat=12500,
+                john="rar",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$rar5\$[0-9a-f]{1,2}\$[0-9a-f]{1,32}\$[0-9a-f]{1,2}\$[0-9a-f]{1,32}\$[0-9a-f]{1,2}\$[0-9a-f]{1,16}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RAR5",
+                hashcat=13000,
+                john="rar5",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*1\*\d+\*\d\*[0-9a-f]{32}\*[0-9a-f]{64}\*[0-9a-f]{32}\*[0-9a-f]{64}\*\d\*[^*]*(\*[0-9a-f]+)?$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="KeePass 1 AES (without keyfile)",
+                hashcat=13400,
+                john="KeePass",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*1\*\d+\*\d\*[0-9a-f]{32}\*[0-9a-f]{64}\*[0-9a-f]{32}\*[0-9a-f]{64}\*\d\*[^*]*(\*[0-9a-f]+)?\*\d+\*\d+\*[0-9a-f]{64}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="KeePass 1 TwoFish (with keyfile)",
+                hashcat=13400,
+                john="KeePass",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*2\*\d+\*\d+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="KeePass 2 AES (without keyfile)",
+                hashcat=13400,
+                john="KeePass",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(r"^\$keepass\$\*2\*\d+\*\d+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*\d+\*\d+\*[0-9a-f]+$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="KeePass 2 AES (with keyfile)",
+                hashcat=13400,
+                john="KeePass",
                 extended=False
             ),
         ]
