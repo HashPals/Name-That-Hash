@@ -378,7 +378,7 @@ prototypes = [
             HashInfo(
                 name="Domain Cached Credentials",
                 hashcat=1100,
-                john="mscach",
+                john="mscash",
                 extended=False,
             )
         ],
@@ -392,7 +392,7 @@ prototypes = [
             HashInfo(
                 name="Domain Cached Credentials 2",
                 hashcat=2100,
-                john="mscach2",
+                john="mscash2",
                 extended=False,
             )
         ],
