@@ -2632,5 +2632,16 @@ prototypes = [
                 extended=False
             ),
         ]
-    )
+    ),
+    Prototype(
+        regex=re.compile(r"^[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="JWT (JSON Web Token)",
+                hashcat=16500,
+                john=None,
+                extended=False
+            ),
+        ]
+    ),
 ]
