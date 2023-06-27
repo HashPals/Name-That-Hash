@@ -480,3 +480,11 @@ def test_yescrypt():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "yescrypt" in x
+
+def test_jwt():
+    hashes = [
+        "eyJhbGciOiJIUzI1NiJ9.eyIzNDM2MzQyMCI6NTc2ODc1NDd9.f1nXZ3V_Hrr6ee-AFCTLaHRnrkiKmio2t3JqwL32guY"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "JWT (JSON Web Token)" in x

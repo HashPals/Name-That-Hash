@@ -1512,3 +1512,11 @@ def test_hashcat_13000():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert '"hashcat": 13000,' in x
+
+def test_hashcat_16500():
+    hashes = [
+        "eyJhbGciOiJIUzI1NiJ9.eyIzNDM2MzQyMCI6NTc2ODc1NDd9.f1nXZ3V_Hrr6ee-AFCTLaHRnrkiKmio2t3JqwL32guY"
+    ]
+    
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 16500,' in x
