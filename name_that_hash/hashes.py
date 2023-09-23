@@ -2644,4 +2644,15 @@ prototypes = [
             ),
         ]
     ),
+    Prototype(
+        regex=re.compile(r"WPA\*0[12]\*([0-9a-fA-F]+)\*", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="WPA-PBKDF2-PMKID+EAPOL",
+                hashcat=22000,
+                john=None,
+                extended=False
+            ),
+        ]
+    ),
 ]
