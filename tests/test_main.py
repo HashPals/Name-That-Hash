@@ -488,3 +488,11 @@ def test_jwt():
 
     x = runner.api_return_hashes_as_json(hashes)
     assert "JWT (JSON Web Token)" in x
+
+def test_filevault_2():
+    hashes = [
+        "$fvde$1$16$84286044060108438487434858307513$20000$f1620ab93192112f0a23eea89b5d4df065661f974b704191"
+    ]
+
+    x = runner.api_return_hashes_as_json(hashes)
+    assert "FileVault 2" in x
