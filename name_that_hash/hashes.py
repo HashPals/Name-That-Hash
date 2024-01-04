@@ -1894,7 +1894,7 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^[a-z0-9\/.]{13,}$", re.IGNORECASE),
-        modes=[HashInfo(name="BigCrypt", hashcat=None, john="bigcrypt", extended=True)],
+        modes=[HashInfo(name="BigCrypt", hashcat=None, john="bcrypt", extended=True)],
     ),
     Prototype(
         regex=re.compile(r"^(\$cisco4\$)?[a-z0-9\/.]{43}$", re.IGNORECASE),
