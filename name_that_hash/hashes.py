@@ -19,7 +19,8 @@ prototypes = [
         regex=re.compile(r"^[a-f0-9]{4}$", re.IGNORECASE),
         modes=[
             HashInfo(name="CRC-16", hashcat=None, john=None, extended=False),
-            HashInfo(name="CRC-16-CCITT", hashcat=None, john=None, extended=False),
+            HashInfo(name="CRC-16-CCITT", hashcat=None,
+                     john=None, extended=False),
             HashInfo(name="FCS-16", hashcat=None, john=None, extended=False),
         ],
     ),
@@ -29,10 +30,13 @@ prototypes = [
             HashInfo(name="Adler-32", hashcat=None, john=None, extended=False),
             HashInfo(name="CRC-32B", hashcat=None, john=None, extended=False),
             HashInfo(name="FCS-32", hashcat=None, john=None, extended=False),
-            HashInfo(name="GHash-32-3", hashcat=None, john=None, extended=False),
-            HashInfo(name="GHash-32-5", hashcat=None, john=None, extended=False),
+            HashInfo(name="GHash-32-3", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="GHash-32-5", hashcat=None,
+                     john=None, extended=False),
             HashInfo(name="FNV-132", hashcat=None, john=None, extended=False),
-            HashInfo(name="Fletcher-32", hashcat=None, john=None, extended=False),
+            HashInfo(name="Fletcher-32", hashcat=None,
+                     john=None, extended=False),
             HashInfo(name="Joaat", hashcat=None, john=None, extended=False),
             HashInfo(name="ELF-32", hashcat=None, john=None, extended=False),
             HashInfo(name="XOR-32", hashcat=None, john=None, extended=False),
@@ -40,32 +44,40 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{6}$", re.IGNORECASE),
-        modes=[HashInfo(name="CRC-24", hashcat=None, john=None, extended=False)],
+        modes=[HashInfo(name="CRC-24", hashcat=None,
+                        john=None, extended=False)],
     ),
     Prototype(
-        regex=re.compile(r"^(\$crc32\$)?([a-f0-9]{8}.)?[a-f0-9]{8}$", re.IGNORECASE),
-        modes=[HashInfo(name="CRC-32", hashcat=11500, john="crc32", extended=False)],
+        regex=re.compile(
+            r"^(\$crc32\$)?([a-f0-9]{8}.)?[a-f0-9]{8}$", re.IGNORECASE),
+        modes=[HashInfo(name="CRC-32", hashcat=11500,
+                        john="crc32", extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^\+[a-z0-9\/.]{12}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Eggdrop IRC Bot", hashcat=None, john="bfegg", extended=False)
+            HashInfo(name="Eggdrop IRC Bot", hashcat=None,
+                     john="bfegg", extended=False)
         ],
     ),
     Prototype(
-        regex=re.compile(r"^[a-z0-9\/.]{12}[.26AEIMQUYcgkosw]{1}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^[a-z0-9\/.]{12}[.26AEIMQUYcgkosw]{1}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="DES(Unix)", hashcat=1500, john="descrypt", extended=False),
+            HashInfo(name="DES(Unix)", hashcat=1500,
+                     john="descrypt", extended=False),
             HashInfo(
                 name="Traditional DES", hashcat=1500, john="descrypt", extended=False
             ),
-            HashInfo(name="DEScrypt", hashcat=1500, john="descrypt", extended=False),
+            HashInfo(name="DEScrypt", hashcat=1500,
+                     john="descrypt", extended=False),
         ],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{16}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="MySQL323", hashcat=200, john="mysql", extended=False),
+            HashInfo(name="MySQL323", hashcat=200,
+                     john="mysql", extended=False),
             HashInfo(name="Half MD5", hashcat=5100, john=None, extended=False),
             HashInfo(name="FNV-164", hashcat=None, john=None, extended=False),
             HashInfo(name="CRC-64", hashcat=None, john=None, extended=False),
@@ -104,14 +116,17 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^_[a-z0-9\/.]{19}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="BSDi Crypt", hashcat=12400, john="bsdicrypt", extended=False)
+            HashInfo(name="BSDi Crypt", hashcat=12400,
+                     john="bsdicrypt", extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{24}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="CRC-96(ZIP)", hashcat=None, john=None, extended=False),
-            HashInfo(name="PKZIP Master Key", hashcat=20500, john=None, extended=False),
+            HashInfo(name="CRC-96(ZIP)", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="PKZIP Master Key", hashcat=20500,
+                     john=None, extended=False),
             HashInfo(
                 name="PKZIP Master Key (6 byte optimization)",
                 john=None,
@@ -121,32 +136,41 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$keepass\$\*1\*50000\*(0|1)\*([a-f0-9]{32})\*([a-f0-9]{64})\*([a-f0-9]{32})\*([a-f0-9]{64})\*1\*(192|1360)\*([a-f0-9]{384})$"),
+        regex=re.compile(
+            r"^\$keepass\$\*1\*50000\*(0|1)\*([a-f0-9]{32})\*([a-f0-9]{64})\*([a-f0-9]{32})\*([a-f0-9]{64})\*1\*(192|1360)\*([a-f0-9]{384})$"),
         modes=[
-            HashInfo(name="Keepass 1 AES / without keyfile", hashcat=13400, john=None, extended=False),
+            HashInfo(name="Keepass 1 AES / without keyfile",
+                     hashcat=13400, john=None, extended=False),
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$keepass\$\*1\*6000\*(0|1)\*([a-f0-9]{32})\*([a-f0-9]{64})\*([a-f0-9]{32})\*([a-f0-9]{64})\*1\*(192|1360)\*([a-f0-9]{2720})\*1\*64\*([a-f0-9]{64})$"),
+        regex=re.compile(
+            r"^\$keepass\$\*1\*6000\*(0|1)\*([a-f0-9]{32})\*([a-f0-9]{64})\*([a-f0-9]{32})\*([a-f0-9]{64})\*1\*(192|1360)\*([a-f0-9]{2720})\*1\*64\*([a-f0-9]{64})$"),
         modes=[
-            HashInfo(name="Keepass 1 Twofish / with keyfile", hashcat=13400, john=None, extended=False),
+            HashInfo(name="Keepass 1 Twofish / with keyfile",
+                     hashcat=13400, john=None, extended=False),
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$keepass\$\*2\*6000\*222(\*[a-f0-9]{64}){2}(\*[a-f0-9]{32}){1}(\*[a-f0-9]{64}){2}\*1\*64(\*[a-f0-9]{64}){1}$"),
+        regex=re.compile(
+            r"^\$keepass\$\*2\*6000\*222(\*[a-f0-9]{64}){2}(\*[a-f0-9]{32}){1}(\*[a-f0-9]{64}){2}\*1\*64(\*[a-f0-9]{64}){1}$"),
         modes=[
-            HashInfo(name="Keepass 2 AES / with keyfile", hashcat=13400, john=None, extended=False),
+            HashInfo(name="Keepass 2 AES / with keyfile",
+                     hashcat=13400, john=None, extended=False),
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$keepass\$\*2\*6000\*222\*(([a-f0-9]{32,64})(\*)?)+$"),
+        regex=re.compile(
+            r"^\$keepass\$\*2\*6000\*222\*(([a-f0-9]{32,64})(\*)?)+$"),
         modes=[
-            HashInfo(name="Keepass 2 AES / without keyfile", hashcat=13400, john=None, extended=False),
+            HashInfo(name="Keepass 2 AES / without keyfile",
+                     hashcat=13400, john=None, extended=False),
         ],
     ),
     Prototype(
         regex=re.compile(r"^[a-z0-9\/.]{24}$", re.IGNORECASE),
-        modes=[HashInfo(name="Crypt16", hashcat=None, john=None, extended=False)],
+        modes=[HashInfo(name="Crypt16", hashcat=None,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{32}$", re.IGNORECASE),
@@ -159,10 +183,14 @@ prototypes = [
                 description="Used for Linux Shadow files.",
             ),
             HashInfo(name="MD4", hashcat=900, john="raw-md4", extended=False),
-            HashInfo(name="Double MD5", hashcat=2600, john=None, extended=False),
-            HashInfo(name="Tiger-128", hashcat=None, john=None, extended=False),
-            HashInfo(name="Skein-256(128)", hashcat=None, john=None, extended=False),
-            HashInfo(name="Skein-512(128)", hashcat=None, john=None, extended=False),
+            HashInfo(name="Double MD5", hashcat=2600,
+                     john=None, extended=False),
+            HashInfo(name="Tiger-128", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="Skein-256(128)", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="Skein-512(128)", hashcat=None,
+                     john=None, extended=False),
             HashInfo(
                 name="Lotus Notes/Domino 5", hashcat=8600, john="lotus5", extended=False
             ),
@@ -179,7 +207,8 @@ prototypes = [
                 john=None,
                 extended=True,
             ),
-            HashInfo(name="md5(sha1($pass))", hashcat=4400, john=None, extended=True),
+            HashInfo(name="md5(sha1($pass))", hashcat=4400,
+                     john=None, extended=True),
             HashInfo(
                 name="md5(utf16($pass))", hashcat=None, john="dynamic_29", extended=True
             ),
@@ -225,7 +254,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"(?:\$dynamic_39\$)?[a-f0-9]{32}\$[a-z0-9]{1,32}\$?[a-z0-9]{1,500}", re.IGNORECASE),
+        regex=re.compile(
+            r"(?:\$dynamic_39\$)?[a-f0-9]{32}\$[a-z0-9]{1,32}\$?[a-z0-9]{1,500}", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="net-md5",
@@ -239,7 +269,8 @@ prototypes = [
         regex=re.compile(r"^[a-f0-9]{32}:[a-z0-9]+$", re.IGNORECASE),
         modes=[
             HashInfo(name="Skype", hashcat=23, john=None, extended=False),
-            HashInfo(name="ZipMonster", hashcat=None, john=None, extended=True),
+            HashInfo(name="ZipMonster", hashcat=None,
+                     john=None, extended=True),
             HashInfo(
                 name="md5(md5(md5($pass)))", hashcat=3500, john=None, extended=True
             ),
@@ -249,9 +280,12 @@ prototypes = [
                 john=None,
                 extended=True,
             ),
-            HashInfo(name="md5(sha1($pass))", hashcat=4400, john=None, extended=True),
-            HashInfo(name="md5($pass.$salt)", hashcat=10, john=None, extended=True),
-            HashInfo(name="md5($salt.$pass)", hashcat=20, john=None, extended=True),
+            HashInfo(name="md5(sha1($pass))", hashcat=4400,
+                     john=None, extended=True),
+            HashInfo(name="md5($pass.$salt)", hashcat=10,
+                     john=None, extended=True),
+            HashInfo(name="md5($salt.$pass)", hashcat=20,
+                     john=None, extended=True),
             HashInfo(
                 name="md5(unicode($pass).$salt)", hashcat=30, john=None, extended=True
             ),
@@ -354,7 +388,8 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^(\$snefru\$)?[a-f0-9]{32}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Snefru-128", hashcat=None, john="snefru-128", extended=False)
+            HashInfo(name="Snefru-128", hashcat=None,
+                     john="snefru-128", extended=False)
         ],
     ),
     Prototype(
@@ -400,7 +435,8 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^{SHA}[a-z0-9\/+]{27}=$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-1(Base64)", hashcat=101, john="nsldap", extended=False),
+            HashInfo(name="SHA-1(Base64)", hashcat=101,
+                     john="nsldap", extended=False),
             HashInfo(
                 name="Netscape LDAP SHA", hashcat=101, john="nsldap", extended=False
             ),
@@ -411,21 +447,25 @@ prototypes = [
             r"^\$1\$[a-z0-9\/.]{0,8}\$[a-z0-9\/.]{22}(:.*)?$", re.IGNORECASE
         ),
         modes=[
-            HashInfo(name="MD5 Crypt", hashcat=500, john="md5crypt", extended=False),
+            HashInfo(name="MD5 Crypt", hashcat=500,
+                     john="md5crypt", extended=False),
             HashInfo(
                 name="Cisco-IOS(MD5)", hashcat=500, john="md5crypt", extended=False
             ),
-            HashInfo(name="FreeBSD MD5", hashcat=500, john="md5crypt", extended=False),
+            HashInfo(name="FreeBSD MD5", hashcat=500,
+                     john="md5crypt", extended=False),
         ],
     ),
     Prototype(
         regex=re.compile(r"^0x[a-f0-9]{32}$", re.IGNORECASE),
-        modes=[HashInfo(name="Lineage II C4", hashcat=None, john=None, extended=False)],
+        modes=[HashInfo(name="Lineage II C4", hashcat=None,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^\$H\$[a-z0-9\/.]{31}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="phpBB v3.x", hashcat=400, john="phpass", extended=False),
+            HashInfo(name="phpBB v3.x", hashcat=400,
+                     john="phpass", extended=False),
             HashInfo(
                 name="Wordpress v2.6.0/2.6.1",
                 hashcat=400,
@@ -455,32 +495,38 @@ prototypes = [
         regex=re.compile(r"^[a-f0-9]{32}:[a-z0-9]{2}$", re.IGNORECASE),
         modes=[
             HashInfo(name="osCommerce", hashcat=21, john=None, extended=False),
-            HashInfo(name="xt:Commerce", hashcat=21, john=None, extended=False),
+            HashInfo(name="xt:Commerce", hashcat=21,
+                     john=None, extended=False),
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$apr1\$[a-z0-9\/.]{0,8}\$[a-z0-9\/.]{22}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$apr1\$[a-z0-9\/.]{0,8}\$[a-z0-9\/.]{22}$", re.IGNORECASE),
         modes=[
             HashInfo(name="MD5(APR)", hashcat=1600, john=None, extended=False),
-            HashInfo(name="Apache MD5", hashcat=1600, john=None, extended=False),
+            HashInfo(name="Apache MD5", hashcat=1600,
+                     john=None, extended=False),
             HashInfo(name="md5apr1", hashcat=1600, john=None, extended=True),
         ],
     ),
     Prototype(
         regex=re.compile(r"^{smd5}[a-z0-9$\/.]{31}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="AIX(smd5)", hashcat=6300, john="aix-smd5", extended=False)
+            HashInfo(name="AIX(smd5)", hashcat=6300,
+                     john="aix-smd5", extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{32}:.{5}$", re.IGNORECASE),
         modes=[
-            HashInfo(name=u"IP.Board ≥ v2+", hashcat=2811, john=None, extended=False)
+            HashInfo(name=u"IP.Board ≥ v2+", hashcat=2811,
+                     john=None, extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{32}:.{8}$", re.IGNORECASE),
-        modes=[HashInfo(name=u"MyBB ≥ v1.2+", hashcat=2811, john=None, extended=False)],
+        modes=[HashInfo(name=u"MyBB ≥ v1.2+", hashcat=2811,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-z0-9]{34}$", re.IGNORECASE),
@@ -500,7 +546,8 @@ prototypes = [
                 extended=False,
                 description="Used for checksums.[link=https://en.wikipedia.org/wiki/SHA-1]See more[/link]",
             ),
-            HashInfo(name="Double SHA-1", hashcat=4500, john=None, extended=False),
+            HashInfo(name="Double SHA-1", hashcat=4500,
+                     john=None, extended=False),
             HashInfo(
                 name="RIPEMD-160", hashcat=6000, john="ripemd-160", extended=False
             ),
@@ -552,8 +599,10 @@ prototypes = [
                 john="dynamic_270",
                 extended=False,
             ),
-            HashInfo(name="Haval-160", hashcat=None, john=None, extended=False),
-            HashInfo(name="Tiger-160", hashcat=None, john=None, extended=False),
+            HashInfo(name="Haval-160", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="Tiger-160", hashcat=None,
+                     john=None, extended=False),
             HashInfo(name="HAS-160", hashcat=None, john=None, extended=False),
             HashInfo(
                 name="LinkedIn",
@@ -562,8 +611,10 @@ prototypes = [
                 extended=False,
                 description="Hashcat mode is only supported in oclHashcat."
             ),
-            HashInfo(name="Skein-256(160)", hashcat=None, john=None, extended=False),
-            HashInfo(name="Skein-512(160)", hashcat=None, john=None, extended=False),
+            HashInfo(name="Skein-256(160)", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="Skein-512(160)", hashcat=None,
+                     john=None, extended=False),
             HashInfo(
                 name="MangosWeb Enhanced CMS", hashcat=None, john=None, extended=True
             ),
@@ -574,9 +625,12 @@ prototypes = [
                 extended=True,
                 description="Hashcat mode is only supported in hashcat-legacy."
             ),
-            HashInfo(name="sha1(md5($pass))", hashcat=4700, john=None, extended=True),
-            HashInfo(name="sha1($pass.$salt)", hashcat=110, john=None, extended=True),
-            HashInfo(name="sha1($salt.$pass)", hashcat=120, john=None, extended=True),
+            HashInfo(name="sha1(md5($pass))", hashcat=4700,
+                     john=None, extended=True),
+            HashInfo(name="sha1($pass.$salt)", hashcat=110,
+                     john=None, extended=True),
+            HashInfo(name="sha1($salt.$pass)", hashcat=120,
+                     john=None, extended=True),
             HashInfo(
                 name="sha1(unicode($pass).$salt)", hashcat=130, john=None, extended=True
             ),
@@ -603,14 +657,17 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{40}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="MySQL5.x", hashcat=300, john="mysql-sha1", extended=False),
-            HashInfo(name="MySQL4.1", hashcat=300, john="mysql-sha1", extended=False),
+            HashInfo(name="MySQL5.x", hashcat=300,
+                     john="mysql-sha1", extended=False),
+            HashInfo(name="MySQL4.1", hashcat=300,
+                     john="mysql-sha1", extended=False),
         ],
     ),
     Prototype(
         regex=re.compile(r"^[a-z0-9]{43}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Cisco-IOS(SHA-256)", hashcat=5700, john=None, extended=False)
+            HashInfo(name="Cisco-IOS(SHA-256)",
+                     hashcat=5700, john=None, extended=False)
         ],
     ),
     Prototype(
@@ -622,7 +679,8 @@ prototypes = [
             HashInfo(
                 name="Netscape LDAP SSHA", hashcat=111, john="nsldaps", extended=False
             ),
-            HashInfo(name="nsldaps", hashcat=111, john="nsldaps", extended=True),
+            HashInfo(name="nsldaps", hashcat=111,
+                     john="nsldaps", extended=True),
         ],
     ),
     Prototype(
@@ -639,17 +697,24 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{48}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Haval-192", hashcat=None, john=None, extended=False),
-            HashInfo(name="Tiger-192", hashcat=None, john="tiger", extended=False),
-            HashInfo(name="SHA-1(Oracle)", hashcat=None, john=None, extended=False),
-            HashInfo(name="OSX v10.4", hashcat=122, john="xsha", extended=False),
-            HashInfo(name="OSX v10.5", hashcat=122, john="xsha", extended=False),
-            HashInfo(name="OSX v10.6", hashcat=122, john="xsha", extended=False),
+            HashInfo(name="Haval-192", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="Tiger-192", hashcat=None,
+                     john="tiger", extended=False),
+            HashInfo(name="SHA-1(Oracle)", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="OSX v10.4", hashcat=122,
+                     john="xsha", extended=False),
+            HashInfo(name="OSX v10.5", hashcat=122,
+                     john="xsha", extended=False),
+            HashInfo(name="OSX v10.6", hashcat=122,
+                     john="xsha", extended=False),
         ],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{51}$", re.IGNORECASE),
-        modes=[HashInfo(name="Palshop CMS", hashcat=None, john=None, extended=False)],
+        modes=[HashInfo(name="Palshop CMS", hashcat=None,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-z0-9]{51}$", re.IGNORECASE),
@@ -663,16 +728,20 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^{ssha1}[0-9]{2}\$[a-z0-9$\/.]{44}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^{ssha1}[0-9]{2}\$[a-z0-9$\/.]{44}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="AIX(ssha1)", hashcat=6700, john="aix-ssha1", extended=False)
+            HashInfo(name="AIX(ssha1)", hashcat=6700,
+                     john="aix-ssha1", extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^0x0100[a-f0-9]{48}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="MSSQL(2005)", hashcat=132, john="mssql05", extended=False),
-            HashInfo(name="MSSQL(2008)", hashcat=132, john="mssql05", extended=False),
+            HashInfo(name="MSSQL(2005)", hashcat=132,
+                     john="mssql05", extended=False),
+            HashInfo(name="MSSQL(2008)", hashcat=132,
+                     john="mssql05", extended=False),
         ],
     ),
     Prototype(
@@ -693,7 +762,8 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{56}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-224", hashcat=1300, john="raw-sha224", extended=False),
+            HashInfo(name="SHA-224", hashcat=1300,
+                     john="raw-sha224", extended=False),
             HashInfo(
                 name="sha224($salt.$pass)",
                 hashcat=None,
@@ -742,18 +812,24 @@ prototypes = [
                 john="dynamic_58",
                 extended=True,
             ),
-            HashInfo(name="Haval-224", hashcat=None, john=None, extended=False),
-            HashInfo(name="SHA3-224", hashcat=17300, john=None, extended=False),
-            HashInfo(name="Skein-256(224)", hashcat=None, john=None, extended=False),
-            HashInfo(name="Skein-512(224)", hashcat=None, john=None, extended=False),
+            HashInfo(name="Haval-224", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="SHA3-224", hashcat=17300,
+                     john=None, extended=False),
+            HashInfo(name="Skein-256(224)", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="Skein-512(224)", hashcat=None,
+                     john=None, extended=False),
             HashInfo(
                 name="Skein-224", hashcat=None, john="dynamic_330", extended=False
             ),
-            HashInfo(name="Keccak-224", hashcat=17700, john=None, extended=False),
+            HashInfo(name="Keccak-224", hashcat=17700,
+                     john=None, extended=False),
         ],
     ),
     Prototype(
-        regex=re.compile(r"^(\$2[abxy]?|\$2)\$[0-9]{2}\$[a-z0-9\/.]{53}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^(\$2[abxy]?|\$2)\$[0-9]{2}\$[a-z0-9\/.]{53}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Blowfish(OpenBSD)",
@@ -768,11 +844,13 @@ prototypes = [
                 john=None,
                 extended=False,
             ),
-            HashInfo(name="bcrypt", hashcat=3200, john="bcrypt", extended=False),
+            HashInfo(name="bcrypt", hashcat=3200,
+                     john="bcrypt", extended=False),
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$y\$[.\/A-Za-z0-9]+\$[.\/a-zA-Z0-9]+\$[.\/A-Za-z0-9]{43}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$y\$[.\/A-Za-z0-9]+\$[.\/a-zA-Z0-9]+\$[.\/A-Za-z0-9]{43}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="yescrypt",
@@ -785,10 +863,12 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{40}:[a-f0-9]{16}$", re.IGNORECASE),
-        modes=[HashInfo(name="Android PIN", hashcat=5800, john=None, extended=False)],
+        modes=[HashInfo(name="Android PIN", hashcat=5800,
+                        john=None, extended=False)],
     ),
     Prototype(
-        regex=re.compile(r"^(S:)?[a-f0-9]{40}(:)?[a-f0-9]{20}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^(S:)?[a-f0-9]{40}(:)?[a-f0-9]{20}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Oracle 11g/12c", hashcat=112, john="oracle11", extended=False
@@ -801,13 +881,15 @@ prototypes = [
             re.IGNORECASE,
         ),
         modes=[
-            HashInfo(name="bcrypt(SHA-256)", hashcat=None, john=None, extended=False)
+            HashInfo(name="bcrypt(SHA-256)", hashcat=None,
+                     john=None, extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{32}:.{3}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="vBulletin < v3.8.5", hashcat=2611, john=None, extended=False)
+            HashInfo(name="vBulletin < v3.8.5",
+                     hashcat=2611, john=None, extended=False)
         ],
     ),
     Prototype(
@@ -821,7 +903,8 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^(\$snefru\$)?[a-f0-9]{64}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Snefru-256", hashcat=None, john="snefru-256", extended=False)
+            HashInfo(name="Snefru-256", hashcat=None,
+                     john="snefru-256", extended=False)
         ],
     ),
     Prototype(
@@ -855,19 +938,26 @@ prototypes = [
                 john="dynamic_300",
                 extended=False,
             ),
-            HashInfo(name="GOST R 34.11-94", hashcat=6900, john="gost", extended=False),
+            HashInfo(name="GOST R 34.11-94", hashcat=6900,
+                     john="gost", extended=False),
             HashInfo(
                 name="GOST CryptoPro S-Box", hashcat=None, john=None, extended=False
             ),
-            HashInfo(name="Blake2b-256", hashcat=None, john=None, extended=False),
+            HashInfo(name="Blake2b-256", hashcat=None,
+                     john=None, extended=False),
             HashInfo(
                 name="SHA3-256", hashcat=17400, john="dynamic_380", extended=False
             ),
-            HashInfo(name="PANAMA", hashcat=None, john="dynamic_320", extended=False),
-            HashInfo(name="BLAKE2-256", hashcat=None, john=None, extended=False),
-            HashInfo(name="BLAKE2-384", hashcat=None, john=None, extended=False),
-            HashInfo(name="Skein-256", hashcat=None, john="skein-256", extended=False),
-            HashInfo(name="Skein-512(256)", hashcat=None, john=None, extended=False),
+            HashInfo(name="PANAMA", hashcat=None,
+                     john="dynamic_320", extended=False),
+            HashInfo(name="BLAKE2-256", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="BLAKE2-384", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="Skein-256", hashcat=None,
+                     john="skein-256", extended=False),
+            HashInfo(name="Skein-512(256)", hashcat=None,
+                     john=None, extended=False),
             HashInfo(name="Ventrilo", hashcat=None, john=None, extended=True),
             HashInfo(
                 name="sha256($pass.$salt)",
@@ -946,7 +1036,8 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{32}:[a-z0-9]{32}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Joomla < v2.5.18", hashcat=11, john=None, extended=False)
+            HashInfo(name="Joomla < v2.5.18", hashcat=11,
+                     john=None, extended=False)
         ],
     ),
     Prototype(
@@ -962,7 +1053,8 @@ prototypes = [
             r"^(\$chap\$0\*)?[a-f0-9]{32}[\*:][a-f0-9]{32}(:[0-9]{2})?$", re.IGNORECASE
         ),
         modes=[
-            HashInfo(name="MD5(Chap)", hashcat=4800, john="chap", extended=False),
+            HashInfo(name="MD5(Chap)", hashcat=4800,
+                     john="chap", extended=False),
             HashInfo(
                 name="iSCSI CHAP Authentication",
                 hashcat=4800,
@@ -982,7 +1074,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^{ssha256}[0-9]{2}\$[a-z0-9$\/.]{60}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^{ssha256}[0-9]{2}\$[a-z0-9$\/.]{60}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="AIX(ssha256)", hashcat=6400, john="aix-ssha256", extended=False
@@ -1012,15 +1105,20 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^0x0100[a-f0-9]{88}$", re.IGNORECASE),
-        modes=[HashInfo(name="MSSQL(2000)", hashcat=131, john="mssql", extended=False)],
+        modes=[HashInfo(name="MSSQL(2000)", hashcat=131,
+                        john="mssql", extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{96}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="SHA-384", hashcat=10800, john="raw-sha384", extended=False),
-            HashInfo(name="SHA3-384", hashcat=None, john="dynamic_390", extended=False),
-            HashInfo(name="Skein-512(384)", hashcat=None, john=None, extended=False),
-            HashInfo(name="Skein-1024(384)", hashcat=None, john=None, extended=False),
+            HashInfo(name="SHA-384", hashcat=10800,
+                     john="raw-sha384", extended=False),
+            HashInfo(name="SHA3-384", hashcat=None,
+                     john="dynamic_390", extended=False),
+            HashInfo(name="Skein-512(384)", hashcat=None,
+                     john=None, extended=False),
+            HashInfo(name="Skein-1024(384)", hashcat=None,
+                     john=None, extended=False),
             HashInfo(
                 name="sha384($salt.$pass)",
                 hashcat=None,
@@ -1069,7 +1167,8 @@ prototypes = [
                 john="dynamic_78",
                 extended=True,
             ),
-            HashInfo(name="Skein-384", hashcat=None, john="dynamic_350", extended=True),
+            HashInfo(name="Skein-384", hashcat=None,
+                     john="dynamic_350", extended=True),
         ],
     ),
     Prototype(
@@ -1103,8 +1202,10 @@ prototypes = [
                 extended=False,
                 description="Used in Bitcoin Blockchain and Shadow Files.",
             ),
-            HashInfo(name="Keccak-512", hashcat=1800, john=None, extended=False),
-            HashInfo(name="Whirlpool", hashcat=6100, john="whirlpool", extended=False),
+            HashInfo(name="Keccak-512", hashcat=1800,
+                     john=None, extended=False),
+            HashInfo(name="Whirlpool", hashcat=6100,
+                     john="whirlpool", extended=False),
             HashInfo(
                 name="Salsa10",
                 hashcat=None,
@@ -1126,9 +1227,12 @@ prototypes = [
                 extended=False,
                 description="Used in Wireguard, Zcash, IPFS and more.[link = https://en.wikipedia.org/wiki/BLAKE_(hash_function)#Users_of_BLAKE2]See more[/link]",
             ),
-            HashInfo(name="SHA3-512", hashcat=17600, john="raw-sha3", extended=False),
-            HashInfo(name="Skein-512", hashcat=None, john="skein-512", extended=False),
-            HashInfo(name="Skein-1024(512)", hashcat=None, john=None, extended=False),
+            HashInfo(name="SHA3-512", hashcat=17600,
+                     john="raw-sha3", extended=False),
+            HashInfo(name="Skein-512", hashcat=None,
+                     john="skein-512", extended=False),
+            HashInfo(name="Skein-1024(512)", hashcat=None,
+                     john=None, extended=False),
             HashInfo(
                 name="sha512($pass.$salt)", hashcat=1710, john=None, extended=True
             ),
@@ -1153,7 +1257,8 @@ prototypes = [
                 john="hmac-sha512",
                 extended=True,
             ),
-            HashInfo(name="BLAKE2-224", hashcat=None, john=None, extended=False),
+            HashInfo(name="BLAKE2-224", hashcat=None,
+                     john=None, extended=False),
             HashInfo(
                 name="HMAC-SHA512 (key = $salt)",
                 hashcat=1760,
@@ -1187,18 +1292,22 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^[a-f0-9]{136}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="OSX v10.7", hashcat=1722, john="xsha512", extended=False)
+            HashInfo(name="OSX v10.7", hashcat=1722,
+                     john="xsha512", extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^0x0200[a-f0-9]{136}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="MSSQL(2012)", hashcat=1731, john="mssql12", extended=False),
-            HashInfo(name="MSSQL(2014)", hashcat=1731, john="mssql12", extended=False),
+            HashInfo(name="MSSQL(2012)", hashcat=1731,
+                     john="mssql12", extended=False),
+            HashInfo(name="MSSQL(2014)", hashcat=1731,
+                     john="mssql12", extended=False),
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$ml\$[0-9]+\$[a-f0-9]{64}\$[a-f0-9]{128}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$ml\$[0-9]+\$[a-f0-9]{64}\$[a-f0-9]{128}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="OSX v10.8",
@@ -1216,18 +1325,21 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{256}$", re.IGNORECASE),
-        modes=[HashInfo(name="Skein-1024", hashcat=None, john=None, extended=False)],
+        modes=[HashInfo(name="Skein-1024", hashcat=None,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(
             r"^grub\.pbkdf2\.sha512\.[0-9]+\.([a-f0-9]{128,2048}\.|[0-9]+\.)?[a-f0-9]{128}$",
             re.IGNORECASE,
         ),
-        modes=[HashInfo(name="GRUB 2", hashcat=7200, john=None, extended=False)],
+        modes=[HashInfo(name="GRUB 2", hashcat=7200,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^sha1\$[a-z0-9]+\$[a-f0-9]{40}$", re.IGNORECASE),
-        modes=[HashInfo(name="Django(SHA-1)", hashcat=124, john=None, extended=False)],
+        modes=[HashInfo(name="Django(SHA-1)", hashcat=124,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{49}$", re.IGNORECASE),
@@ -1243,7 +1355,8 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^\$S\$[a-z0-9\/.]{52}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Drupal > v7.x", hashcat=7900, john="drupal7", extended=False)
+            HashInfo(name="Drupal > v7.x", hashcat=7900,
+                     john="drupal7", extended=False)
         ],
     ),
     Prototype(
@@ -1258,9 +1371,11 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^0x[a-f0-9]{4}[a-f0-9]{16}[a-f0-9]{64}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^0x[a-f0-9]{4}[a-f0-9]{16}[a-f0-9]{64}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Sybase ASE", hashcat=8000, john="sybasease", extended=False)
+            HashInfo(name="Sybase ASE", hashcat=8000,
+                     john="sybasease", extended=False)
         ],
     ),
     Prototype(
@@ -1291,17 +1406,20 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^sha256\$[a-z0-9]+\$[a-f0-9]{64}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Django(SHA-256)", hashcat=None, john=None, extended=False)
+            HashInfo(name="Django(SHA-256)", hashcat=None,
+                     john=None, extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^sha384\$[a-z0-9]+\$[a-f0-9]{96}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Django(SHA-384)", hashcat=None, john=None, extended=False)
+            HashInfo(name="Django(SHA-384)", hashcat=None,
+                     john=None, extended=False)
         ],
     ),
     Prototype(
-        regex=re.compile(r"^crypt1:[a-z0-9+=]{12}:[a-z0-9+=]{12}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^crypt1:[a-z0-9+=]{12}:[a-z0-9+=]{12}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Clavister Secure Gateway", hashcat=None, john=None, extended=False
@@ -1350,7 +1468,8 @@ prototypes = [
             re.IGNORECASE,
         ),
         modes=[
-            HashInfo(name="NetNTLMv2", hashcat=5600, john="netntlmv2", extended=False)
+            HashInfo(name="NetNTLMv2", hashcat=5600,
+                     john="netntlmv2", extended=False)
         ],
     ),
     Prototype(
@@ -1371,7 +1490,8 @@ prototypes = [
             r"^\$scram\$[0-9]+\$[a-z0-9\/.]{16}\$sha-1=[a-z0-9\/.]{27},sha-256=[a-z0-9\/.]{43},sha-512=[a-z0-9\/.]{86}$",
             re.IGNORECASE,
         ),
-        modes=[HashInfo(name="SCRAM Hash", hashcat=None, john=None, extended=False)],
+        modes=[HashInfo(name="SCRAM Hash", hashcat=None,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{40}:[a-f0-9]{0,32}$", re.IGNORECASE),
@@ -1428,7 +1548,8 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{40}:[^*]{1,25}$", re.IGNORECASE),
-        modes=[HashInfo(name=u"SMF ≥ v1.1", hashcat=121, john=None, extended=False)],
+        modes=[HashInfo(name=u"SMF ≥ v1.1", hashcat=121,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(
@@ -1456,7 +1577,8 @@ prototypes = [
             r"^[a-f0-9]{32}:[0-9]+:[a-z0-9_.+-]+@[a-z0-9-]+\.[a-z0-9-.]+$",
             re.IGNORECASE,
         ),
-        modes=[HashInfo(name="Lastpass", hashcat=6800, john=None, extended=False)],
+        modes=[HashInfo(name="Lastpass", hashcat=6800,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-z0-9\/.]{16}([:$].{1,})?$", re.IGNORECASE),
@@ -1467,7 +1589,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$vnc\$\*[a-f0-9]{32}\*[a-f0-9]{32}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$vnc\$\*[a-f0-9]{32}\*[a-f0-9]{32}$", re.IGNORECASE),
         modes=[HashInfo(name="VNC", hashcat=None, john="vnc", extended=False)],
     ),
     Prototype(
@@ -1475,11 +1598,14 @@ prototypes = [
             r"^[a-z0-9]{32}(:([a-z0-9-]+\.)?[a-z0-9-.]+\.[a-z]{2,7}:.+:[0-9]+)?$",
             re.IGNORECASE,
         ),
-        modes=[HashInfo(name="DNSSEC(NSEC3)", hashcat=8300, john=None, extended=False)],
+        modes=[HashInfo(name="DNSSEC(NSEC3)", hashcat=8300,
+                        john=None, extended=False)],
     ),
     Prototype(
-        regex=re.compile(r"^(user-.+:)?\$racf\$\*.+\*[a-f0-9]{16}$", re.IGNORECASE),
-        modes=[HashInfo(name="RACF", hashcat=8500, john="racf", extended=False)],
+        regex=re.compile(
+            r"^(user-.+:)?\$racf\$\*.+\*[a-f0-9]{16}$", re.IGNORECASE),
+        modes=[HashInfo(name="RACF", hashcat=8500,
+                        john="racf", extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^\$3\$\$[a-f0-9]{32}$", re.IGNORECASE),
@@ -1494,7 +1620,8 @@ prototypes = [
             r"^\$sha1\$[0-9]+\$[a-z0-9\/.]{0,64}\$[a-z0-9\/.]{28}$", re.IGNORECASE
         ),
         modes=[
-            HashInfo(name="SHA-1 Crypt", hashcat=15100, john="sha1crypt", extended=False)
+            HashInfo(name="SHA-1 Crypt", hashcat=15100,
+                     john="sha1crypt", extended=False)
         ],
     ),
     Prototype(
@@ -1510,13 +1637,15 @@ prototypes = [
             r"^[:\$][AB][:\$]([a-f0-9]{1,8}[:\$])?[a-f0-9]{32}$", re.IGNORECASE
         ),
         modes=[
-            HashInfo(name="MediaWiki", hashcat=3711, john="mediawiki", extended=False)
+            HashInfo(name="MediaWiki", hashcat=3711,
+                     john="mediawiki", extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{140}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Minecraft(xAuth)", hashcat=None, john=None, extended=False)
+            HashInfo(name="Minecraft(xAuth)", hashcat=None,
+                     john=None, extended=False)
         ],
     ),
     Prototype(
@@ -1576,7 +1705,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^{FSHP[0123]\|[0-9]+\|[0-9]+}[a-z0-9\/+=]+$", re.IGNORECASE),
+        regex=re.compile(
+            r"^{FSHP[0123]\|[0-9]+\|[0-9]+}[a-z0-9\/+=]+$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Fairly Secure Hashed Password",
@@ -1588,10 +1718,12 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^\$PHPS\$.+\$[a-f0-9]{32}$", re.IGNORECASE),
-        modes=[HashInfo(name="PHPS", hashcat=2612, john="phps", extended=False)],
+        modes=[HashInfo(name="PHPS", hashcat=2612,
+                        john="phps", extended=False)],
     ),
     Prototype(
-        regex=re.compile(r"^[0-9]{4}:[a-f0-9]{16}:[a-f0-9]{2080}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^[0-9]{4}:[a-f0-9]{16}:[a-f0-9]{2080}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="1Password(Agile Keychain)",
@@ -1619,21 +1751,25 @@ prototypes = [
             r"^[a-f0-9]{256}:[a-f0-9]{256}:[a-f0-9]{16}:[a-f0-9]{16}:[a-f0-9]{320}:[a-f0-9]{16}:[a-f0-9]{40}:[a-f0-9]{40}:[a-f0-9]{32}$",
             re.IGNORECASE,
         ),
-        modes=[HashInfo(name="IKE-PSK MD5", hashcat=5300, john=None, extended=False)],
+        modes=[HashInfo(name="IKE-PSK MD5", hashcat=5300,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(
             r"^[a-f0-9]{256}:[a-f0-9]{256}:[a-f0-9]{16}:[a-f0-9]{16}:[a-f0-9]{320}:[a-f0-9]{16}:[a-f0-9]{40}:[a-f0-9]{40}:[a-f0-9]{40}$",
             re.IGNORECASE,
         ),
-        modes=[HashInfo(name="IKE-PSK SHA1", hashcat=5400, john=None, extended=False)],
+        modes=[HashInfo(name="IKE-PSK SHA1", hashcat=5400,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-z0-9\/+]{27}=$", re.IGNORECASE),
-        modes=[HashInfo(name="PeopleSoft", hashcat=133, john=None, extended=False)],
+        modes=[HashInfo(name="PeopleSoft", hashcat=133,
+                        john=None, extended=False)],
     ),
     Prototype(
-        regex=re.compile(r"^crypt\$[a-f0-9]{5}\$[a-z0-9\/.]{13}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^crypt\$[a-f0-9]{5}\$[a-z0-9\/.]{13}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Django(DES Crypt Wrapper)",
@@ -1672,23 +1808,27 @@ prototypes = [
             r"^bcrypt(\$2[axy]|\$2)\$[0-9]{2}\$[a-z0-9\/.]{53}$", re.IGNORECASE
         ),
         modes=[
-            HashInfo(name="Django(bcrypt)", hashcat=None, john=None, extended=False)
+            HashInfo(name="Django(bcrypt)", hashcat=None,
+                     john=None, extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^md5\$[a-f0-9]+\$[a-f0-9]{32}$", re.IGNORECASE),
-        modes=[HashInfo(name="Django(MD5)", hashcat=None, john=None, extended=False)],
+        modes=[HashInfo(name="Django(MD5)", hashcat=None,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^\{PKCS5S2\}[a-z0-9\/+]{64}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="PBKDF2(Atlassian)", hashcat=None, john=None, extended=False)
+            HashInfo(name="PBKDF2(Atlassian)", hashcat=None,
+                     john=None, extended=False)
         ],
     ),
     Prototype(
         regex=re.compile(r"^md5[a-f0-9]{32}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="PostgreSQL MD5", hashcat=None, john=None, extended=False)
+            HashInfo(name="PostgreSQL MD5", hashcat=None,
+                     john=None, extended=False)
         ],
     ),
     Prototype(
@@ -1714,15 +1854,19 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$8\$[a-z0-9\/.]{14}\$[a-z0-9\/.]{43}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$8\$[a-z0-9\/.]{14}\$[a-z0-9\/.]{43}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Cisco Type 8", hashcat=9200, john="cisco8", extended=False)
+            HashInfo(name="Cisco Type 8", hashcat=9200,
+                     john="cisco8", extended=False)
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$9\$[a-z0-9\/.]{14}\$[a-z0-9\/.]{43}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$9\$[a-z0-9\/.]{14}\$[a-z0-9\/.]{43}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Cisco Type 9", hashcat=9300, john="cisco9", extended=False)
+            HashInfo(name="Cisco Type 9", hashcat=9300,
+                     john="cisco9", extended=False)
         ],
     ),
     Prototype(
@@ -1864,11 +2008,13 @@ prototypes = [
     Prototype(
         regex=re.compile(r"^(\$radmin2\$)?[a-f0-9]{32}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="RAdmin v2.x", hashcat=9900, john="radmin", extended=False)
+            HashInfo(name="RAdmin v2.x", hashcat=9900,
+                     john="radmin", extended=False)
         ],
     ),
     Prototype(
-        regex=re.compile(r"^{x-issha,\s[0-9]{4}}[a-z0-9\/+=]+$", re.IGNORECASE),
+        regex=re.compile(
+            r"^{x-issha,\s[0-9]{4}}[a-z0-9\/+=]+$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="SAP CODVN H (PWDSALTEDHASH) iSSHA-1",
@@ -1882,24 +2028,29 @@ prototypes = [
         regex=re.compile(
             r"^\$cram_md5\$[a-z0-9\/+=-]+\$[a-z0-9\/+=-]{52}$", re.IGNORECASE
         ),
-        modes=[HashInfo(name="CRAM-MD5", hashcat=10200, john=None, extended=False)],
+        modes=[HashInfo(name="CRAM-MD5", hashcat=10200,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{16}:2:4:[a-f0-9]{32}$", re.IGNORECASE),
-        modes=[HashInfo(name="SipHash", hashcat=10100, john=None, extended=False)],
+        modes=[HashInfo(name="SipHash", hashcat=10100,
+                        john=None, extended=False)],
     ),
     Prototype(
         regex=re.compile(r"^[a-f0-9]{4,}$", re.IGNORECASE),
-        modes=[HashInfo(name="Cisco Type 7", hashcat=None, john=None, extended=True)],
+        modes=[HashInfo(name="Cisco Type 7", hashcat=None,
+                        john=None, extended=True)],
     ),
     Prototype(
         regex=re.compile(r"^[a-z0-9\/.]{13,}$", re.IGNORECASE),
-        modes=[HashInfo(name="BigCrypt", hashcat=None, john="bigcrypt", extended=True)],
+        modes=[HashInfo(name="BigCrypt", hashcat=None,
+                        john="bigcrypt", extended=True)],
     ),
     Prototype(
         regex=re.compile(r"^(\$cisco4\$)?[a-z0-9\/.]{43}$", re.IGNORECASE),
         modes=[
-            HashInfo(name="Cisco Type 4", hashcat=None, john="cisco4", extended=False)
+            HashInfo(name="Cisco Type 4", hashcat=None,
+                     john="cisco4", extended=False)
         ],
     ),
     Prototype(
@@ -1930,7 +2081,8 @@ prototypes = [
             r"^\$siemens-s7\$[0-9]{1}\$[a-f0-9]{40}\$[a-f0-9]{40}$", re.IGNORECASE
         ),
         modes=[
-            HashInfo(name="Siemens-S7", hashcat=None, john="siemens-s7", extended=False)
+            HashInfo(name="Siemens-S7", hashcat=None,
+                     john="siemens-s7", extended=False)
         ],
     ),
     Prototype(
@@ -1956,10 +2108,12 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(r"^(\$dahua\$)?[a-z0-9]{8}$", re.IGNORECASE),
-        modes=[HashInfo(name="Dahua", hashcat=None, john="dahua", extended=False)],
+        modes=[HashInfo(name="Dahua", hashcat=None,
+                        john="dahua", extended=False)],
     ),
     Prototype(
-        regex=re.compile(r"^\$mysqlna\$[a-f0-9]{40}[:*][a-f0-9]{40}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$mysqlna\$[a-f0-9]{40}[:*][a-f0-9]{40}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="MySQL Challenge-Response Authentication (SHA1)",
@@ -2333,7 +2487,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$oldoffice\$[a-f0-9*]{100}:[a-f0-9]{10}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$oldoffice\$[a-f0-9*]{100}:[a-f0-9]{10}", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="MS Office ⇐ 2003 $0/$1, MD5 + RC4, collider #2",
@@ -2414,7 +2569,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$pkzip2?\$(1)\*[0-9]{1}\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,8}\*[0-9a-f]{1,4}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*(8)\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$pkzip2?\$(1)\*[0-9]{1}\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,8}\*[0-9a-f]{1,4}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*(8)\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="PKZIP (Compressed)",
@@ -2425,7 +2581,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$pkzip2?\$(1)\*[0-9]{1}\*[0-9]{1}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*(0)\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$pkzip2?\$(1)\*[0-9]{1}\*[0-9]{1}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}\*(0)\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="PKZIP (Uncompressed)",
@@ -2436,7 +2593,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,3}\*([^0*][0-9a-f]{0,2})\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]+)+\*(8)\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,3}\*([^0*][0-9a-f]{0,2})\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]+)+\*(8)\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="PKZIP (Compressed Multi-File)",
@@ -2447,7 +2605,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,8}\*([0-9a-f]{1,8})\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]+)+\*([08])\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,8}\*([0-9a-f]{1,8})\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]+)+\*([08])\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[a-f0-9]+\*\$\/pkzip2?\$$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="PKZIP (Mixed Multi-File)",
@@ -2458,7 +2617,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]+)+\*\$\/pkzip2?\$$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$pkzip2?\$([2-8])\*[0-9]{1}(\*[0-9]{1}\*[0-9a-f]{1,3}\*[0-9a-f]{1,8}\*[0-9a-f]{1,8}(\*[0-9a-f]{1,8})?\*[0-9a-f]{1,8}\*[0-9a-f]+)+\*\$\/pkzip2?\$$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="PKZIP (Mixed Multi-File Checksum-Only)",
@@ -2469,7 +2629,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$argon2i\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$argon2i\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Argon2i",
@@ -2480,7 +2641,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$argon2id\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$argon2id\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Argon2id",
@@ -2491,7 +2653,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"^\$argon2d\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$argon2d\$v=19\$m=[0-9]{1,6},t=[0-9]{1,2},p=[0-9]{1,2}\$[^$]+\$[^\s]{6,134}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Argon2d",
@@ -2502,7 +2665,8 @@ prototypes = [
         ],
     ),
     Prototype(
-        regex=re.compile(r"\$bitlocker\$[0-9]\$[0-9]{2}\$[a-f0-9]{32}\$[a-f0-9]{7}\$[a-f0-9]{2}\$[a-f0-9]{24}\$[a-f0-9]{2}\$[a-f0-9]{120}", re.IGNORECASE),
+        regex=re.compile(
+            r"\$bitlocker\$[0-9]\$[0-9]{2}\$[a-f0-9]{32}\$[a-f0-9]{7}\$[a-f0-9]{2}\$[a-f0-9]{24}\$[a-f0-9]{2}\$[a-f0-9]{120}", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="BitLocker",
@@ -2524,18 +2688,68 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$sshng\$4\$16\$[0-9]{32}\$1232\$[a-f0-9]{2464}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$sshng\$0\$\d\$[a-f0-9]{16}\$\d{1,8}\$[a-f0-9]{64,65536}$", re.IGNORECASE),
         modes=[
             HashInfo(
-                name="RSA/DSA/EC/OpenSSH Private Keys ($4$)",
-                hashcat=22941,
-                john=None,
+                name="RSA/DSA/EC/OpenSSH Private Keys ($0$)",
+                hashcat=22911,
+                john="ssh",
                 extended=False
             ),
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$RAR3\$\*(1)\*[0-9a-f]{1,16}\*[0-9a-f]{1,8}\*[0-9a-f]{1,16}\*[0-9a-f]{1,16}\*[01]\*([0-9a-f]+|[^*]{1,64}\*[0-9a-f]{1,16})\*30$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$sshng\$6\$\d\d?\$([a-f0-9]{16}|[a-f0-9]{32})\$\d{1,8}\$[a-f0-9]{64,65536}(\$\d{1,4}\$\d{1,6})?$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RSA/DSA/EC/OpenSSH Private Keys ($6$)",
+                hashcat=22921,
+                john="ssh",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(
+            r"^\$sshng\$[13]\$\d{2}\$[a-f0-9]{32}\$\d{1,8}\$[a-f0-9]{64,65536}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RSA/DSA/EC/OpenSSH Private Keys ($1$, $3$)",
+                hashcat=22931,
+                john="ssh",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(
+            r"^\$sshng\$4\$\d{2}\$[a-f0-9]{32}\$\d{1,8}\$[a-f0-9]{64,65536}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RSA/DSA/EC/OpenSSH Private Keys ($4$)",
+                hashcat=22941,
+                john="ssh",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(
+            r"^\$sshng\$5\$\d{2}\$[a-f0-9]{32}\$\d{1,8}\$[a-f0-9]{64,65536}$", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="RSA/DSA/EC/OpenSSH Private Keys ($5$)",
+                hashcat=22951,
+                john="ssh",
+                extended=False
+            ),
+        ]
+    ),
+    Prototype(
+        regex=re.compile(
+            r"^\$RAR3\$\*(1)\*[0-9a-f]{1,16}\*[0-9a-f]{1,8}\*[0-9a-f]{1,16}\*[0-9a-f]{1,16}\*[01]\*([0-9a-f]+|[^*]{1,64}\*[0-9a-f]{1,16})\*30$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="RAR3-p (Uncompressed)",
@@ -2546,7 +2760,8 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$RAR3\$\*(1)\*[0-9a-f]{1,16}\*[0-9a-f]{1,8}\*[0-9a-f]{1,16}\*[0-9a-f]{1,16}\*[01]\*([0-9a-f]+|[^*]{1,64}\*[0-9a-f]{1,16})\*(31|32|33|34|35)$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$RAR3\$\*(1)\*[0-9a-f]{1,16}\*[0-9a-f]{1,8}\*[0-9a-f]{1,16}\*[0-9a-f]{1,16}\*[01]\*([0-9a-f]+|[^*]{1,64}\*[0-9a-f]{1,16})\*(31|32|33|34|35)$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="RAR3-p (Compressed)",
@@ -2557,7 +2772,8 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$RAR3\$\*0\*[0-9a-f]{1,16}\*[0-9a-f]+$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$RAR3\$\*0\*[0-9a-f]{1,16}\*[0-9a-f]+$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="RAR3-hp",
@@ -2568,7 +2784,8 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$rar5\$[0-9a-f]{1,2}\$[0-9a-f]{1,32}\$[0-9a-f]{1,2}\$[0-9a-f]{1,32}\$[0-9a-f]{1,2}\$[0-9a-f]{1,16}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$rar5\$[0-9a-f]{1,2}\$[0-9a-f]{1,32}\$[0-9a-f]{1,2}\$[0-9a-f]{1,32}\$[0-9a-f]{1,2}\$[0-9a-f]{1,16}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="RAR5",
@@ -2579,7 +2796,8 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$keepass\$\*1\*\d+\*\d\*[0-9a-f]{32}\*[0-9a-f]{64}\*[0-9a-f]{32}\*[0-9a-f]{64}\*\d\*[^*]*(\*[0-9a-f]+)?$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$keepass\$\*1\*\d+\*\d\*[0-9a-f]{32}\*[0-9a-f]{64}\*[0-9a-f]{32}\*[0-9a-f]{64}\*\d\*[^*]*(\*[0-9a-f]+)?$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="KeePass 1 AES (without keyfile)",
@@ -2590,7 +2808,8 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$keepass\$\*1\*\d+\*\d\*[0-9a-f]{32}\*[0-9a-f]{64}\*[0-9a-f]{32}\*[0-9a-f]{64}\*\d\*[^*]*(\*[0-9a-f]+)?\*\d+\*\d+\*[0-9a-f]{64}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$keepass\$\*1\*\d+\*\d\*[0-9a-f]{32}\*[0-9a-f]{64}\*[0-9a-f]{32}\*[0-9a-f]{64}\*\d\*[^*]*(\*[0-9a-f]+)?\*\d+\*\d+\*[0-9a-f]{64}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="KeePass 1 TwoFish (with keyfile)",
@@ -2601,7 +2820,8 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$keepass\$\*2\*\d+\*\d+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$keepass\$\*2\*\d+\*\d+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="KeePass 2 AES (without keyfile)",
@@ -2612,7 +2832,8 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$keepass\$\*2\*\d+\*\d+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*\d+\*\d+\*[0-9a-f]+$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$keepass\$\*2\*\d+\*\d+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*[0-9a-f]+\*\d+\*\d+\*[0-9a-f]+$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="KeePass 2 AES (with keyfile)",
@@ -2623,7 +2844,8 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^\$odf\$\*1\*1\*100000\*32\*[a-f0-9]{64}\*16\*[a-f0-9]{32}\*16\*[a-f0-9]{32}\*0\*[a-f0-9]{2048}$", re.IGNORECASE),
+        regex=re.compile(
+            r"^\$odf\$\*1\*1\*100000\*32\*[a-f0-9]{64}\*16\*[a-f0-9]{32}\*16\*[a-f0-9]{32}\*0\*[a-f0-9]{2048}$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="Open Document Format (ODF) 1.2 (SHA-256, AES)",
@@ -2634,7 +2856,8 @@ prototypes = [
         ]
     ),
     Prototype(
-        regex=re.compile(r"^[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*$", re.IGNORECASE),
+        regex=re.compile(
+            r"^[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="JWT (JSON Web Token)",
