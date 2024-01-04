@@ -2701,7 +2701,7 @@ prototypes = [
     ),
     Prototype(
         regex=re.compile(
-            r"^\$sshng\$6\$\d\$[a-f0-9]{16}\$\d{1,8}\$[a-f0-9]{64,65536}$", re.IGNORECASE),
+            r"^\$sshng\$6\$\d\d?\$([a-f0-9]{16}|[a-f0-9]{32})\$\d{1,8}\$[a-f0-9]{64,65536}(\$\d{1,4}\$\d{1,6})?$", re.IGNORECASE),
         modes=[
             HashInfo(
                 name="RSA/DSA/EC/OpenSSH Private Keys ($6$)",
