@@ -2644,4 +2644,15 @@ prototypes = [
             ),
         ]
     ),
+    Prototype(
+        regex=re.compile(r"\$fvde\$1\$16\$[\d|\D]{32}\$\d{5}\$[\d|\D]{48}", re.IGNORECASE),
+        modes=[
+            HashInfo(
+                name="FileVault 2",
+                hashcat=16700,
+                john=None,
+                extended=False
+            ),
+        ]
+    ),
 ]

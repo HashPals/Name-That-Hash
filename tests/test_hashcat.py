@@ -1520,3 +1520,11 @@ def test_hashcat_16500():
     
     x = runner.api_return_hashes_as_json(hashes)
     assert '"hashcat": 16500,' in x
+
+def test_hashcat_16700():
+    hashes = [
+        "$fvde$1$16$84286044060108438487434858307513$20000$f1620ab93192112f0a23eea89b5d4df065661f974b704191"
+    ]
+    
+    x = runner.api_return_hashes_as_json(hashes)
+    assert '"hashcat": 16700,' in x
